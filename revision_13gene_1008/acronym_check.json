@@ -1,0 +1,296 @@
+{
+  "checker": "ars-acronym-check/1.0",
+  "input": "manuscript/revision_13gene_1008/main_13gene_revised.md",
+  "input_sha256": "d99589b49989f2ebe9724d296d41bbea6287c2be8ca7846bd78adb3a0ddd3134",
+  "status": "partial",
+  "allowlist": {
+    "default": 29,
+    "user": []
+  },
+  "coverage": {
+    "body": "checked",
+    "abstract_en": "checked",
+    "abstract_zh": "not_in_input"
+  },
+  "scope_lines": {
+    "body": [
+      [
+        2,
+        8
+      ],
+      [
+        14,
+        20
+      ],
+      [
+        22,
+        44
+      ],
+      [
+        46,
+        58
+      ],
+      [
+        60,
+        72
+      ],
+      [
+        74,
+        86
+      ],
+      [
+        130,
+        130
+      ],
+      [
+        132,
+        170
+      ],
+      [
+        172,
+        187
+      ],
+      [
+        189,
+        196
+      ],
+      [
+        198,
+        217
+      ]
+    ],
+    "abstract_en": [
+      [
+        10,
+        12
+      ]
+    ]
+  },
+  "unread_sections": [],
+  "coverage_limits": [
+    {
+      "scope": "body",
+      "line": 15,
+      "acronym": "PTV",
+      "reason": "unconfirmed_definition"
+    },
+    {
+      "scope": "body",
+      "line": 29,
+      "acronym": "LOFTEE",
+      "reason": "unconfirmed_definition"
+    },
+    {
+      "scope": "body",
+      "line": 33,
+      "acronym": "ORg",
+      "reason": "unconfirmed_definition"
+    },
+    {
+      "scope": "body",
+      "line": 37,
+      "acronym": "CV",
+      "reason": "unconfirmed_definition"
+    },
+    {
+      "scope": "abstract_en",
+      "line": 11,
+      "acronym": "PTV",
+      "reason": "unconfirmed_definition"
+    }
+  ],
+  "findings": [
+    {
+      "scope": "body",
+      "line": 5,
+      "rule": "undefined",
+      "acronym": "CT",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 23,
+      "rule": "undefined",
+      "acronym": "KING",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 25,
+      "rule": "undefined",
+      "acronym": "SNOMED",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 27,
+      "rule": "undefined",
+      "acronym": "CHEK2",
+      "expansion": null,
+      "occurrences": 2
+    },
+    {
+      "scope": "body",
+      "line": 27,
+      "rule": "undefined",
+      "acronym": "GRCh38",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 27,
+      "rule": "undefined",
+      "acronym": "PRS311",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 29,
+      "rule": "undefined",
+      "acronym": "ATM",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 29,
+      "rule": "undefined",
+      "acronym": "BARD1",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 29,
+      "rule": "undefined",
+      "acronym": "BRCA1",
+      "expansion": null,
+      "occurrences": 5
+    },
+    {
+      "scope": "body",
+      "line": 29,
+      "rule": "undefined",
+      "acronym": "BRCA2",
+      "expansion": null,
+      "occurrences": 3
+    },
+    {
+      "scope": "body",
+      "line": 29,
+      "rule": "undefined",
+      "acronym": "CDH1",
+      "expansion": null,
+      "occurrences": 3
+    },
+    {
+      "scope": "body",
+      "line": 29,
+      "rule": "undefined",
+      "acronym": "PALB2",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 29,
+      "rule": "undefined",
+      "acronym": "PTEN",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 29,
+      "rule": "undefined",
+      "acronym": "RAD51C",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 29,
+      "rule": "undefined",
+      "acronym": "RAD51D",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 29,
+      "rule": "undefined",
+      "acronym": "STK11",
+      "expansion": null,
+      "occurrences": 3
+    },
+    {
+      "scope": "body",
+      "line": 29,
+      "rule": "undefined",
+      "acronym": "TP53",
+      "expansion": null,
+      "occurrences": 3
+    },
+    {
+      "scope": "body",
+      "line": 31,
+      "rule": "undefined",
+      "acronym": "PASS",
+      "expansion": null,
+      "occurrences": 2
+    },
+    {
+      "scope": "body",
+      "line": 35,
+      "rule": "undefined",
+      "acronym": "PB",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 43,
+      "rule": "undefined",
+      "acronym": "PLINK",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 75,
+      "rule": "undefined",
+      "acronym": "NIH",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 77,
+      "rule": "undefined",
+      "acronym": "CDR",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "body",
+      "line": 79,
+      "rule": "undefined",
+      "acronym": "IRB",
+      "expansion": null,
+      "occurrences": 1
+    },
+    {
+      "scope": "abstract_en",
+      "line": 11,
+      "rule": "undefined",
+      "acronym": "PRS311",
+      "expansion": null,
+      "occurrences": 1
+    }
+  ]
+}

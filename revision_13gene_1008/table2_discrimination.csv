@@ -1,0 +1,5 @@
+Model,Mean CV AUC,Repeat-1 AUC (95% CI)
+Covariates only,0.7452,0.7452 (0.7406–0.7498)
+PRS + covariates,0.7682,0.7683 (0.7637–0.7728)
+Burden + covariates,0.7588,0.7588 (0.7543–0.7633)
+Joint,0.7815,0.7815 (0.7771–0.7859)
