@@ -43,7 +43,7 @@ L 120.024484 282.76
 L 120.024484 95.313082 
 L 55.988831 95.313082 
 z
-" clip-path="url(#p89a912aa67)" style="fill: #2463b4; opacity: 0.75"/>
+" clip-path="url(#p89a912aa67)" style="fill: #2463B4; opacity: 0.75"/>
    </g>
    <g id="patch_4">
     <path d="M 172.417292 282.76 
@@ -51,7 +51,7 @@ L 236.452946 282.76
 L 236.452946 85.276896 
 L 172.417292 85.276896 
 z
-" clip-path="url(#p89a912aa67)" style="fill: #d54848; opacity: 0.75"/>
+" clip-path="url(#p89a912aa67)" style="fill: #D54848; opacity: 0.75"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
@@ -1057,7 +1057,7 @@ L 362.730321 282.76
 L 362.730321 109.376393 
 L 318.551127 109.376393 
 z
-" clip-path="url(#pb23bd3e3fe)" style="fill: #2463b4; opacity: 0.75"/>
+" clip-path="url(#pb23bd3e3fe)" style="fill: #2463B4; opacity: 0.75"/>
    </g>
    <g id="patch_9">
     <path d="M 456.611106 282.76 
@@ -1065,7 +1065,7 @@ L 500.790299 282.76
 L 500.790299 240.799584 
 L 456.611106 240.799584 
 z
-" clip-path="url(#pb23bd3e3fe)" style="fill: #2463b4; opacity: 0.75"/>
+" clip-path="url(#pb23bd3e3fe)" style="fill: #2463B4; opacity: 0.75"/>
    </g>
    <g id="patch_10">
     <path d="M 594.671085 282.76 
@@ -1073,7 +1073,7 @@ L 638.850278 282.76
 L 638.850278 143.41975 
 L 594.671085 143.41975 
 z
-" clip-path="url(#pb23bd3e3fe)" style="fill: #2463b4; opacity: 0.75"/>
+" clip-path="url(#pb23bd3e3fe)" style="fill: #2463B4; opacity: 0.75"/>
    </g>
    <g id="patch_11">
     <path d="M 732.731063 282.76 
@@ -1081,7 +1081,7 @@ L 776.910256 282.76
 L 776.910256 167.962635 
 L 732.731063 167.962635 
 z
-" clip-path="url(#pb23bd3e3fe)" style="fill: #2463b4; opacity: 0.75"/>
+" clip-path="url(#pb23bd3e3fe)" style="fill: #2463B4; opacity: 0.75"/>
    </g>
    <g id="patch_12">
     <path d="M 365.49152 282.76 
@@ -1089,7 +1089,7 @@ L 409.670713 282.76
 L 409.670713 200.778798 
 L 365.49152 200.778798 
 z
-" clip-path="url(#pb23bd3e3fe)" style="fill: #d54848; opacity: 0.75"/>
+" clip-path="url(#pb23bd3e3fe)" style="fill: #D54848; opacity: 0.75"/>
    </g>
    <g id="patch_13">
     <path d="M 503.551499 282.76 
@@ -1097,7 +1097,7 @@ L 547.730692 282.76
 L 547.730692 271.462777 
 L 503.551499 271.462777 
 z
-" clip-path="url(#pb23bd3e3fe)" style="fill: #d54848; opacity: 0.75"/>
+" clip-path="url(#pb23bd3e3fe)" style="fill: #D54848; opacity: 0.75"/>
    </g>
    <g id="patch_14">
     <path d="M 641.611477 282.76 
@@ -1105,7 +1105,7 @@ L 685.79067 282.76
 L 685.79067 257.315803 
 L 641.611477 257.315803 
 z
-" clip-path="url(#pb23bd3e3fe)" style="fill: #d54848; opacity: 0.75"/>
+" clip-path="url(#pb23bd3e3fe)" style="fill: #D54848; opacity: 0.75"/>
    </g>
    <g id="patch_15">
     <path d="M 779.671456 282.76 
@@ -1113,7 +1113,7 @@ L 823.850649 282.76
 L 823.850649 268.358585 
 L 779.671456 268.358585 
 z
-" clip-path="url(#pb23bd3e3fe)" style="fill: #d54848; opacity: 0.75"/>
+" clip-path="url(#pb23bd3e3fe)" style="fill: #D54848; opacity: 0.75"/>
    </g>
    <g id="matplotlib.axis_3">
     <g id="xtick_3">
@@ -1628,7 +1628,7 @@ L 795.973437 87.830438
 L 795.973437 80.830438 
 L 775.973437 80.830438 
 z
-" style="fill: #2463b4; opacity: 0.75"/>
+" style="fill: #2463B4; opacity: 0.75"/>
     </g>
     <g id="text_35">
      <!-- Case -->
@@ -1645,7 +1645,7 @@ L 795.973437 102.508563
 L 795.973437 95.508563 
 L 775.973437 95.508563 
 z
-" style="fill: #d54848; opacity: 0.75"/>
+" style="fill: #D54848; opacity: 0.75"/>
     </g>
     <g id="text_36">
      <!-- Control -->

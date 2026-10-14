@@ -1342,10 +1342,10 @@ L 68.748452 -37.55625
 L 68.023715 -37.55625 
 L 67.298977 -37.55625 
 z
-" style="stroke: #2463b4; stroke-opacity: 0.12"/>
+" style="stroke: #2463B4; stroke-opacity: 0.12"/>
     </defs>
     <g clip-path="url(#p240a0ed074)">
-     <use xlink:href="#m21006043c4" x="0" y="352.474375" style="fill: #2463b4; fill-opacity: 0.12; stroke: #2463b4; stroke-opacity: 0.12"/>
+     <use xlink:href="#m21006043c4" x="0" y="352.474375" style="fill: #2463B4; fill-opacity: 0.12; stroke: #2463B4; stroke-opacity: 0.12"/>
     </g>
    </g>
    <g id="FillBetweenPolyCollection_2">
@@ -2653,10 +2653,10 @@ L 68.748452 -37.610118
 L 68.023715 -37.608386 
 L 67.298977 -37.606227 
 z
-" style="stroke: #d54848; stroke-opacity: 0.12"/>
+" style="stroke: #D54848; stroke-opacity: 0.12"/>
     </defs>
     <g clip-path="url(#p240a0ed074)">
-     <use xlink:href="#m082aaff4f5" x="0" y="352.474375" style="fill: #d54848; fill-opacity: 0.12; stroke: #d54848; stroke-opacity: 0.12"/>
+     <use xlink:href="#m082aaff4f5" x="0" y="352.474375" style="fill: #D54848; fill-opacity: 0.12; stroke: #D54848; stroke-opacity: 0.12"/>
     </g>
    </g>
    <g id="matplotlib.axis_1">
@@ -3590,7 +3590,7 @@ L 522.434038 314.703561
 L 529.681412 314.879619 
 L 537.653523 314.915357 
 L 537.653523 314.915357 
-" clip-path="url(#p240a0ed074)" style="fill: none; stroke: #2463b4; stroke-width: 2; stroke-linecap: square"/>
+" clip-path="url(#p240a0ed074)" style="fill: none; stroke: #2463B4; stroke-width: 2; stroke-linecap: square"/>
    </g>
    <g id="line2d_15">
     <path d="M 67.298977 314.868148 
@@ -3701,7 +3701,7 @@ L 510.83824 314.884237
 L 534.029836 314.901066 
 L 537.653523 314.895966 
 L 537.653523 314.895966 
-" clip-path="url(#p240a0ed074)" style="fill: none; stroke: #d54848; stroke-width: 2; stroke-linecap: square"/>
+" clip-path="url(#p240a0ed074)" style="fill: none; stroke: #D54848; stroke-width: 2; stroke-linecap: square"/>
    </g>
    <g id="patch_3">
     <path d="M 43.78125 314.918125 
@@ -3788,7 +3788,7 @@ z
      <path d="M 488.029063 35.416562 
 L 498.029063 35.416562 
 L 508.029063 35.416562 
-" style="fill: none; stroke: #2463b4; stroke-width: 2; stroke-linecap: square"/>
+" style="fill: none; stroke: #2463B4; stroke-width: 2; stroke-linecap: square"/>
     </g>
     <g id="text_17">
      <!-- Case -->
@@ -3826,7 +3826,7 @@ z
      <path d="M 488.029063 50.094687 
 L 498.029063 50.094687 
 L 508.029063 50.094687 
-" style="fill: none; stroke: #d54848; stroke-width: 2; stroke-linecap: square"/>
+" style="fill: none; stroke: #D54848; stroke-width: 2; stroke-linecap: square"/>
     </g>
     <g id="text_18">
      <!-- Control -->
