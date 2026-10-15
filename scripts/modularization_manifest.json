@@ -1,0 +1,2723 @@
+{
+  "snapshot": "archive/scripts_before_modularization_20261015",
+  "moves": [
+    {
+      "from": "scripts/09_result_figures.py",
+      "to": "scripts/12_figures.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/10_exploratory_age_ehr.py",
+      "to": "scripts/exploratory/age_ehr.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/90_legacy_ptv_baseline.py",
+      "to": "scripts/legacy/ptv_baseline.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/59_interaction_audit.py",
+      "to": "scripts/audit/interaction.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/60_interaction_manuscript_assets.py",
+      "to": "scripts/manuscript/interaction_assets.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/61_revise_13gene_manuscript.py",
+      "to": "scripts/manuscript/revise_13gene_1008.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/audit_table1_09b.py",
+      "to": "scripts/audit/table1.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/11_manuscript_refresh_audit.py",
+      "to": "scripts/audit/manuscript_refresh.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/12_collect_manuscript_datas.py",
+      "to": "scripts/manuscript/collect_data.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/62_review_1008_probe.py",
+      "to": "scripts/review/probe_1008.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/63_manuscript_figure_colors.py",
+      "to": "scripts/manuscript/figure_colors.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/64_restyle_review_figure2.py",
+      "to": "scripts/manuscript/restyle_review_figure2.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/organize_project.py",
+      "to": "scripts/maintenance/organize_project.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/62_review_1008.py",
+      "to": "scripts/review/review_1008.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/function.py",
+      "to": "scripts/legacy/function.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/script_output_py/output_07_prs_calculation.txt",
+      "to": "scripts/legacy/run_logs/output_07_prs_calculation.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_11b_fix_vat_extraction.txt",
+      "to": "scripts/legacy/run_logs/output_11b_fix_vat_extraction.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_18_aim4_group_contrasts.txt",
+      "to": "scripts/legacy/run_logs/output_18_aim4_group_contrasts.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_19_aim1_figures.txt",
+      "to": "scripts/legacy/run_logs/output_19_aim1_figures.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_03_vat_schema_check.txt",
+      "to": "scripts/legacy/run_logs/output_03_vat_schema_check.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_17_step5_aim4_age_of_onset_model.txt",
+      "to": "scripts/legacy/run_logs/output_17_step5_aim4_age_of_onset_model.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_13_carrier_genotype_extraction.txt",
+      "to": "scripts/legacy/run_logs/output_13_carrier_genotype_extraction.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_20_forest_plot.txt",
+      "to": "scripts/legacy/run_logs/output_20_forest_plot.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_15_burden_rare_distributional_analysis.txt",
+      "to": "scripts/legacy/run_logs/output_15_burden_rare_distributional_analysis.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_11_step3_technical_prep.txt",
+      "to": "scripts/legacy/run_logs/output_11_step3_technical_prep.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_05_cohort_qc.txt",
+      "to": "scripts/legacy/run_logs/output_05_cohort_qc.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_14_burden_rare_construction.txt",
+      "to": "scripts/legacy/run_logs/output_14_burden_rare_construction.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_09b_supp_table1_cohort.txt",
+      "to": "scripts/legacy/run_logs/output_09b_supp_table1_cohort.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_16_step5_joint_model.txt",
+      "to": "scripts/legacy/run_logs/output_16_step5_joint_model.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_01_cohort_selection.txt",
+      "to": "scripts/legacy/run_logs/output_01_cohort_selection.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/output_12_qualifying_variant_definition.txt",
+      "to": "scripts/legacy/run_logs/output_12_qualifying_variant_definition.txt",
+      "method": "git mv"
+    },
+    {
+      "from": "scripts/script_output_py/.claude/settings.local.json",
+      "to": "scripts/metadata/history/claude/settings.local.json",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/.ipynb_checkpoints/03_common_variants_prs-checkpoint.py",
+      "to": "scripts/legacy/checkpoints/03_common_variants_prs-checkpoint.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/.ipynb_checkpoints/11_manuscript_refresh_audit-checkpoint.py",
+      "to": "scripts/legacy/checkpoints/11_manuscript_refresh_audit-checkpoint.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/.ipynb_checkpoints/reproduce_review_1008_agent_prompt-checkpoint.md",
+      "to": "scripts/legacy/checkpoints/reproduce_review_1008_agent_prompt-checkpoint.md",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/.ipynb_checkpoints/01_study_cohort_selection-checkpoint.py",
+      "to": "scripts/legacy/checkpoints/01_study_cohort_selection-checkpoint.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/.ipynb_checkpoints/62_review_1008_probe-checkpoint.py",
+      "to": "scripts/legacy/checkpoints/62_review_1008_probe-checkpoint.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/.ipynb_checkpoints/script_inventory-checkpoint.csv",
+      "to": "scripts/legacy/checkpoints/script_inventory-checkpoint.csv",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/.ipynb_checkpoints/10_exploratory_age_ehr-checkpoint.py",
+      "to": "scripts/legacy/checkpoints/10_exploratory_age_ehr-checkpoint.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/.ipynb_checkpoints/09_result_figures-checkpoint.py",
+      "to": "scripts/legacy/checkpoints/09_result_figures-checkpoint.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/.ipynb_checkpoints/07_burden_score-checkpoint.py",
+      "to": "scripts/legacy/checkpoints/07_burden_score-checkpoint.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/.ipynb_checkpoints/04_gene_selection-checkpoint.py",
+      "to": "scripts/legacy/checkpoints/04_gene_selection-checkpoint.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/.ipynb_checkpoints/90_legacy_ptv_baseline-checkpoint.py",
+      "to": "scripts/legacy/checkpoints/90_legacy_ptv_baseline-checkpoint.py",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/path_migration_report.json",
+      "to": "scripts/metadata/history/path_migration_report.json",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/process_layout_sections.json",
+      "to": "scripts/metadata/history/process_layout_sections.json",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/refactor_validation.md",
+      "to": "scripts/metadata/history/refactor_validation.md",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/reproduce_review_1008_agent_prompt.md",
+      "to": "scripts/review/reproduce_review_1008_agent_prompt.md",
+      "method": "filesystem move (source untracked)"
+    },
+    {
+      "from": "scripts/functions/review_1008_frailty.py",
+      "to": "scripts/functions/frailty.py",
+      "method": "merged canonical module"
+    },
+    {
+      "from": "scripts/functions/v2_disclosure.py",
+      "to": "scripts/functions/disclosure.py",
+      "method": "merged canonical module"
+    }
+  ],
+  "functions": [
+    {
+      "source": "scripts/01_study_cohort_selection.py",
+      "function": "disclose",
+      "module": "scripts.functions.cohort"
+    },
+    {
+      "source": "scripts/01_study_cohort_selection.py",
+      "function": "cohort_selection_section",
+      "module": "scripts.functions.cohort"
+    },
+    {
+      "source": "scripts/01_study_cohort_selection.py",
+      "function": "select_study_cohort",
+      "module": "scripts.functions.cohort"
+    },
+    {
+      "source": "scripts/01_study_cohort_selection.py",
+      "function": "phenotypes_section",
+      "module": "scripts.functions.phenotypes"
+    },
+    {
+      "source": "scripts/01_study_cohort_selection.py",
+      "function": "timed_query",
+      "module": "scripts.functions.phenotypes"
+    },
+    {
+      "source": "scripts/01_study_cohort_selection.py",
+      "function": "_group",
+      "module": "scripts.functions.phenotypes"
+    },
+    {
+      "source": "scripts/01_study_cohort_selection.py",
+      "function": "_age_years",
+      "module": "scripts.functions.phenotypes"
+    },
+    {
+      "source": "scripts/01_study_cohort_selection.py",
+      "function": "define_phenotypes_and_ehr_dates",
+      "module": "scripts.functions.phenotypes"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "disclose",
+      "module": "scripts.functions.sample_qc"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "run",
+      "module": "scripts.functions.sample_qc"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "sample_qc_section",
+      "module": "scripts.functions.sample_qc"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "kinship_pruning",
+      "module": "scripts.functions.sample_qc"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "build_representative_acaf_slice",
+      "module": "scripts.functions.sample_qc"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "sample_missingness",
+      "module": "scripts.functions.sample_qc"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "hwe_control_only",
+      "module": "scripts.functions.sample_qc"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "load_candidates",
+      "module": "scripts.functions.sample_qc"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "count_row",
+      "module": "scripts.functions.sample_qc"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "build_table_s2",
+      "module": "scripts.functions.sample_qc"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "sample_qc_calculation",
+      "module": "scripts.functions.sample_qc"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "preprocess_samples",
+      "module": "scripts.functions.sample_qc"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "clinical_covariates_log",
+      "module": "scripts.functions.clinical_covariates"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "clinical_covariates_section",
+      "module": "scripts.functions.clinical_covariates"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "map_menopause",
+      "module": "scripts.functions.clinical_covariates"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "relative_label",
+      "module": "scripts.functions.clinical_covariates"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "_famhist_label",
+      "module": "scripts.functions.clinical_covariates"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "derive_smoking",
+      "module": "scripts.functions.clinical_covariates"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "summarize_continuous",
+      "module": "scripts.functions.clinical_covariates"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "summarize_categorical",
+      "module": "scripts.functions.clinical_covariates"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "derive_clinical_covariates",
+      "module": "scripts.functions.clinical_covariates"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "cohort_descriptives_log",
+      "module": "scripts.functions.cohort_results"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "summarize",
+      "module": "scripts.functions.cohort_results"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "describe_cohort",
+      "module": "scripts.functions.cohort_results"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "fmt_cat",
+      "module": "scripts.functions.tables"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "fmt_cont",
+      "module": "scripts.functions.tables"
+    },
+    {
+      "source": "scripts/02_sample_preprocessing.py",
+      "function": "write_cohort_table",
+      "module": "scripts.functions.tables"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "run",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "section",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "download_scoring_files",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "load_cohort",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "build_target_table",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "match_variants_to_aou",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "_orient_effect_allele",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "resolve_matches",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "load_fam_and_cohort_index",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "_decode_bed_block",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "fetch_and_decode_all",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "resolve_ambiguous_by_af",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "_encode_bed_bytes",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "plink2_cross_check",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "compute_prs_numpy",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "common_variants_calculation",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "calculate_common_variant_prs",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/03_common_variants_prs.py",
+      "function": "audit_prs_matches",
+      "module": "scripts.functions.prs"
+    },
+    {
+      "source": "scripts/04_gene_selection.py",
+      "function": "read",
+      "module": "scripts.functions.gene_panels"
+    },
+    {
+      "source": "scripts/04_gene_selection.py",
+      "function": "ids",
+      "module": "scripts.functions.gene_panels"
+    },
+    {
+      "source": "scripts/04_gene_selection.py",
+      "function": "file_sha",
+      "module": "scripts.functions.gene_panels"
+    },
+    {
+      "source": "scripts/04_gene_selection.py",
+      "function": "validate_extension_membership",
+      "module": "scripts.functions.gene_panels"
+    },
+    {
+      "source": "scripts/04_gene_selection.py",
+      "function": "freeze_cohorts_and_prepare_gene_panel",
+      "module": "scripts.functions.gene_panels"
+    },
+    {
+      "source": "scripts/04_gene_selection.py",
+      "function": "terms",
+      "module": "scripts.functions.vat_candidates"
+    },
+    {
+      "source": "scripts/04_gene_selection.py",
+      "function": "key",
+      "module": "scripts.functions.vat_candidates"
+    },
+    {
+      "source": "scripts/04_gene_selection.py",
+      "function": "coordinates",
+      "module": "scripts.functions.vat_candidates"
+    },
+    {
+      "source": "scripts/04_gene_selection.py",
+      "function": "normalize",
+      "module": "scripts.functions.vat_candidates"
+    },
+    {
+      "source": "scripts/04_gene_selection.py",
+      "function": "select_vat_candidates",
+      "module": "scripts.functions.vat_candidates"
+    },
+    {
+      "source": "scripts/05_variant_annotation.py",
+      "function": "sha",
+      "module": "scripts.functions.variant_annotation"
+    },
+    {
+      "source": "scripts/05_variant_annotation.py",
+      "function": "audit_ptv_annotation",
+      "module": "scripts.functions.variant_annotation"
+    },
+    {
+      "source": "scripts/05_variant_annotation.py",
+      "function": "write_tsv_if_changed",
+      "module": "scripts.functions.clinvar"
+    },
+    {
+      "source": "scripts/05_variant_annotation.py",
+      "function": "clean",
+      "module": "scripts.functions.clinvar"
+    },
+    {
+      "source": "scripts/05_variant_annotation.py",
+      "function": "exclusions",
+      "module": "scripts.functions.clinvar"
+    },
+    {
+      "source": "scripts/05_variant_annotation.py",
+      "function": "fetch",
+      "module": "scripts.functions.clinvar"
+    },
+    {
+      "source": "scripts/05_variant_annotation.py",
+      "function": "historical_xml",
+      "module": "scripts.functions.clinvar"
+    },
+    {
+      "source": "scripts/05_variant_annotation.py",
+      "function": "disease_rule",
+      "module": "scripts.functions.clinvar"
+    },
+    {
+      "source": "scripts/05_variant_annotation.py",
+      "function": "review_variant",
+      "module": "scripts.functions.clinvar"
+    },
+    {
+      "source": "scripts/05_variant_annotation.py",
+      "function": "select_clinvar_missense",
+      "module": "scripts.functions.clinvar"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "source_site_pass",
+      "module": "scripts.functions.site_qc"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "canonical_crosswalk",
+      "module": "scripts.functions.site_qc"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "verify_variant_site_filters",
+      "module": "scripts.functions.site_qc"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "run",
+      "module": "scripts.functions.genotype_workers"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "qc_genotypes_by_gene",
+      "module": "scripts.functions.genotype_workers"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "sha",
+      "module": "scripts.functions.genotype_qc"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "call_qc",
+      "module": "scripts.functions.genotype_qc"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "normalized_native_sites",
+      "module": "scripts.functions.genotype_qc"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "safe_count",
+      "module": "scripts.functions.genotype_qc"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "qc_gene_calls",
+      "module": "scripts.functions.genotype_qc"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "read_missing_candidate_calls",
+      "module": "scripts.functions.missing_site_calls"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "validate_genotype_qc",
+      "module": "scripts.functions.genotype_validation"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "terms",
+      "module": "scripts.functions.sample_variant_audit"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "load_module",
+      "module": "scripts.functions.sample_variant_audit"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "positive_float",
+      "module": "scripts.functions.sample_variant_audit"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "audit_sample_variant_calls",
+      "module": "scripts.functions.sample_variant_audit"
+    },
+    {
+      "source": "scripts/06_variant_genotype_qc.py",
+      "function": "reconcile_variant_eligibility",
+      "module": "scripts.functions.sample_variant_audit"
+    },
+    {
+      "source": "scripts/07_burden_score.py",
+      "function": "read_weights",
+      "module": "scripts.functions.burden"
+    },
+    {
+      "source": "scripts/07_burden_score.py",
+      "function": "score_panel",
+      "module": "scripts.functions.burden"
+    },
+    {
+      "source": "scripts/07_burden_score.py",
+      "function": "calculate_burden_scores",
+      "module": "scripts.functions.burden"
+    },
+    {
+      "source": "scripts/07_burden_score.py",
+      "function": "validate_burden_scores",
+      "module": "scripts.functions.burden_validation"
+    },
+    {
+      "source": "scripts/07_burden_score.py",
+      "function": "calculate_comparison_scores",
+      "module": "scripts.functions.burden_comparisons"
+    },
+    {
+      "source": "scripts/07_burden_score.py",
+      "function": "model_preparation_sha",
+      "module": "scripts.functions.model_inputs"
+    },
+    {
+      "source": "scripts/07_burden_score.py",
+      "function": "prepare_model_inputs",
+      "module": "scripts.functions.model_inputs"
+    },
+    {
+      "source": "scripts/07_burden_score.py",
+      "function": "sensitivity_preparation_sha",
+      "module": "scripts.functions.sensitivity"
+    },
+    {
+      "source": "scripts/07_burden_score.py",
+      "function": "prepare_sensitivity_scores",
+      "module": "scripts.functions.sensitivity"
+    },
+    {
+      "source": "scripts/08_association_models.py",
+      "function": "sha",
+      "module": "scripts.functions.association"
+    },
+    {
+      "source": "scripts/08_association_models.py",
+      "function": "fit_joint_and_age_models",
+      "module": "scripts.functions.association"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "attribute_new_carriers",
+      "module": "scripts.functions.model_results"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "summarize_model_results",
+      "module": "scripts.functions.model_results"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "sha",
+      "module": "scripts.functions.age_result_figures"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "plot_age_and_auc_results",
+      "module": "scripts.functions.age_result_figures"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "MS_4_density",
+      "module": "scripts.functions.score_figures"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "MS_4_save",
+      "module": "scripts.functions.score_figures"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "plot_raw_score_distributions",
+      "module": "scripts.functions.score_figures"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "MS_5_sha",
+      "module": "scripts.functions.discrimination"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "MS_5_design",
+      "module": "scripts.functions.discrimination"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "MS_5_fit_predict",
+      "module": "scripts.functions.discrimination"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "MS_5_save_figure",
+      "module": "scripts.functions.discrimination"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "plot_four_model_discrimination",
+      "module": "scripts.functions.discrimination"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "plot_joint_distribution",
+      "module": "scripts.functions.joint_distribution"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "plot_score_decile_boxplots",
+      "module": "scripts.functions.score_figures"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "plot_burden_histogram",
+      "module": "scripts.functions.score_figures"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "plot_age_burden_boxplots",
+      "module": "scripts.functions.age_result_figures"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "plot_age_carrier_frequency",
+      "module": "scripts.functions.age_result_figures"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "organize_manuscript_figures",
+      "module": "scripts.functions.manuscript_assets"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "plot_primary_sensitivity_estimates",
+      "module": "scripts.functions.result_figures"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "MS_13_text",
+      "module": "scripts.functions.manuscript_documents"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "MS_13_paragraph",
+      "module": "scripts.functions.manuscript_documents"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "MS_13_renumber",
+      "module": "scripts.functions.manuscript_documents"
+    },
+    {
+      "source": "scripts/09_result_figures.py",
+      "function": "insert_manuscript_figures",
+      "module": "scripts.functions.manuscript_documents"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "age_group_contrasts_read",
+      "module": "scripts.functions.age_group_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "contrast",
+      "module": "scripts.functions.age_group_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "design",
+      "module": "scripts.functions.age_group_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "analyze",
+      "module": "scripts.functions.age_group_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "analyze_age_group_contrasts",
+      "module": "scripts.functions.age_group_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "ehr_age_audit_read",
+      "module": "scripts.functions.ehr_age_audit"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "releasable",
+      "module": "scripts.functions.ehr_age_audit"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "save",
+      "module": "scripts.functions.ehr_age_audit"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "table_counts",
+      "module": "scripts.functions.ehr_age_audit"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "published_joint_margin_blocks",
+      "module": "scripts.functions.ehr_age_audit"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "binary_table",
+      "module": "scripts.functions.ehr_age_audit"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "log_odds_contrast",
+      "module": "scripts.functions.ehr_age_audit"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "case_only",
+      "module": "scripts.functions.ehr_age_audit"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "ehr_query",
+      "module": "scripts.functions.ehr_age_audit"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "query_windows",
+      "module": "scripts.functions.ehr_age_audit"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "numeric_summary",
+      "module": "scripts.functions.ehr_age_audit"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "span_proxy_masks",
+      "module": "scripts.functions.ehr_age_audit"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "window_audit",
+      "module": "scripts.functions.ehr_age_audit"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "audit_early_ehr_diagnoses",
+      "module": "scripts.functions.ehr_age_audit"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "nine_gene_missense_age_read",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "safe_partition",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "related_condition",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "disease_allowed",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "germline_allowed",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "prepare_candidates",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "ensure_ro_mount",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "qualifying_call",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "minimal_allele_key",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "candidate_shards",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "extract_carriers",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "carrier_partitions",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "linear_contrast",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "fit_age",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "finalize_disclosure_and_report",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "analyze_nine_gene_missense_age",
+      "module": "scripts.functions.nine_gene_missense_age"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "prs_age_descriptives_log",
+      "module": "scripts.functions.legacy.descriptives"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "describe_prs_and_age",
+      "module": "scripts.functions.legacy.descriptives"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "legacy_burden_descriptives_log",
+      "module": "scripts.functions.legacy.descriptives"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "legacy_burden_descriptives_section",
+      "module": "scripts.functions.legacy.descriptives"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "legacy_burden_descriptives_suppress",
+      "module": "scripts.functions.legacy.descriptives"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "legacy_burden_descriptives_wilson_ci",
+      "module": "scripts.functions.legacy.descriptives"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "gene_breakdown",
+      "module": "scripts.functions.legacy.descriptives"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "pool_set",
+      "module": "scripts.functions.legacy.descriptives"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "merge_categories",
+      "module": "scripts.functions.legacy.descriptives"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "fmt_p",
+      "module": "scripts.functions.legacy.descriptives"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "describe_legacy_burden",
+      "module": "scripts.functions.legacy.descriptives"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "legacy_age_contrasts_log",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "legacy_age_contrasts_section",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "legacy_age_contrasts_suppress",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "bucket",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "sanitize_for_export",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "legacy_age_contrasts_wilson_ci",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "zscore",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "smd",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "fit_ols_hc1",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "fit_logit_hc1",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "coef_rows",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "build_X",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "chi2_2x2",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "mean_p",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "mix_cat",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "make_env_X",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "_lab",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "fmt",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "pfmt",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "_pct_cell",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/10_exploratory_age_ehr.py",
+      "function": "analyze_legacy_age_contrasts",
+      "module": "scripts.functions.legacy.age_contrasts"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "vat_schema_run",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "vat_schema_section",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "vat_schema_calculation",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "analyze_vat_schema",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_vat_preparation_run",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_vat_preparation_section",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "ensembl_get",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_vat_preparation_calculation",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "analyze_legacy_vat_preparation",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_vat_repair_run",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_vat_repair_calculation",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "analyze_legacy_vat_repair",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_variant_selection_section",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "write_variant_list",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "write_public_variant_table",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "to_float",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "is_ptv",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "is_missense",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_variant_selection_calculation",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "analyze_legacy_variant_selection",
+      "module": "scripts.functions.legacy.variant_preparation"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_carriers_section",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_carriers_run",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_carriers_suppress",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "disclose_split",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "ensure_mount",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "build_sample_list",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "build_qualifying_union",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "parse_ad",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "parse_gt_alleles",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "extract_gene_shard",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "extract_all_genes",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "find_local_minimum",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "determine_qc_thresholds",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "apply_qc",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "collapse_carrier_status",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "step3_5_sparsity_precheck",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_carriers_write_report",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "update_config",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_carriers_calculation",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "analyze_legacy_carriers",
+      "module": "scripts.functions.legacy.carriers"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_burden_section",
+      "module": "scripts.functions.legacy.burden"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_burden_suppress",
+      "module": "scripts.functions.legacy.burden"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "load_weights",
+      "module": "scripts.functions.legacy.burden"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "build_log_or_map",
+      "module": "scripts.functions.legacy.burden"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "compute_burden",
+      "module": "scripts.functions.legacy.burden"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_burden_calculation",
+      "module": "scripts.functions.legacy.burden"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_burden_write_report",
+      "module": "scripts.functions.legacy.burden"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "analyze_legacy_burden",
+      "module": "scripts.functions.legacy.burden"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_joint_models_log",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_joint_models_section",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_joint_models_suppress",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "p_floor",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "balanced_weights",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "fit_unweighted_logit",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "fit_weighted_logit",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_joint_models_coef_table",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "mcfadden_r2",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "zscore_fit",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "apply_z",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "delong_auc_variance",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "delong_test",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_joint_models_build_X",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "add_z",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "auc_ci",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_joint_models_save_smallest",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "assign_stratum",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "analyze_legacy_joint_models",
+      "module": "scripts.functions.legacy.models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_age_models_log",
+      "module": "scripts.functions.legacy.age_models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_age_models_section",
+      "module": "scripts.functions.legacy.age_models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_age_models_suppress",
+      "module": "scripts.functions.legacy.age_models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "join_covariates",
+      "module": "scripts.functions.legacy.age_models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "zscore",
+      "module": "scripts.functions.legacy.age_models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "fit_ols_hc1",
+      "module": "scripts.functions.legacy.age_models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_age_models_coef_table",
+      "module": "scripts.functions.legacy.age_models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_age_models_build_X",
+      "module": "scripts.functions.legacy.age_models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_age_models_save_smallest",
+      "module": "scripts.functions.legacy.age_models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "analyze_legacy_age_models",
+      "module": "scripts.functions.legacy.age_models"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_figures_log",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "legacy_figures_section",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "disclose_n",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "audit_override",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "fit_axes_to_hexbin",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "save_fig",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "write_table",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "fit_logit",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "fit_logit_weighted",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "add_const",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "fisher_ci",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "residualize",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "corr_row",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "tier4",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "_split",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "cell_table",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "to_grid",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "fit_ventile_model",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "calib_params",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "analyze_legacy_figures",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "term_kind",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/90_legacy_ptv_baseline.py",
+      "function": "analyze_legacy_forest",
+      "module": "scripts.functions.legacy.figures"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "log",
+      "module": "scripts.functions.logging",
+      "active_function": "log"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "section",
+      "module": "scripts.functions.logging",
+      "active_function": "section"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "bq",
+      "module": "scripts.functions.bigquery",
+      "active_function": "bq"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "survey_latest",
+      "module": "scripts.functions.bigquery",
+      "active_function": "survey_latest"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "cached",
+      "module": "scripts.functions.io",
+      "active_function": "cached"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "gs_cat_lines",
+      "module": "scripts.functions.io",
+      "active_function": "gs_cat_lines"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "read_keep_ids",
+      "module": "scripts.functions.io",
+      "active_function": "read_keep_ids"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "load_patients",
+      "module": "scripts.functions.cohort",
+      "active_function": "load_patients"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "load_wgs_ids",
+      "module": "scripts.functions.cohort",
+      "active_function": "load_wgs_ids"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "add_wgs",
+      "module": "scripts.functions.cohort",
+      "active_function": "add_wgs"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "qc_step1_female",
+      "module": "scripts.functions.cohort",
+      "active_function": "qc_step1_female"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "qc_step2_age",
+      "module": "scripts.functions.cohort",
+      "active_function": "qc_step2_age"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "qc_wgs_join",
+      "module": "scripts.functions.cohort",
+      "active_function": "qc_wgs_join"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "add_age",
+      "module": "scripts.functions.phenotypes",
+      "active_function": "add_age"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "compute_age_soft",
+      "module": "scripts.functions.phenotypes",
+      "active_function": "compute_age_soft"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "add_menopause",
+      "module": "scripts.functions.clinical_covariates",
+      "active_function": "add_menopause"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "add_smoking",
+      "module": "scripts.functions.clinical_covariates",
+      "active_function": "add_smoking"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "add_famhist",
+      "module": "scripts.functions.clinical_covariates",
+      "active_function": "add_famhist"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "add_bmi",
+      "module": "scripts.functions.clinical_covariates",
+      "active_function": "add_bmi"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "add_receptors",
+      "module": "scripts.functions.clinical_covariates",
+      "active_function": "add_receptors"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "add_stage",
+      "module": "scripts.functions.clinical_covariates",
+      "active_function": "add_stage"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "collapse_categories",
+      "module": "scripts.functions.tables",
+      "active_function": "collapse_categories"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "split_columns",
+      "module": "scripts.functions.tables",
+      "active_function": "split_columns"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "count_blocks",
+      "module": "scripts.functions.tables",
+      "active_function": "count_blocks"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "build_table",
+      "module": "scripts.functions.tables",
+      "active_function": "build_table"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "fill_workbook",
+      "module": "scripts.functions.tables",
+      "active_function": "fill_workbook"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "read_published",
+      "module": "scripts.functions.manuscript_audit",
+      "active_function": "read_published"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "check_against_published",
+      "module": "scripts.functions.manuscript_audit",
+      "active_function": "check_against_published"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "load_published_anchors",
+      "module": "scripts.functions.manuscript_audit",
+      "active_function": "load_published_anchors"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "check_diff",
+      "module": "scripts.functions.manuscript_audit",
+      "active_function": "check_diff"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "decide_masking",
+      "module": "scripts.functions.disclosure",
+      "active_function": "decide_masking"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "render_cells",
+      "module": "scripts.functions.disclosure",
+      "active_function": "render_cells"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "disclose_n",
+      "module": "scripts.functions.disclosure",
+      "active_function": "disclose_n"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "disclose_group_counts",
+      "module": "scripts.functions.disclosure",
+      "active_function": "disclose_group_counts"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "write_keep_list",
+      "module": "scripts.functions.sample_qc",
+      "active_function": "write_keep_list"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "pgen_gcs_paths",
+      "module": "scripts.functions.sample_qc",
+      "active_function": "pgen_gcs_paths"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "gcs_size",
+      "module": "scripts.functions.sample_qc",
+      "active_function": "gcs_size"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "download_pgen",
+      "module": "scripts.functions.sample_qc",
+      "active_function": "download_pgen"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "cleanup_pgen",
+      "module": "scripts.functions.sample_qc",
+      "active_function": "cleanup_pgen"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "plink_missing",
+      "module": "scripts.functions.sample_qc",
+      "active_function": "plink_missing"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "load_cached_smiss",
+      "module": "scripts.functions.sample_qc",
+      "active_function": "load_cached_smiss"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "run_chrom_missing",
+      "module": "scripts.functions.sample_qc",
+      "active_function": "run_chrom_missing"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "exome_wide_fmiss",
+      "module": "scripts.functions.sample_qc",
+      "active_function": "exome_wide_fmiss"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "relationship_class",
+      "module": "scripts.functions.relatedness",
+      "active_function": "relationship_class"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "load_flagged_samples",
+      "module": "scripts.functions.relatedness",
+      "active_function": "load_flagged_samples"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "load_aou_relatedness",
+      "module": "scripts.functions.relatedness",
+      "active_function": "load_aou_relatedness"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "split_relatedness",
+      "module": "scripts.functions.relatedness",
+      "active_function": "split_relatedness"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "build_adjacency",
+      "module": "scripts.functions.relatedness",
+      "active_function": "build_adjacency"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "greedy_unrelated",
+      "module": "scripts.functions.relatedness",
+      "active_function": "greedy_unrelated"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "relationship_tables",
+      "module": "scripts.functions.relatedness",
+      "active_function": "relationship_tables"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "extract_ancestry_preds",
+      "module": "scripts.functions.ancestry",
+      "active_function": "extract_ancestry_preds"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "fetch_ancestry_reference",
+      "module": "scripts.functions.ancestry",
+      "active_function": "fetch_ancestry_reference"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "parse_hail_scores",
+      "module": "scripts.functions.ancestry",
+      "active_function": "parse_hail_scores"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "demotion_breakdown",
+      "module": "scripts.functions.ancestry",
+      "active_function": "demotion_breakdown"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "plot_fmiss_distribution",
+      "module": "scripts.functions.qc_figures",
+      "active_function": "plot_fmiss_distribution"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "plot_kinship_density",
+      "module": "scripts.functions.qc_figures",
+      "active_function": "plot_kinship_density"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "_anc_colors",
+      "module": "scripts.functions.qc_figures",
+      "active_function": "_anc_colors"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "anc_legend",
+      "module": "scripts.functions.qc_figures",
+      "active_function": "anc_legend"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "anc_scatter",
+      "module": "scripts.functions.qc_figures",
+      "active_function": "anc_scatter"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "plot_reference_vs_cohort",
+      "module": "scripts.functions.qc_figures",
+      "active_function": "plot_reference_vs_cohort"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "plot_cohort_pc_pairs",
+      "module": "scripts.functions.qc_figures",
+      "active_function": "plot_cohort_pc_pairs"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "plot_two_label_rules",
+      "module": "scripts.functions.qc_figures",
+      "active_function": "plot_two_label_rules"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "plot_reference_scree",
+      "module": "scripts.functions.qc_figures",
+      "active_function": "plot_reference_scree"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "plot_confidence_density",
+      "module": "scripts.functions.qc_figures",
+      "active_function": "plot_confidence_density"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "plot_pc_variance_within_eur",
+      "module": "scripts.functions.qc_figures",
+      "active_function": "plot_pc_variance_within_eur"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "plot_within_eur_axes",
+      "module": "scripts.functions.qc_figures",
+      "active_function": "plot_within_eur_axes"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "keep_smallest_format",
+      "module": "scripts.functions.plotting",
+      "active_function": "keep_smallest_format"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "save_fig_smallest",
+      "module": "scripts.functions.plotting",
+      "active_function": "save_fig_smallest"
+    },
+    {
+      "source": "scripts/function.py",
+      "function": "git_check_ignored",
+      "module": "scripts.functions.provenance",
+      "active_function": "git_check_ignored"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "write_table",
+      "module": "scripts.functions.review_io"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "save_json",
+      "module": "scripts.functions.review_io"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "estimate",
+      "module": "scripts.functions.statistics"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "ratio_estimate",
+      "module": "scripts.functions.statistics"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "zscore",
+      "module": "scripts.functions.statistics"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "mh_estimate",
+      "module": "scripts.functions.statistics"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "disclosed_size",
+      "module": "scripts.functions.disclosure"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "load",
+      "module": "scripts.functions.review_inputs"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "fit_logistic",
+      "module": "scripts.functions.review_association"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "interaction",
+      "module": "scripts.functions.review_interactions"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "query",
+      "module": "scripts.functions.review_dates"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "dates_task",
+      "module": "scripts.functions.review_dates"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "riskset_moments",
+      "module": "scripts.functions.survival"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "prepare_survival",
+      "module": "scripts.functions.survival"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "fit_cox",
+      "module": "scripts.functions.survival"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "decompose",
+      "module": "scripts.functions.survival"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "split_intervals",
+      "module": "scripts.functions.survival"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "cox_task",
+      "module": "scripts.functions.survival"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "frailty_hr",
+      "module": "scripts.functions.frailty"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "simulate_case_coefficients",
+      "module": "scripts.functions.frailty"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "frailty_task",
+      "module": "scripts.functions.frailty"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "classify_family_flags",
+      "module": "scripts.functions.family_history"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "family_task",
+      "module": "scripts.functions.family_history"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "plots_task",
+      "module": "scripts.functions.review_figures"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "age_pattern_task",
+      "module": "scripts.functions.review_age_models"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "validate_task",
+      "module": "scripts.functions.review_validation"
+    },
+    {
+      "source": "scripts/62_review_1008.py",
+      "function": "main",
+      "module": "scripts.functions.review_runner"
+    }
+  ],
+  "old_tasks": {
+    "01_study_cohort_selection.py": {
+      "select": [
+        "cohort",
+        "select_study_cohort"
+      ],
+      "phenotypes": [
+        "phenotypes",
+        "define_phenotypes_and_ehr_dates"
+      ]
+    },
+    "02_sample_preprocessing.py": {
+      "sample-qc": [
+        "sample_qc",
+        "preprocess_samples"
+      ],
+      "covariates": [
+        "clinical_covariates",
+        "derive_clinical_covariates"
+      ],
+      "descriptives": [
+        "cohort_results",
+        "describe_cohort"
+      ],
+      "cohort-table": [
+        "tables",
+        "write_cohort_table"
+      ]
+    },
+    "03_common_variants_prs.py": {
+      "prs": [
+        "prs",
+        "calculate_common_variant_prs"
+      ],
+      "match-audit": [
+        "prs",
+        "audit_prs_matches"
+      ]
+    },
+    "04_gene_selection.py": {
+      "panel": [
+        "gene_panels",
+        "freeze_cohorts_and_prepare_gene_panel"
+      ],
+      "candidates": [
+        "vat_candidates",
+        "select_vat_candidates"
+      ]
+    },
+    "05_variant_annotation.py": {
+      "ptv": [
+        "variant_annotation",
+        "audit_ptv_annotation"
+      ],
+      "missense": [
+        "clinvar",
+        "select_clinvar_missense"
+      ]
+    },
+    "06_variant_genotype_qc.py": {
+      "site-qc": [
+        "site_qc",
+        "verify_variant_site_filters"
+      ],
+      "calls": [
+        "genotype_workers",
+        "qc_genotypes_by_gene"
+      ],
+      "gene-calls": [
+        "genotype_qc",
+        "qc_gene_calls"
+      ],
+      "missing-sites": [
+        "missing_site_calls",
+        "read_missing_candidate_calls"
+      ],
+      "validate-qc": [
+        "genotype_validation",
+        "validate_genotype_qc"
+      ],
+      "call-audit": [
+        "sample_variant_audit",
+        "audit_sample_variant_calls"
+      ],
+      "reconcile": [
+        "sample_variant_audit",
+        "reconcile_variant_eligibility"
+      ]
+    },
+    "07_burden_score.py": {
+      "score": [
+        "burden",
+        "calculate_burden_scores"
+      ],
+      "validate-score": [
+        "burden_validation",
+        "validate_burden_scores"
+      ],
+      "compare": [
+        "burden_comparisons",
+        "calculate_comparison_scores"
+      ],
+      "model-inputs": [
+        "model_inputs",
+        "prepare_model_inputs"
+      ],
+      "sensitivities": [
+        "sensitivity",
+        "prepare_sensitivity_scores"
+      ]
+    },
+    "08_association_models.py": {
+      "models": [
+        "association",
+        "fit_joint_and_age_models"
+      ]
+    },
+    "09_result_figures.py": {
+      "attribution": [
+        "model_results",
+        "attribute_new_carriers"
+      ],
+      "summary": [
+        "model_results",
+        "summarize_model_results"
+      ],
+      "age-figures": [
+        "age_result_figures",
+        "plot_age_and_auc_results"
+      ],
+      "score-distributions": [
+        "score_figures",
+        "plot_raw_score_distributions"
+      ],
+      "discrimination": [
+        "discrimination",
+        "plot_four_model_discrimination"
+      ],
+      "joint-distribution": [
+        "joint_distribution",
+        "plot_joint_distribution"
+      ],
+      "score-deciles": [
+        "score_figures",
+        "plot_score_decile_boxplots"
+      ],
+      "burden-histogram": [
+        "score_figures",
+        "plot_burden_histogram"
+      ],
+      "age-boxplots": [
+        "age_result_figures",
+        "plot_age_burden_boxplots"
+      ],
+      "age-carrier-frequency": [
+        "age_result_figures",
+        "plot_age_carrier_frequency"
+      ],
+      "organize-figures": [
+        "manuscript_assets",
+        "organize_manuscript_figures"
+      ],
+      "sensitivity-figure": [
+        "result_figures",
+        "plot_primary_sensitivity_estimates"
+      ],
+      "insert-docx-figures": [
+        "manuscript_documents",
+        "insert_manuscript_figures"
+      ]
+    },
+    "10_exploratory_age_ehr.py": {
+      "age-contrasts": [
+        "age_group_contrasts",
+        "analyze_age_group_contrasts"
+      ],
+      "ehr-audit": [
+        "ehr_age_audit",
+        "audit_early_ehr_diagnoses"
+      ],
+      "nine-gene-missense": [
+        "nine_gene_missense_age",
+        "analyze_nine_gene_missense_age"
+      ],
+      "legacy-prs-age": [
+        "legacy.descriptives",
+        "describe_prs_and_age"
+      ],
+      "legacy-burden-distribution": [
+        "legacy.descriptives",
+        "describe_legacy_burden"
+      ],
+      "legacy-group-contrasts": [
+        "legacy.age_contrasts",
+        "analyze_legacy_age_contrasts"
+      ]
+    },
+    "90_legacy_ptv_baseline.py": {
+      "vat-schema": [
+        "legacy.variant_preparation",
+        "analyze_vat_schema"
+      ],
+      "vat-prep": [
+        "legacy.variant_preparation",
+        "analyze_legacy_vat_preparation"
+      ],
+      "vat-repair": [
+        "legacy.variant_preparation",
+        "analyze_legacy_vat_repair"
+      ],
+      "variant-selection": [
+        "legacy.variant_preparation",
+        "analyze_legacy_variant_selection"
+      ],
+      "carriers": [
+        "legacy.carriers",
+        "analyze_legacy_carriers"
+      ],
+      "burden": [
+        "legacy.burden",
+        "analyze_legacy_burden"
+      ],
+      "joint-models": [
+        "legacy.models",
+        "analyze_legacy_joint_models"
+      ],
+      "age-models": [
+        "legacy.age_models",
+        "analyze_legacy_age_models"
+      ],
+      "figures": [
+        "legacy.figures",
+        "analyze_legacy_figures"
+      ],
+      "forest": [
+        "legacy.figures",
+        "analyze_legacy_forest"
+      ]
+    }
+  },
+  "before_sha256": {
+    "scripts/61_revise_13gene_manuscript.py": "0154f03df36032bd063399ebc608e44442b1eca6a29d263da329e5ae62259ce2",
+    "scripts/60_interaction_manuscript_assets.py": "edcce6203355554a9db7645914ad38e186cd39dc090132c9ae96a5c9a0d06893",
+    "scripts/path_migration_report.json": "bfabd6b22efeba634187da05cf8943a79a802704e7bedfb7f81c8268a6b7ed3d",
+    "scripts/01_study_cohort_selection.py": "d03cd3f1c26bddbf53e64df7aaf37efacf933f85c4ea00a774777253224fb0d1",
+    "scripts/02_sample_preprocessing.py": "dc499f77e904b626ae9217765d8c14b96073cfb9a6b43493396a3c70d884b024",
+    "scripts/10_exploratory_age_ehr.py": "8b2acb0bcfcb5090d21c0e43d8df26fb4c7a8cc95872fdf88d760eedf9661bb0",
+    "scripts/63_manuscript_figure_colors.py": "a24a9b5b2503544d74212e78fa1a3bf36301c570fe601d8d6d482f81ac9970a6",
+    "scripts/90_legacy_ptv_baseline.py": "f8f3a2d71a4b0df7a6013bbdb970fe7bf41aaf20462af171f6cbe5526f5b976c",
+    "scripts/59_interaction_audit.py": "37e1a5e918c7c8eb454e6aeb94cd6a08c1c0ce82e9551ea81c437d5f2429e3e9",
+    "scripts/refactor_validation.md": "992bc91835d456dc7cfd68793947714eb381d6d75a956e9e6e0b0f65b16192c1",
+    "scripts/script_inventory.csv": "b9d3f879c33c677cd5d6c44601167b0a1da3884b70a38bc5c861de19aadc0d15",
+    "scripts/08_association_models.py": "2af9dfcd88c4ab62b46ebcffd61f70e9035479c3cf91df39f986989b9a7cdffe",
+    "scripts/refactor_manifest.json": "74d93452b3d788393ec760bf4eee8a336dbbd325e7acf4af7a448ea3c0e906eb",
+    "scripts/process_layout_sections.json": "55b29c3f8a4e430c196fc24d510091a1ce0f1318cd79c66e109a4ca7ba4ad0bf",
+    "scripts/06_variant_genotype_qc.py": "ef39361b59217c55e868356372439a398fdcb45dacbfa42d5b28041600277b84",
+    "scripts/local_dependencies_manifest.json": "c54f55fd9ca810843330d2fe98beb9389c8c5a85785325fb77eee16a5b7ebacb",
+    "scripts/audit_table1_09b.py": "862a1ebc93003fec0cdd363b3cc47a62d1dfe2b134fa7c1ff319cd621c16f19b",
+    "scripts/12_collect_manuscript_datas.py": "ab4447c874b07f67a09312de69574d13aa01f2b1a8e63c88d77a525393b87008",
+    "scripts/62_review_1008_probe.py": "fc9f66781edf31344e5f48c5a55a4587c7e112d8a5603ce031975c0c52effd5d",
+    "scripts/05_variant_annotation.py": "fb2662fd80b98caae997e374ef4033757fc7a4220d68104fa60b9e1c5c220a0f",
+    "scripts/FUNCTION_INDEX.md": "c56bbb31a1c9b02444d738b6eb93d40f91fa53345475acc656a660adaf7008cb",
+    "scripts/__init__.py": "212b1a00d614e3625aba1146d874e7bb56dc2c436d1306b8caed6d014d095b9b",
+    "scripts/reproduce_review_1008_agent_prompt.md": "19dc9a034406522a5583638275a76ebca458f353b9bc8451674e7d5b2e38404f",
+    "scripts/07_burden_score.py": "fde9392c396232b50e0c3f8c308993e2354769719a90345e96f1363ad13adaa5",
+    "scripts/64_restyle_review_figure2.py": "3a31e79de8b16eb8e774680dc76631e04f1f4e5334a1f27703525be70babb428",
+    "scripts/62_review_1008.py": "175c4d74f26b67a13ee7192f91fdcc10c0f2334f50c4e06fbead8a2926a68c3d",
+    "scripts/09_result_figures.py": "5da63d5b0dadd68e66c2ca3c8db2d4312016ed35de833c689de1e0e084e394ff",
+    "scripts/organize_project.py": "e8cc482c46d3ab9a57d50512b78a28ea5469131e1d066c4a5d1d1581bfdb1a64",
+    "scripts/03_common_variants_prs.py": "afe9ccfd5dae1632af368c79e5d149eaf7a30ac45e2d2f31da65b693561bea23",
+    "scripts/README.md": "20a4da99ed63d06776b8d01216bcb92f7bbf6fa20bd483d3081870265fc11bd6",
+    "scripts/11_manuscript_refresh_audit.py": "2b4f343fd7d3fd20ad404a46923f6d091d5a6b454b29dab54f71c78013949700",
+    "scripts/04_gene_selection.py": "2ddece903febf933e07207a406ac6841f91f93a492d28b2dc479db05b77b197c",
+    "scripts/function.py": "66017f880fed884014ec2bf23c2140911d6d268d7b91f7d3d259e9a596254aec",
+    "scripts/functions/statistics.py": "95166eda8f0602e43707f6f002c9451eb81fc9bb9126c4b3aa26684a9b78572b",
+    "scripts/functions/nine_gene_missense_age.py": "93e5065a3b5016b749a2e2c0027d45560753fecf8dfe8549b8a5b15f02dccf24",
+    "scripts/functions/ehr_age_audit.py": "dfcaf1db363cf5fad8381361747a3909acb72ca54d855e9f6908e2887b15588e",
+    "scripts/functions/age_group_contrasts.py": "e1cbaa8046aa13a3dd7df584c8a3b3dc9d4a7993b4739cceb67cce6d571ea92f",
+    "scripts/functions/v2_disclosure.py": "c1b403559e44935487b6ebe58502073e8dde49105c14cb5e9a813304c0f84567",
+    "scripts/functions/common_variants.py": "08536fb18d2430babc44df8c4162b578b2cf09173244574a1f3f32b29e296c35",
+    "scripts/functions/site_qc.py": "be4bb80d2476cb92b279bb33ef5fab24d171f0448290b218335e4807fabc48c6",
+    "scripts/functions/clinvar.py": "038780d84a74e82c12dcff73e2b3f2a5fbb9aab082443c6a9ef0436a644655c3",
+    "scripts/functions/cli.py": "33570b714774475b534b50f5ee24639ff95c92d580ccaf101a8ca99356bd2cc8",
+    "scripts/functions/genotype_qc.py": "93cbc912f5d4a5ab7b379b0416c252a30953529a9c74e55184a07eb5a4e20662",
+    "scripts/functions/provenance.py": "e8c4f5d7fcb49e1bfe815ddd77141fe0da8ab1f550773e9c4950d65b51ee0fba",
+    "scripts/functions/burden.py": "9c891fe97cca022b996333f14fdb7c46bd2f23d15dfeaa25407c74f4f4bd6023",
+    "scripts/functions/__init__.py": "03f2f528b47f632816bc48a4cc4082315f2112fdfc991727c6cf104c026dc39e",
+    "scripts/functions/review_1008_frailty.py": "4fea39b3ef47ce945cf60e4caf3c6600bec8ecc8be0d20d9aa8e6a5f9d6e9d86",
+    "scripts/functions/vat_candidates.py": "0ad4b438b5e16d1b9be414b1b27625b2c6b8cf6861dbd4fe9801f9943cdb676f",
+    "scripts/functions/README.md": "54a1e6b69685e6311d222188011c8f8db323da812d6ac4c7f87d60c9e09c2762",
+    "scripts/functions/sample_variant_audit.py": "be9cd6978a861a7f3272cf933bbcf3412b0345f1ff69617a4e8395c1c69cc8c7",
+    "scripts/functions/figure_colors.py": "02c8c08ff818032ed906b390b66327cd4361ae1eed7ae1dd717dcd65688c6d58",
+    "scripts/tests/test_62_review_1008.py": "24bcbc25e5131a17f01a5188a1c2bfcd98ad3bf3e2d890dc81f5f156a4c130c3",
+    "scripts/tests/test_28_expanded_missense.py": "fc4cf2ac84e29663ba6a118904bb6361cb3b4267d8d3d659f4fcd88d4b2912c0",
+    "scripts/tests/test_32_33_rowlands_qc.py": "d717bc2c59c52a4f26c9052eabfa99da80233532cc6c6f5cc3152f363a05b84b",
+    "scripts/tests/test_27_early_ehr_audit.py": "6eb00b5f080283287e458d19d1a0655af7be6e942b3615c02631679221b8e9cd",
+    "scripts/tests/test_pipeline_refactor.py": "b9f0eb265fa7c1bc109a01495fe742de7b732b6279ebab44a0cddce74d6fbd28",
+    "scripts/tests/test_38_rowlands_scoring.py": "ff36fe598d365ad04eff593e3eb391217fe808e24cc766c94c3f8ab6616667dd",
+    "scripts/.ipynb_checkpoints/03_common_variants_prs-checkpoint.py": "33629c7c9d96b1dc2b58c200889e1ecf96cbea57655a4c52ba5faeef2c9c719c",
+    "scripts/.ipynb_checkpoints/11_manuscript_refresh_audit-checkpoint.py": "2b4f343fd7d3fd20ad404a46923f6d091d5a6b454b29dab54f71c78013949700",
+    "scripts/.ipynb_checkpoints/reproduce_review_1008_agent_prompt-checkpoint.md": "19dc9a034406522a5583638275a76ebca458f353b9bc8451674e7d5b2e38404f",
+    "scripts/.ipynb_checkpoints/01_study_cohort_selection-checkpoint.py": "ff390b152e0998b38570891d84164b2755a4356622864b59e03167871592d42a",
+    "scripts/.ipynb_checkpoints/62_review_1008_probe-checkpoint.py": "fc9f66781edf31344e5f48c5a55a4587c7e112d8a5603ce031975c0c52effd5d",
+    "scripts/.ipynb_checkpoints/script_inventory-checkpoint.csv": "b9d3f879c33c677cd5d6c44601167b0a1da3884b70a38bc5c861de19aadc0d15",
+    "scripts/.ipynb_checkpoints/10_exploratory_age_ehr-checkpoint.py": "a00e7185cb1dc536f3bbcac78ddefab5622d70dc2eef87a1034f02224beb27e1",
+    "scripts/.ipynb_checkpoints/09_result_figures-checkpoint.py": "5da63d5b0dadd68e66c2ca3c8db2d4312016ed35de833c689de1e0e084e394ff",
+    "scripts/.ipynb_checkpoints/07_burden_score-checkpoint.py": "fde9392c396232b50e0c3f8c308993e2354769719a90345e96f1363ad13adaa5",
+    "scripts/.ipynb_checkpoints/04_gene_selection-checkpoint.py": "63d61009236d99877b6ab16f64d7fa68906ddafd0dadc1b3f64a3e033e738884",
+    "scripts/.ipynb_checkpoints/90_legacy_ptv_baseline-checkpoint.py": "2e21a6115fbf6c300283e4df8c15508335c8bd10c3e352adae764e06a69dccd2",
+    "scripts/script_output_py/output_07_prs_calculation.txt": "60855f6314ccdd3f2a0bda1d92c1b7f99acbed36e678df26bb97eec091f49256",
+    "scripts/script_output_py/output_11b_fix_vat_extraction.txt": "f19daba3bd9a9f085d7208b749354bd488471803dfc47041cbc827158bd1ac30",
+    "scripts/script_output_py/output_18_aim4_group_contrasts.txt": "30f02d5547762635d36a644f1a720d1cab149a0cb16f14c068ce75e62ae8d6b0",
+    "scripts/script_output_py/output_19_aim1_figures.txt": "f0f874c035ce7511501a0eb8b76c1c94fde13b772ccfeaca5fa058f36cc2ea72",
+    "scripts/script_output_py/output_03_vat_schema_check.txt": "4271dd1c32af3435fa19635483de7ee71e82a1bf7d7b88d35180e4c3c4e33366",
+    "scripts/script_output_py/output_17_step5_aim4_age_of_onset_model.txt": "d2b2aaa34a29701108d5ccdcecf43f6c3798fd0b96b0525cec884ae0a56737e9",
+    "scripts/script_output_py/output_13_carrier_genotype_extraction.txt": "78262942aaf3cfc695463b1c1df502d81085c33831a77368e3f3c7247bbc29e6",
+    "scripts/script_output_py/output_20_forest_plot.txt": "91ea5fc1f287d81bbdd95dce8517ff73cfd2106d40cbda4f6ec59de3011d72f5",
+    "scripts/script_output_py/output_15_burden_rare_distributional_analysis.txt": "245ff81cac2fba82acbdbcdab0ad161712fc2923e2ea1cb593ad837eb6f0ea28",
+    "scripts/script_output_py/output_11_step3_technical_prep.txt": "abffb28176d74763096ae35ab4805c146b27e6951d6d663ae6f6722307c94e8f",
+    "scripts/script_output_py/output_05_cohort_qc.txt": "e714ecb17c12c1571a78ed42f24e826140511ce102739c8b8019c078747b9fa2",
+    "scripts/script_output_py/output_14_burden_rare_construction.txt": "5f03804e04be968e321134a114fc41622f4b11162ba9c25a966f9e4cfefd5bf9",
+    "scripts/script_output_py/output_09b_supp_table1_cohort.txt": "b70d0e87b48bfda602ffa76405a2b870058a15717d272804e5eb6dd65dbe5c67",
+    "scripts/script_output_py/output_16_step5_joint_model.txt": "dc2897ceb608008ee8e2e27b7f5bb80556f2000b89556486505a4c0afc0260bb",
+    "scripts/script_output_py/output_01_cohort_selection.txt": "098d261bec61010928026b3bf117a36cf917f348a58c2c9e164975866a05abc1",
+    "scripts/script_output_py/output_12_qualifying_variant_definition.txt": "cadee5935ded93177c5b91e8786ab9b5e622dd0e340659b92f895286cda0107d",
+    "scripts/script_output_py/.claude/settings.local.json": "57bd91fd4a773d486d70ace8b55c3557835fc06f9d51dba0d02e1313a057d38c"
+  },
+  "consolidated_helpers": [
+    {
+      "from": "scripts/functions/model_inputs.py:model_preparation_sha",
+      "to": "scripts.functions.genotype_qc:sha"
+    },
+    {
+      "from": "scripts/functions/sensitivity.py:sensitivity_preparation_sha",
+      "to": "scripts.functions.genotype_qc:sha"
+    },
+    {
+      "from": "scripts/functions/cohort_results.py:cohort_descriptives_log",
+      "to": "scripts.functions.clinical_covariates:clinical_covariates_log"
+    },
+    {
+      "from": "scripts/functions/legacy/age_contrasts.py:legacy_age_contrasts_log",
+      "to": "scripts.functions.clinical_covariates:clinical_covariates_log"
+    },
+    {
+      "from": "scripts/functions/legacy/age_models.py:legacy_age_models_log",
+      "to": "scripts.functions.clinical_covariates:clinical_covariates_log"
+    },
+    {
+      "from": "scripts/functions/legacy/descriptives.py:prs_age_descriptives_log",
+      "to": "scripts.functions.clinical_covariates:clinical_covariates_log"
+    },
+    {
+      "from": "scripts/functions/legacy/descriptives.py:legacy_burden_descriptives_log",
+      "to": "scripts.functions.clinical_covariates:clinical_covariates_log"
+    },
+    {
+      "from": "scripts/functions/legacy/figures.py:legacy_figures_log",
+      "to": "scripts.functions.clinical_covariates:clinical_covariates_log"
+    },
+    {
+      "from": "scripts/functions/legacy/models.py:legacy_joint_models_log",
+      "to": "scripts.functions.clinical_covariates:clinical_covariates_log"
+    },
+    {
+      "from": "scripts/functions/prs.py:_orient_effect_allele",
+      "to": "scripts.functions.common_variants:_orient_effect_allele"
+    },
+    {
+      "from": "scripts/functions/prs.py:_decode_bed_block",
+      "to": "scripts.functions.common_variants:_decode_bed_block"
+    },
+    {
+      "from": "scripts/functions/prs.py:_encode_bed_bytes",
+      "to": "scripts.functions.common_variants:_encode_bed_bytes"
+    },
+    {
+      "from": "scripts/functions/manuscript_revision.py:sha",
+      "to": "scripts.functions.interaction_assets:sha"
+    },
+    {
+      "from": "scripts/functions/prs.py:section",
+      "to": "scripts.functions.phenotypes:phenotypes_section"
+    },
+    {
+      "from": "scripts/functions/sample_qc.py:sample_qc_section",
+      "to": "scripts.functions.phenotypes:phenotypes_section"
+    },
+    {
+      "from": "scripts/functions/discrimination.py:MS_5_sha",
+      "to": "scripts.functions.provenance:sha256"
+    },
+    {
+      "from": "scripts/functions/legacy/age_models.py:legacy_age_models_suppress",
+      "to": "scripts.functions.legacy.burden:legacy_burden_suppress"
+    },
+    {
+      "from": "scripts/functions/legacy/carriers.py:legacy_carriers_suppress",
+      "to": "scripts.functions.legacy.burden:legacy_burden_suppress"
+    },
+    {
+      "from": "scripts/functions/legacy/descriptives.py:legacy_burden_descriptives_suppress",
+      "to": "scripts.functions.legacy.burden:legacy_burden_suppress"
+    },
+    {
+      "from": "scripts/functions/legacy/models.py:legacy_joint_models_suppress",
+      "to": "scripts.functions.legacy.burden:legacy_burden_suppress"
+    },
+    {
+      "from": "scripts/functions/legacy/variant_preparation.py:legacy_vat_preparation_section",
+      "to": "scripts.functions.legacy.carriers:legacy_carriers_section"
+    },
+    {
+      "from": "scripts/functions/legacy/variant_preparation.py:legacy_variant_selection_section",
+      "to": "scripts.functions.legacy.carriers:legacy_carriers_section"
+    },
+    {
+      "from": "scripts/functions/legacy/variant_preparation.py:vat_schema_section",
+      "to": "scripts.functions.legacy.burden:legacy_burden_section"
+    }
+  ],
+  "path_replacements": {
+    "scripts/09_result_figures.py": "scripts/12_figures.py",
+    "scripts/10_exploratory_age_ehr.py": "scripts/exploratory/age_ehr.py",
+    "scripts/90_legacy_ptv_baseline.py": "scripts/legacy/ptv_baseline.py",
+    "scripts/59_interaction_audit.py": "scripts/audit/interaction.py",
+    "scripts/60_interaction_manuscript_assets.py": "scripts/manuscript/interaction_assets.py",
+    "scripts/61_revise_13gene_manuscript.py": "scripts/manuscript/revise_13gene_1008.py",
+    "scripts/audit_table1_09b.py": "scripts/audit/table1.py",
+    "scripts/11_manuscript_refresh_audit.py": "scripts/audit/manuscript_refresh.py",
+    "scripts/12_collect_manuscript_datas.py": "scripts/manuscript/collect_data.py",
+    "scripts/62_review_1008_probe.py": "scripts/review/probe_1008.py",
+    "scripts/63_manuscript_figure_colors.py": "scripts/manuscript/figure_colors.py",
+    "scripts/64_restyle_review_figure2.py": "scripts/manuscript/restyle_review_figure2.py",
+    "scripts/organize_project.py": "scripts/maintenance/organize_project.py",
+    "scripts/62_review_1008.py": "scripts/review/review_1008.py",
+    "scripts/function.py": "scripts/legacy/function.py",
+    "scripts/script_output_py/output_07_prs_calculation.txt": "scripts/legacy/run_logs/output_07_prs_calculation.txt",
+    "scripts/script_output_py/output_11b_fix_vat_extraction.txt": "scripts/legacy/run_logs/output_11b_fix_vat_extraction.txt",
+    "scripts/script_output_py/output_18_aim4_group_contrasts.txt": "scripts/legacy/run_logs/output_18_aim4_group_contrasts.txt",
+    "scripts/script_output_py/output_19_aim1_figures.txt": "scripts/legacy/run_logs/output_19_aim1_figures.txt",
+    "scripts/script_output_py/output_03_vat_schema_check.txt": "scripts/legacy/run_logs/output_03_vat_schema_check.txt",
+    "scripts/script_output_py/output_17_step5_aim4_age_of_onset_model.txt": "scripts/legacy/run_logs/output_17_step5_aim4_age_of_onset_model.txt",
+    "scripts/script_output_py/output_13_carrier_genotype_extraction.txt": "scripts/legacy/run_logs/output_13_carrier_genotype_extraction.txt",
+    "scripts/script_output_py/output_20_forest_plot.txt": "scripts/legacy/run_logs/output_20_forest_plot.txt",
+    "scripts/script_output_py/output_15_burden_rare_distributional_analysis.txt": "scripts/legacy/run_logs/output_15_burden_rare_distributional_analysis.txt",
+    "scripts/script_output_py/output_11_step3_technical_prep.txt": "scripts/legacy/run_logs/output_11_step3_technical_prep.txt",
+    "scripts/script_output_py/output_05_cohort_qc.txt": "scripts/legacy/run_logs/output_05_cohort_qc.txt",
+    "scripts/script_output_py/output_14_burden_rare_construction.txt": "scripts/legacy/run_logs/output_14_burden_rare_construction.txt",
+    "scripts/script_output_py/output_09b_supp_table1_cohort.txt": "scripts/legacy/run_logs/output_09b_supp_table1_cohort.txt",
+    "scripts/script_output_py/output_16_step5_joint_model.txt": "scripts/legacy/run_logs/output_16_step5_joint_model.txt",
+    "scripts/script_output_py/output_01_cohort_selection.txt": "scripts/legacy/run_logs/output_01_cohort_selection.txt",
+    "scripts/script_output_py/output_12_qualifying_variant_definition.txt": "scripts/legacy/run_logs/output_12_qualifying_variant_definition.txt",
+    "scripts/script_output_py/.claude/settings.local.json": "scripts/metadata/history/claude/settings.local.json",
+    "scripts/.ipynb_checkpoints/03_common_variants_prs-checkpoint.py": "scripts/legacy/checkpoints/03_common_variants_prs-checkpoint.py",
+    "scripts/.ipynb_checkpoints/11_manuscript_refresh_audit-checkpoint.py": "scripts/legacy/checkpoints/11_manuscript_refresh_audit-checkpoint.py",
+    "scripts/.ipynb_checkpoints/reproduce_review_1008_agent_prompt-checkpoint.md": "scripts/legacy/checkpoints/reproduce_review_1008_agent_prompt-checkpoint.md",
+    "scripts/.ipynb_checkpoints/01_study_cohort_selection-checkpoint.py": "scripts/legacy/checkpoints/01_study_cohort_selection-checkpoint.py",
+    "scripts/.ipynb_checkpoints/62_review_1008_probe-checkpoint.py": "scripts/legacy/checkpoints/62_review_1008_probe-checkpoint.py",
+    "scripts/.ipynb_checkpoints/script_inventory-checkpoint.csv": "scripts/legacy/checkpoints/script_inventory-checkpoint.csv",
+    "scripts/.ipynb_checkpoints/10_exploratory_age_ehr-checkpoint.py": "scripts/legacy/checkpoints/10_exploratory_age_ehr-checkpoint.py",
+    "scripts/.ipynb_checkpoints/09_result_figures-checkpoint.py": "scripts/legacy/checkpoints/09_result_figures-checkpoint.py",
+    "scripts/.ipynb_checkpoints/07_burden_score-checkpoint.py": "scripts/legacy/checkpoints/07_burden_score-checkpoint.py",
+    "scripts/.ipynb_checkpoints/04_gene_selection-checkpoint.py": "scripts/legacy/checkpoints/04_gene_selection-checkpoint.py",
+    "scripts/.ipynb_checkpoints/90_legacy_ptv_baseline-checkpoint.py": "scripts/legacy/checkpoints/90_legacy_ptv_baseline-checkpoint.py",
+    "scripts/path_migration_report.json": "scripts/metadata/history/path_migration_report.json",
+    "scripts/process_layout_sections.json": "scripts/metadata/history/process_layout_sections.json",
+    "scripts/refactor_validation.md": "scripts/metadata/history/refactor_validation.md",
+    "scripts/reproduce_review_1008_agent_prompt.md": "scripts/review/reproduce_review_1008_agent_prompt.md",
+    "scripts/functions/review_1008_frailty.py": "scripts/functions/frailty.py",
+    "scripts/functions/v2_disclosure.py": "scripts/functions/disclosure.py"
+  }
+}

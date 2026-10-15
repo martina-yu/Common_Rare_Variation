@@ -1,0 +1,100 @@
+
+==========================================================================================
+0. 载入数据
+==========================================================================================
+载入 /home/jupyter/workspace/analysis/data/11_panel_gene_vat_ptv_missense_candidates.csv.gz: 21473 行
+I157T排除位点 vid = 22-28725099-A-G (交叉验证状态: True)
+
+==========================================================================================
+1. 变异层面字段整理（consequence分类 / LOFTEE HC / MAF数值化）
+==========================================================================================
+PTV候选行: 8405
+  其中LOFTEE HC: 8010
+missense候选行: 13068
+I157T命中行数（跨transcript应为1，因已限定canonical）: 1
+PTV行中gvs_eur_af缺失: 0 / missense行中缺失: 0（缺失通常代表该行在AoU欧裔子群体中AC=0，按惯例视为AF=0，不代表不存在）
+
+==========================================================================================
+1b. 按(vid, gene_symbol)聚合去重（PTV+LOFTEE HC判定跨transcript取OR）
+==========================================================================================
+聚合前: 21473行 -> 聚合后(每vid x gene一行): 15339行
+其中因'非canonical行带LOFTEE HC标注'才被判定为PTV qualifying的变异数: 0（代表行本身是canonical但LoF为空，靠同一vid的其他transcript行提供的HC标注才被纳入）
+
+==========================================================================================
+2. 主分析qualifying variant: pLoF, MAF<1%, LOFTEE HC
+==========================================================================================
+主分析PTV qualifying variants: 2206 行, 覆盖 10 基因
+gene_symbol
+ATM       534
+BARD1     107
+BRCA1     315
+BRCA2     557
+CHEK2     166
+MAP3K1     75
+PALB2     219
+RAD51C     95
+RAD51D     91
+TP53       47
+写出: /home/jupyter/workspace/analysis/data/12_internal/12_qualifying_variants_main_ptv.csv (完整, 内部)
+
+==========================================================================================
+3. CHEK2 1100delC / I157T sanity check
+==========================================================================================
+CHEK2候选行中dna_change含'1100del'的行数: 1
+             vid        consequence LoF  maf_primary                              aa_change
+22-28695868-AG-A frameshift_variant NaN     0.002086 ENSP00000329178.6:p.(Thr367MetfsTer15)
+
+CHEK2 I157T候选行:
+            vid      consequence LoF  maf_primary                       aa_change
+22-28725099-A-G missense_variant NaN     0.004093 ENSP00000329178.6:p.(Ile157Thr)
+
+写出: /home/jupyter/workspace/analysis/results/table/12_chek2_1100delc_sanity_check.csv
+
+==========================================================================================
+4. 敏感性分析档1: 统一MAF<0.1%（1100delC应被排除出CHEK2 PTV集合）
+==========================================================================================
+档1 PTV: 2205行, missense(排除I157T): 12990行
+  验证: 1100delC是否仍在档1 PTV集合中: False (预期False，因AF≈0.26%>0.1%阈值)
+写出: /home/jupyter/workspace/analysis/data/12_internal/12_qualifying_variants_sensitivity_0p1pct.csv (完整, 内部)
+
+==========================================================================================
+5. 敏感性分析档2: 统一MAF<1%（1100delC仍纳入，missense放宽到1%）
+==========================================================================================
+档2 PTV: 2206行 (=主分析PTV集合), missense(排除I157T,MAF<1%): 13032行
+写出: /home/jupyter/workspace/analysis/data/12_internal/12_qualifying_variants_sensitivity_1pct.csv (完整, 内部)
+
+==========================================================================================
+6. Discovery scan masks: LOF / LOF+REVEL>=0.75 / 0.50 / 0.25, 统一MAF<1%
+==========================================================================================
+discovery PTV池(MAF<1%): 2206行
+discovery missense池(MAF<1%, 排除I157T, REVEL任意): 13032行 (REVEL缺失行数: 0, 缺失REVEL的missense不会进入任何REVEL阈值mask，只有LOF这一个纯PTV mask会覆盖到，行为符合预期不需要额外剔除)
+  mask=LOF (revel_min=None): 2206行, 10基因覆盖
+  mask=LOF_REVEL75 (revel_min=0.75): 3090行, 10基因覆盖
+  mask=LOF_REVEL50 (revel_min=0.5): 5252行, 10基因覆盖
+  mask=LOF_REVEL25 (revel_min=0.25): 8686行, 10基因覆盖
+写出: /home/jupyter/workspace/analysis/data/12_internal/12_qualifying_variants_discovery_masks.csv (完整, 内部)
+discovery masks: 19234行
+写出: /home/jupyter/workspace/analysis/results/table/12_qualifying_variants_public.csv.gz (公开, 15227 个变异, maf_primary 分档, 0.37MB)
+
+==========================================================================================
+7. 逐基因逐mask候选变异数汇总
+==========================================================================================
+mask         LOF  LOF_REVEL25  LOF_REVEL50  LOF_REVEL75  main_ptv_maf1pct  sensitivity_missense_maf0p1pct  sensitivity_missense_maf1pct  sensitivity_ptv_maf0p1pct  sensitivity_ptv_maf1pct
+gene_symbol                                                                                                                                                                                
+ATM          534         1937         1237          821               534                            2818                          2830                        534                      534
+BARD1        107          474          252          166               107                             877                           881                        107                      107
+BRCA1        315         1925         1311          429               315                            1700                          1703                        315                      315
+BRCA2        557         2051         1106          685               557                            3350                          3365                        557                      557
+CHEK2        166          523          384          267               166                             586                           586                        165                      166
+MAP3K1        75          553          137           85                75                            1409                          1411                         75                       75
+PALB2        219          349          231          219               219                            1148                          1151                        219                      219
+RAD51C        95          236          161          108                95                             385                           388                         95                       95
+RAD51D        91          230          141          107                91                             338                           338                         91                       91
+TP53          47          408          292          203                47                             379                           379                         47                       47
+
+写出: /home/jupyter/workspace/analysis/results/table/12_qualifying_variant_gene_summary.csv
+
+==========================================================================================
+完成
+==========================================================================================
+Step 3 qualifying variant定义完成，可进入脚本13（carrier genotype extraction + carrier-level QC）。

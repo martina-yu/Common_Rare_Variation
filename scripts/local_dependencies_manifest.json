@@ -1,0 +1,76 @@
+{
+  "files": [
+    {
+      "source": "/home/jupyter/workspace/inherit_BC/scripts/function.py",
+      "destination": "scripts/function.py",
+      "bytes": 92738,
+      "sha256": "66017f880fed884014ec2bf23c2140911d6d268d7b91f7d3d259e9a596254aec"
+    },
+    {
+      "source": "/home/jupyter/workspace/inherit_BC/previous_work/v2_disclosure.py",
+      "destination": "scripts/functions/v2_disclosure.py",
+      "bytes": 4303,
+      "sha256": "c1b403559e44935487b6ebe58502073e8dde49105c14cb5e9a813304c0f84567"
+    },
+    {
+      "source": "/home/jupyter/workspace/inherit_BC/data/refdata/Homo_sapiens_assembly38.fasta",
+      "destination": "data/refdata/Homo_sapiens_assembly38.fasta",
+      "bytes": 3249912778,
+      "sha256": "93157a161863464c9435062fd67c173fdaf99cb8b32f1455018361387ffa5564"
+    },
+    {
+      "source": "/home/jupyter/workspace/inherit_BC/data/refdata/Homo_sapiens_assembly38.fasta.fai",
+      "destination": "data/refdata/Homo_sapiens_assembly38.fasta.fai",
+      "bytes": 160928,
+      "sha256": "edefd93c489dc1baefad312f40388089f8db5cf6dcc3ba0955669ead274e8b6b"
+    },
+    {
+      "source": "/home/jupyter/workspace/inherit_BC/data/refdata/clinvar_20260913.vcf.gz",
+      "destination": "data/refdata/clinvar_20260913.vcf.gz",
+      "bytes": 193709143,
+      "sha256": "47ea3626cd90154d82304afe3b8f717aab2557a1330f4ea2c809892386e08d49"
+    },
+    {
+      "source": "/home/jupyter/workspace/inherit_BC/data/refdata/clinvar_20260913.vcf.gz.tbi",
+      "destination": "data/refdata/clinvar_20260913.vcf.gz.tbi",
+      "bytes": 610729,
+      "sha256": "b220738d2c086062f136600cdd31a95bec54586890cb7d92868ad78bdc632c03"
+    },
+    {
+      "source": "/home/jupyter/workspace/inherit_BC/data/refdata/clinvar_20260913.vcf.gz.md5",
+      "destination": "data/refdata/clinvar_20260913.vcf.gz.md5",
+      "bytes": 132,
+      "sha256": "0832be7d9f5864435ec522f39f6a096f0ff340b5738f4d59534dc31a7a223989"
+    },
+    {
+      "source": "/home/jupyter/workspace/inherit_BC/data/variant_annotation/full/clinvar.norm.vcf.gz",
+      "destination": "data/variant_annotation/full/clinvar.norm.vcf.gz",
+      "bytes": 194151246,
+      "sha256": "10b40c851b0a481d68653fc8d55759819c793a624a21c41393ac71941bb5d6b9"
+    },
+    {
+      "source": "/home/jupyter/workspace/inherit_BC/data/variant_annotation/full/clinvar.norm.vcf.gz.tbi",
+      "destination": "data/variant_annotation/full/clinvar.norm.vcf.gz.tbi",
+      "bytes": 610525,
+      "sha256": "3b684213d89732ed0420ca487a1baf82fa0338030524b5f04b30ca104154ed83"
+    },
+    {
+      "source": "/home/jupyter/workspace/inherit_BC/data/variant_annotation/full/v2_05_annotated_sites.tsv.gz",
+      "destination": "data/variant_annotation/full/v2_05_annotated_sites.tsv.gz",
+      "bytes": 102566255,
+      "sha256": "dd28b02d9a6a6f4bb04e4674ffd551caca6874929895e8ec8a2a162b29f29398"
+    }
+  ],
+  "total_bytes": 3741818777,
+  "changed_files": [
+    "scripts/01_study_cohort_selection.py",
+    "scripts/02_sample_preprocessing.py",
+    "scripts/10_exploratory_age_ehr.py",
+    "scripts/06_variant_genotype_qc.py",
+    "scripts/04_gene_selection.py",
+    "scripts/functions/nine_gene_missense_age.py",
+    "scripts/functions/site_qc.py",
+    "config/rowlands_13gene_extension.yaml"
+  ],
+  "backup_directory": "/tmp/com_rare_BC_localize_backup"
+}

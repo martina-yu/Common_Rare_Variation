@@ -1,0 +1,211 @@
+
+================================================================================
+Step A: 读取各表并 join，构建建模队列
+================================================================================
+config prs_version_by_maf_tier: {'main_ptv_1pct': 'PRS311', 'sensitivity_uniform_0p1pct': 'PRS313', 'sensitivity_uniform_1pct': 'PRS311'}
+  pass_qc==1 & group in case/control: n=143255 (case=8528, control=134727)
+  join后: n=143255
+  age_at_last_obs缺失剔除: 143255 -> 141204 (剔除2051人, 按group分布: {'control': 2051})
+  最终建模队列 n=141204 (case=8528, control=132676)
+
+  四分层(is_case x carrier_main_10gene)人数:
+strata
+0_0    130435
+0_1      2241
+1_0      8020
+1_1       508
+
+  seq_site_id dummy列: ['site_bi', 'site_uw']; seq_sequencer dummy列: ['seq_NovaSeq6000 S4']
+
+================================================================================
+Step B: 重复分层交叉验证（10 次 × 5 折，is_case x carrier_main_10gene 四分层）
+================================================================================
+  共 50 个 (train, test) 折；每折 test 约 28240 人
+
+================================================================================
+Step C: 定义logistic回归 helper（unweighted MLE主估计量 + var_weights加权敏感性分析）
+================================================================================
+
+================================================================================
+Step D: 主分析 4 模型交叉验证（Covariates-only + PRS311 + burden_rare_main_ptv_10gene）
+================================================================================
+  repeat 1/10: Covariates-only=0.7452, PRS-only=0.7683, Burden-only=0.7569, Joint=0.7797
+  repeat 2/10: Covariates-only=0.7452, PRS-only=0.7682, Burden-only=0.7569, Joint=0.7797
+  repeat 3/10: Covariates-only=0.7451, PRS-only=0.7681, Burden-only=0.7567, Joint=0.7796
+  repeat 4/10: Covariates-only=0.7453, PRS-only=0.7684, Burden-only=0.7570, Joint=0.7798
+  repeat 5/10: Covariates-only=0.7451, PRS-only=0.7682, Burden-only=0.7567, Joint=0.7796
+  repeat 6/10: Covariates-only=0.7452, PRS-only=0.7682, Burden-only=0.7568, Joint=0.7797
+  repeat 7/10: Covariates-only=0.7451, PRS-only=0.7682, Burden-only=0.7568, Joint=0.7796
+  repeat 8/10: Covariates-only=0.7452, PRS-only=0.7683, Burden-only=0.7569, Joint=0.7798
+  repeat 9/10: Covariates-only=0.7452, PRS-only=0.7682, Burden-only=0.7568, Joint=0.7797
+  repeat 10/10: Covariates-only=0.7451, PRS-only=0.7682, Burden-only=0.7568, Joint=0.7796
+
+CV AUC 汇总（OOF，10 次重复）:
+          model  AUC_mean  AUC_min  AUC_max  AUC_CI_low_r1  AUC_CI_high_r1
+Covariates-only  0.745175 0.745063 0.745314       0.740628        0.749759
+       PRS-only  0.768227 0.768097 0.768363       0.763732        0.772799
+    Burden-only  0.756832 0.756740 0.756966       0.752366        0.761354
+          Joint  0.779688 0.779570 0.779820       0.775318        0.784152
+
+CV ΔAUC 汇总（DeLong，10 次重复）:
+                    comparison  delta_AUC_mean  delta_AUC_min  delta_AUC_max  CI_low_mean  CI_high_mean      p_median         p_max
+   PRS-only vs Covariates-only        0.023052       0.022999       0.023107     0.020692      0.025412  1.060882e-81  2.708887e-81
+Burden-only vs Covariates-only        0.011657       0.011631       0.011687     0.009810      0.013503  3.654953e-35  4.694451e-35
+      Joint vs Covariates-only        0.034513       0.034432       0.034572     0.031612      0.037413 3.032926e-120 1.212651e-119
+             Joint vs PRS-only        0.011461       0.011434       0.011495     0.009629      0.013292  1.443947e-34  1.815177e-34
+          Joint vs Burden-only        0.022856       0.022802       0.022906     0.020526      0.025186  2.285640e-82  6.589889e-82
+       PRS-only vs Burden-only        0.011395       0.011347       0.011443     0.008380      0.014410  1.291716e-13  1.655006e-13
+
+  SANITY CHECK: Joint mean OOF AUC=0.7797 vs max(其余)=0.7682 -> PASS
+  写出: data/16_joint_model_cv_oof_person_level.csv.gz（第 1 次重复的折号与 4 模型 OOF 预测）
+
+================================================================================
+Step D2: 全队列 4 模型系数与 McFadden pseudo R2（样本内）
+================================================================================
+          model      LL_model       LL_null  McFadden_R2
+Covariates-only -29031.876785 -32201.952851     0.098444
+       PRS-only -28348.377144 -32201.952851     0.119669
+    Burden-only -28664.977216 -32201.952851     0.109837
+          Joint -27958.737754 -32201.952851     0.131769
+                   comparison  McFadden_R2_model  McFadden_R2_baseline  incremental_R2
+             Joint - PRS-only           0.131769              0.119669        0.012100
+          Joint - Burden-only           0.131769              0.109837        0.021932
+   PRS-only - Covariates-only           0.119669              0.098444        0.021225
+Burden-only - Covariates-only           0.109837              0.098444        0.011394
+
+================================================================================
+Step E: 全队列(n=141204) 联合模型系数表
+================================================================================
+
+全队列联合模型主要3项系数 (PRS311_z / burden_z / inter_z), 含raw log-OR scale:
+    term      beta       OR  beta_raw   OR_raw       p_value
+PRS311_z  0.439336 1.551676  0.721919 2.058379 4.563209e-301
+burden_z  0.219869 1.245913  1.096980 2.995106 3.611413e-201
+ inter_z -0.031238 0.969244       NaN      NaN  1.216526e-05
+
+================================================================================
+Step F: 出图 (CV AUC + OOF ROC 曲线)
+================================================================================
+  16_cv_auc_comparison_bar: svg=28,580B, png=28,721B, jpg=47,649B -> kept .svg
+  16_cv_roc_curves_oof: svg=256,341B, png=86,232B, jpg=70,109B -> kept .jpg
+
+================================================================================
+Step G: 敏感性分析 (9-gene / MAF口径 / weighted / 281位点PRS / no-mean-imp / rule-of-two)
+================================================================================
+
+  [9gene_main_ptv_PRS311] burden_col=burden_rare_main_ptv_9gene, prs_col=PRS311, n=141204
+    term       OR   CI_low  CI_high       p_value
+PRS311_z 1.551815 1.516195 1.588271 4.153969e-301
+burden_z 1.243994 1.226387 1.261853 5.563297e-198
+ inter_z 0.969332 0.955896 0.982957  1.221213e-05
+
+  [10gene_sensitivity_maf0p1pct_PRS313] burden_col=burden_rare_sensitivity_ptv_maf0p1pct_10gene, prs_col=PRS313, n=141204
+    term       OR   CI_low  CI_high       p_value
+PRS311_z 1.550209 1.514650 1.586603 4.215556e-300
+burden_z 1.235044 1.217977 1.252350 2.755730e-194
+ inter_z 0.971182 0.958021 0.984525  2.666643e-05
+
+  [10gene_sensitivity_maf1pct_PRS311] burden_col=burden_rare_sensitivity_ptv_maf1pct_10gene, prs_col=PRS311, n=141204
+    term       OR   CI_low  CI_high       p_value
+PRS311_z 1.551676 1.516064 1.588124 4.563209e-301
+burden_z 1.245913 1.228297 1.263782 3.611413e-201
+ inter_z 0.969244 0.955774 0.982905  1.216526e-05
+
+  [weighted_class_balanced] (估计量=var_weights加权logistic, terms/cohort同主分析)
+    term       OR   CI_low  CI_high       p_value
+PRS311_z 1.553871 1.514876 1.593869 3.222035e-253
+burden_z 1.272501 1.252809 1.292502 1.797880e-201
+ inter_z 0.966882 0.952054 0.981942  1.946098e-05
+
+  [prs281loci_PRS311] n=141204
+    term       OR   CI_low  CI_high       p_value
+PRS311_z 1.535196 1.499962 1.571258 1.061134e-286
+burden_z 1.245144 1.227550 1.262990 2.569010e-200
+ inter_z 0.969976 0.956476 0.983666  2.017188e-05
+
+  [prs_no_mean_imputation_PRS311] n=141204
+    term       OR   CI_low  CI_high       p_value
+PRS311_z 1.551850 1.516287 1.588247 4.071470e-302
+burden_z 1.245864 1.228244 1.263737 5.533979e-201
+ inter_z 0.969483 0.956046 0.983110  1.348882e-05
+
+  [case_def_rule_of_two] n=140107 (case=7431, control=132676), burden/PRS z-score重新在此子队列上fit
+    term       OR   CI_low  CI_high       p_value
+PRS311_z 1.581136 1.542496 1.620744 2.096740e-288
+burden_z 1.242564 1.224560 1.260833 5.678435e-187
+ inter_z 0.973023 0.959325 0.986917  1.565793e-04
+
+主分析 + 全部敏感性分析并列 (burden_z / inter_z方向&显著性对比):
+                               model     term       OR   CI_low  CI_high       p_value
+Joint_full_cohort_main_10gene_PRS311 burden_z 1.245913 1.228297 1.263782 3.611413e-201
+Joint_full_cohort_main_10gene_PRS311  inter_z 0.969244 0.955774 0.982905  1.216526e-05
+               9gene_main_ptv_PRS311 burden_z 1.243994 1.226387 1.261853 5.563297e-198
+               9gene_main_ptv_PRS311  inter_z 0.969332 0.955896 0.982957  1.221213e-05
+ 10gene_sensitivity_maf0p1pct_PRS313 burden_z 1.235044 1.217977 1.252350 2.755730e-194
+ 10gene_sensitivity_maf0p1pct_PRS313  inter_z 0.971182 0.958021 0.984525  2.666643e-05
+   10gene_sensitivity_maf1pct_PRS311 burden_z 1.245913 1.228297 1.263782 3.611413e-201
+   10gene_sensitivity_maf1pct_PRS311  inter_z 0.969244 0.955774 0.982905  1.216526e-05
+             weighted_class_balanced burden_z 1.272501 1.252809 1.292502 1.797880e-201
+             weighted_class_balanced  inter_z 0.966882 0.952054 0.981942  1.946098e-05
+                   prs281loci_PRS311 burden_z 1.245144 1.227550 1.262990 2.569010e-200
+                   prs281loci_PRS311  inter_z 0.969976 0.956476 0.983666  2.017188e-05
+       prs_no_mean_imputation_PRS311 burden_z 1.245864 1.228244 1.263737 5.533979e-201
+       prs_no_mean_imputation_PRS311  inter_z 0.969483 0.956046 0.983110  1.348882e-05
+                case_def_rule_of_two burden_z 1.242564 1.224560 1.260833 5.678435e-187
+                case_def_rule_of_two  inter_z 0.973023 0.959325 0.986917  1.565793e-04
+
+================================================================================
+Step H: Post-hoc探索性companion模型 (carrier二值对比 / 分基因PRS斜率 / model-implied OR)
+================================================================================
+
+[Model B] Binary-carrier对比模型 (is_case ~ PRS311_z + carrier_main_10gene + PRS311_z:carrier_main_10gene + COV_COLS):
+               term       OR   CI_low  CI_high       p_value                                                                                                                                                                                                     evidence_status
+           PRS311_z 1.556917 1.520652 1.594048 1.047909e-296                                                                                                                                         model_component (reference term within alternative_operationalization spec)
+carrier_main_10gene 4.643246 4.156017 5.187595 2.792753e-162 alternative_operationalization (NOT a reparametrization: binary carrier indicator replaces continuous weighted burden -> genuinely different model spec/likelihood from the primary z-scaled weighted-burden model)
+      carrier_x_prs 0.788088 0.706778 0.878752  1.816065e-05                              post_hoc_exploratory (tests the imposed-linearity hypothesis behind Antinomy 1; corresponds to addendum's 'PRS_z x carrier(0/1)' term, same fitted model as carrier_main_10gene above)
+写出: results/table/16_carrier_binary_contrast_model.csv
+
+carrier_gene_stratum 各层 case/control 是否都 >=20:
+ATM: yes, BRCA1: yes, BRCA2: yes, CHEK2: yes, non-carrier: yes, other: yes
+  [non-carrier] n_case/n_control >=20, beta=0.4436 OR/SD=1.558 (95%CI 1.522-1.596) passes_power_precheck=True
+  [BRCA1] n_case/n_control >=20, beta=-0.0442 OR/SD=0.957 (95%CI 0.757-1.210) passes_power_precheck=False
+  [BRCA2] n_case/n_control >=20, beta=0.1437 OR/SD=1.155 (95%CI 0.941-1.416) passes_power_precheck=False
+  [CHEK2] n_case/n_control >=20, beta=0.2603 OR/SD=1.297 (95%CI 1.028-1.638) passes_power_precheck=True
+  [ATM] n_case/n_control >=20, beta=0.3743 OR/SD=1.454 (95%CI 1.080-1.957) passes_power_precheck=True
+  [other] n_case/n_control >=20, beta=0.3801 OR/SD=1.462 (95%CI 1.157-1.848) passes_power_precheck=True
+
+写出: results/table/16_carrier_stratified_prs_slope_by_gene.csv
+[ESTIMAND CAVEAT] ESTIMAND/ASCERTAINMENT CAVEATS (do not silently compare to Barnes 2020): (1) Barnes DR et al. Genet Med 2020;22(10):1653-1666 reports HR from a time-to-event carrier cohort; this table reports OR from case-control logistic regression -- similar for rare outcomes but not the same estimand. (2) Barnes' carriers are clinically ascertained (BRCA testing referrals); this cohort's carriers are population-based (AoU) -- ascertainment differs materially. (3) Barnes' BRCA1 figure (HR=1.29) uses an ER-negative-specific PRS version; this project only has the overall PRS311, so the BRCA1 row below is NOT like-for-like with Barnes; the closest like-for-like comparison is BRCA2 (this table) vs Barnes BRCA2 HR=1.31 (95% CI 1.27-1.36).
+
+实际出现的Burden_rare_main_ptv_10gene取值: [np.float64(0.0), np.float64(0.5877866649021191), np.float64(0.6575200029167941), np.float64(0.7371640659767196), np.float64(0.7419373447293773), np.float64(0.9321640810304452), np.float64(1.118414915964289), np.float64(1.3297240096314964), np.float64(1.3994573476461714), np.float64(1.5199507459325643), np.float64(1.6134299337036375), np.float64(1.6693281470071648), np.float64(1.6741014257598226), np.float64(1.766441661243765), np.float64(1.8325814637483104), np.float64(2.3580197998821464), np.float64(2.4239616641605592), np.float64(2.5036057272204846), np.float64(2.5083790059731426), np.float64(2.5455940147340828), np.float64(2.6986057422742102), np.float64(3.0999571446115235), np.float64(3.290183880912592), np.float64(3.599023124992075), np.float64(4.124461461125911)]
+
+Model-implied carrier OR表:
+ burden_value  burden_z    n_persons  implied_OR_vs_noncarrier  external_OR_reference  implied_PRS_OR_per_SD_at_this_level      evidence_status                                                                                                                                                                note
+     0.000000 -0.128062       138455                  0.972236                 1.0000                             1.557896 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     0.587787  2.804554 not reported                  1.852680                 1.8000                             1.421519 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     0.657520  3.152471 not reported                  1.999964                 1.9300                             1.406153 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     0.737164  3.549835 not reported                  2.182557                 2.0900                             1.388806 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     0.741937  3.573651 not reported                  2.194015                 2.1000                             1.387773 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     0.932164  4.522740 not reported                  2.703124                 2.5400                             1.347232 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     1.118415  5.451992 not reported                  3.315875                 3.0600                             1.308686 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     1.329724  6.506267 not reported                  4.180887                 3.7800                             1.266288 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     1.399457  6.854184 not reported                  4.513258                 4.0530                             1.252600 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     1.519951  7.455356 not reported                  5.151038                 4.5720                             1.229296 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     1.613430  7.921747 not reported                  5.707282                 5.0200                             1.211516 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     1.669328  8.200638 not reported                  6.068201                 5.3086                             1.201007 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     1.674101  8.224453 not reported                  6.100058                 5.3340                             1.200114 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     1.766442  8.685161 not reported                  6.750346                 5.8500                             1.182966 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     1.832581  9.015150 not reported                  7.258315                 6.2500                             1.170834 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     2.358020 11.636694 not reported                 12.916982                10.5700                             1.078772 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     2.423962 11.965695 not reported                 13.885981                11.2905                             1.067742 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     2.503606 12.363059 not reported                 15.153745                12.2265                             1.054570 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     2.508379 12.386874 not reported                 15.233301                12.2850                             1.053786 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     2.545594 12.572549 not reported                 15.868055                12.7508                             1.047691 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     2.698606 13.335964 not reported                 18.768102                14.8590                             1.023002 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     3.099957 15.338407 not reported                 29.149364                22.1970                             0.960970 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     3.290184 16.287496 not reported                 35.913309                26.8478                             0.932897 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     3.599023 17.828373 not reported                 50.395320                36.5625                             0.889056 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+     4.124461 20.449918 not reported                 89.684099                61.8345                             0.819150 post_hoc_exploratory external_OR_reference = exp(burden_value): burden_rare的原始单位就是外部ln(OR)加总(sum of ln(OR_g)), 故exp(该值)天然等于外部多重效应假设下的参照OR，此列是恒等式而非独立拟合值，供核对implied_OR_vs_noncarrier与其的偏离
+写出: results/table/16_model_implied_carrier_ors.csv
+
+DONE.

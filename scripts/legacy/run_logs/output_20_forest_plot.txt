@@ -1,0 +1,28 @@
+  aim                                   label    exposure  estimate    ci_low   ci_high  cohort_n
+Aim 1              Primary (10 genes, MAF<1%)      PRS311  1.551676  1.516064  1.588124    141204
+Aim 1              Primary (10 genes, MAF<1%) Burden_rare  1.245913  1.228297  1.263782    141204
+Aim 1             9-gene panel (excl. MAP3K1)      PRS311  1.551815  1.516195  1.588271    141204
+Aim 1             9-gene panel (excl. MAP3K1) Burden_rare  1.243994  1.226387  1.261853    141204
+Aim 1                MAF<0.1% burden + PRS313      PRS311  1.550209  1.514650  1.586603    141204
+Aim 1                MAF<0.1% burden + PRS313 Burden_rare  1.235044  1.217977  1.252350    141204
+Aim 1              PRS restricted to 281 loci      PRS311  1.535196  1.499962  1.571258    141204
+Aim 1              PRS restricted to 281 loci Burden_rare  1.245144  1.227550  1.262990    141204
+Aim 1             PRS without mean imputation      PRS311  1.551850  1.516287  1.588247    141204
+Aim 1             PRS without mean imputation Burden_rare  1.245864  1.228244  1.263737    141204
+Aim 1                  Class-balanced weights      PRS311  1.553871  1.514876  1.593869    141204
+Aim 1                  Class-balanced weights Burden_rare  1.272501  1.252809  1.292502    141204
+Aim 1            Case definition: rule of two      PRS311  1.581136  1.542496  1.620744    140107
+Aim 1            Case definition: rule of two Burden_rare  1.242564  1.224560  1.260833    140107
+Aim 4              Primary (10 genes, MAF<1%) Burden_rare -1.715407 -2.001550 -1.429263      7996
+Aim 4              Primary (10 genes, MAF<1%)      PRS311 -0.421890 -0.673478 -0.170301      7996
+Aim 4             9-gene panel (excl. MAP3K1) Burden_rare -1.713299 -2.001404 -1.425194      7996
+Aim 4             9-gene panel (excl. MAP3K1)      PRS311 -0.423857 -0.675628 -0.172086      7996
+Aim 4              PRS restricted to 281 loci Burden_rare -1.711486 -1.997533 -1.425439      7996
+Aim 4              PRS restricted to 281 loci      PRS311 -0.383558 -0.637266 -0.129850      7996
+Aim 4             PRS without mean imputation Burden_rare -1.714933 -2.001155 -1.428711      7996
+Aim 4             PRS without mean imputation      PRS311 -0.411433 -0.662987 -0.159879      7996
+Aim 4 Including cases with BC as first record Burden_rare -1.752705 -2.025959 -1.479451      8528
+Aim 4 Including cases with BC as first record      PRS311 -0.358358 -0.603048 -0.113667      8528
+Aim 4            Case definition: rule of two Burden_rare -1.704064 -2.000518 -1.407610      6945
+Aim 4            Case definition: rule of two      PRS311 -0.589093 -0.855797 -0.322390      6945
+saved /home/jupyter/workspace/analysis/results/figures/20_fig5_forest_sensitivity.svg (85.2 KB)

@@ -1,0 +1,32 @@
+{
+  "changed_files": [
+    "CLAUDE.md",
+    "plans/v1_rerun_genetic_eur_sexqc.md",
+    "plans/expanded_missense_carrier_diagnosis_age.md",
+    "plans/aim1_aim4_report_revision_addendum.md",
+    "config/rowlands_13gene_extension.yaml",
+    "scripts/01_study_cohort_selection.py",
+    "scripts/02_sample_preprocessing.py",
+    "scripts/10_exploratory_age_ehr.py",
+    "scripts/90_legacy_ptv_baseline.py",
+    "scripts/06_variant_genotype_qc.py",
+    "scripts/FUNCTION_INDEX.md",
+    "scripts/03_common_variants_prs.py",
+    "scripts/README.md",
+    "scripts/04_gene_selection.py",
+    "manuscript/revision_1006_minimal_1008/validation.json",
+    "scripts/functions/nine_gene_missense_age.py",
+    "scripts/functions/site_qc.py"
+  ],
+  "backup_directory": "/tmp/com_rare_BC_path_backup",
+  "remaining_old_paths_in_scripts": [],
+  "python_files_syntax_checked": 39,
+  "external_dependencies": {},
+  "excluded": [
+    "historical archives",
+    "generated data/results/logs",
+    "notebook checkpoints",
+    "local tool settings"
+  ],
+  "local_dependencies_manifest": "scripts/local_dependencies_manifest.json"
+}

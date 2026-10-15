@@ -1,0 +1,338 @@
+
+========================================================================================
+Step A | 队列构建（复刻 scripts/16 Step A 口径），断言与 16 号 OOF 表同一批人
+========================================================================================
+  建模队列 n=141204 (case=8528, control=132676)
+  ASSERT PASS: n / case 数与 scripts/16 完全一致
+  16 号 OOF 预测合并成功
+  全队列 z-score 参数: PRS311 mean=0.1177 sd=0.6086; burden mean=0.025668 sd=0.200431
+
+========================================================================================
+Step B | 基因分层 (high / moderate / compound)
+========================================================================================
+  基因层 carrier(>=1基因PTV) 与 burden>0 定义的不一致人数: 0
+
+  四层构成（只打印披露后的计数；raw 计数故意不落进日志，因日志文件本身会进 git）:
+          tier4 n_total_disclosed       n_case_disclosed
+       compound                24                    <20
+high_penetrance              1185                    315
+       moderate              1540 suppressed (secondary)
+    non_carrier            138455                   8020
+
+  compound carrier (>=2 panel 基因 PTV): n=24 (说明书预期 ~20-25)
+  3 层版本里 compound 按其携带的最高外显率基因并入 high_penetrance 或 moderate（拆分人数 <20，不打印）
+  ⚠️ MAP3K1 被归入 moderate 层，但这是**有争议的归类**（主要是 common-variant 位点，其 PTV 权重来自单一队列 MWS 估计，无独立重复）。
+
+  每基因 carrier 数（any-carrier，披露处理后；本项目唯一公开逐基因人数的表）:
+  gene            tier  contested_tier_assignment n_carriers_any n_carriers_case     n_carriers_control
+   ATM        moderate                      False            448              55                    393
+ BARD1        moderate                      False            151              26                    125
+ BRCA1 high_penetrance                      False            374             125                    249
+ BRCA2 high_penetrance                      False            592             154                    438
+ CHEK2        moderate                      False            781              89                    692
+ PALB2 high_penetrance                      False            216              41                    175
+RAD51C        moderate                      False             78             <20 suppressed (secondary)
+RAD51D        moderate                      False             82             <20 suppressed (secondary)
+  TP53 high_penetrance                      False             23             <20                    <20
+MAP3K1        moderate                       True             28             <20 suppressed (secondary)
+  [table] /home/jupyter/workspace/analysis/results/table/19_gene_tier_composition.csv  rows=4
+  [table] /home/jupyter/workspace/analysis/results/table/19_gene_tier_carrier_counts.csv  rows=10
+
+========================================================================================
+Fig 1 | PRS311 与 Burden_rare 的正交性（controls-only 为主，全队列为次）
+========================================================================================
+  ⚠️ 方法学要点（必须写进图注与报告）：本图**以 controls 为主分析**，不用 cases。
+     在 case 内部（或以 case 状态为条件）计算 PRS 与 rare burden 的相关，会因 collider /
+     index-event bias 人为诱导出负相关：两条通往同一结局的独立通路，在给定结局后彼此负相关。
+     所以 case 内部的相关本身就是偏倚，不能当作“正交/互补”的证据。全队列版本因含 6.2% 的
+     case，同样带轻微的同向污染，只作为次要参考。
+  controls n=132676, 其中 carrier n=2241
+
+  相关系数表 (raw 与 PC1-10 偏相关):
+                 scope                                       comparison   method     adjustment      n         r    ci_low  ci_high  p_value
+controls_only(primary) PRS311_z vs carrier_main_10gene (point-biserial)  pearson            raw 132676 -0.003992 -0.009373 0.001389 0.145895
+controls_only(primary) PRS311_z vs carrier_main_10gene (point-biserial)  pearson partial_PC1_10 132676 -0.004120 -0.009501 0.001261 0.133468
+controls_only(primary)        PRS311_z vs Burden_rare (continuous, all)  pearson            raw 132676 -0.003338 -0.008718 0.002043 0.224108
+controls_only(primary)        PRS311_z vs Burden_rare (continuous, all)  pearson partial_PC1_10 132676 -0.003583 -0.008964 0.001798 0.191809
+controls_only(primary)        PRS311_z vs Burden_rare (continuous, all) spearman            raw 132676 -0.004926 -0.010307 0.000455 0.072766
+controls_only(primary)        PRS311_z vs Burden_rare (continuous, all) spearman partial_PC1_10 132676 -0.005054 -0.010435 0.000327 0.065610
+controls_only(primary)          PRS311_z vs Burden_rare (carriers only)  pearson            raw   2241  0.005345 -0.036070 0.046741 0.800359
+controls_only(primary)          PRS311_z vs Burden_rare (carriers only)  pearson partial_PC1_10   2241  0.001243 -0.040258 0.042740 0.953097
+controls_only(primary)          PRS311_z vs Burden_rare (carriers only) spearman            raw   2241  0.010537 -0.030883 0.051921 0.618098
+controls_only(primary)          PRS311_z vs Burden_rare (carriers only) spearman partial_PC1_10   2241  0.007703 -0.033807 0.049187 0.715507
+full_cohort(secondary) PRS311_z vs carrier_main_10gene (point-biserial)  pearson            raw 141204 -0.002904 -0.008120 0.002312 0.275184
+full_cohort(secondary) PRS311_z vs carrier_main_10gene (point-biserial)  pearson partial_PC1_10 141204 -0.003105 -0.008320 0.002111 0.243371
+full_cohort(secondary)        PRS311_z vs Burden_rare (continuous, all)  pearson            raw 141204 -0.002679 -0.007895 0.002537 0.314106
+full_cohort(secondary)        PRS311_z vs Burden_rare (continuous, all)  pearson partial_PC1_10 141204 -0.003094 -0.008310 0.002122 0.244920
+full_cohort(secondary)        PRS311_z vs Burden_rare (continuous, all) spearman            raw 141204 -0.003880 -0.009095 0.001336 0.144862
+full_cohort(secondary)        PRS311_z vs Burden_rare (continuous, all) spearman partial_PC1_10 141204 -0.004085 -0.009301 0.001131 0.124795
+full_cohort(secondary)          PRS311_z vs Burden_rare (carriers only)  pearson            raw   2749 -0.000675 -0.038059 0.036711 0.971777
+full_cohort(secondary)          PRS311_z vs Burden_rare (carriers only)  pearson partial_PC1_10   2749 -0.007422 -0.044863 0.030039 0.697295
+full_cohort(secondary)          PRS311_z vs Burden_rare (carriers only) spearman            raw   2749  0.004171 -0.033219 0.041550 0.826953
+full_cohort(secondary)          PRS311_z vs Burden_rare (carriers only) spearman partial_PC1_10   2749 -0.000947 -0.038399 0.036507 0.960401
+  [table] /home/jupyter/workspace/analysis/results/table/19_fig1_prs_burden_correlations.csv  rows=20
+  Panel B 点数 (control carriers) = 2241
+  Fig1B hexbin: 2,001/2,241 controls carriers 落在 n>=20 的格里
+  [saved] /home/jupyter/workspace/analysis/results/figures/19_fig1_prs_burden_orthogonality.svg  (71.4 KB)
+
+  Fig1 Panel A 伴随数值:
+                 scope  carrier_main_10gene n_disclosed      mean       sd       q25    median      q75
+controls_only(primary)                    0      130435 -0.024386 0.994526 -0.701599 -0.031656 0.644049
+controls_only(primary)                    1        2241 -0.055204 1.007369 -0.769013 -0.081576 0.631315
+full_cohort(secondary)                    0      138455  0.000409 0.999800 -0.679766 -0.007417 0.669871
+full_cohort(secondary)                    1        2749 -0.020609 1.009973 -0.724435 -0.039111 0.654695
+  [table] /home/jupyter/workspace/analysis/results/table/19_fig1_prs_by_carrier_distribution.csv  rows=4
+
+========================================================================================
+Fig 2 | 二维热图：PRS311 decile x carrier(0/1)
+========================================================================================
+  ⚠️ Panel A 的量是 **cohort-observed case proportion（本队列观测到的病例比例）**，
+     **不是 absolute risk（绝对风险）**。本队列 ~6.4% 的 case 比例来自 AoU WGS 子队列内的
+     EHR 确诊，既非终生累积发病率、也非人群发病率；把它读成绝对风险是最容易被审稿人抓住的错误。
+
+  无交互期望模型 (case ~ PRS311_z + carrier + PC1-10 + age) 系数:
+                         beta        OR              p
+PRS311_z             0.432128  1.540532  6.647531e-296
+carrier_main_10gene  1.499787  4.480733  1.914666e-150
+age_at_last_obs      0.060746  1.062629   0.000000e+00
+
+  主面板 20 格 (PRS decile x carrier)（raw 计数列不打印）:
+ prs_decile  carrier_main_10gene n_disclosed n_case_disclosed  observed_case_proportion  mean_expected_prob_no_interaction  obs_over_exp  cell_suppressed_for_disclosure
+          1                    0       13830              365                  0.026392                           0.027071      0.974904                           False
+          1                    1         291               40                  0.137457                           0.106135      1.295119                           False
+          2                    0       13830              495                  0.035792                           0.035522      1.007608                           False
+          2                    1         290               40                  0.137931                           0.124459      1.108244                           False
+          3                    0       13844              548                  0.039584                           0.041183      0.961169                           False
+          3                    1         276               51                  0.184783                           0.141878      1.302405                           False
+          4                    0       13829              596                  0.043098                           0.045553      0.946104                           False
+          4                    1         292               52                  0.178082                           0.152506      1.167708                           False
+          5                    0       13852              720                  0.051978                           0.051021      1.018766                           False
+          5                    1         268               44                  0.164179                           0.168941      0.971813                           False
+          6                    0       13847              792                  0.057197                           0.056480      1.012682                           False
+          6                    1         273               60                  0.219780                           0.179214      1.226354                           False
+          7                    0       13874              896                  0.064581                           0.062964      1.025684                           False
+          7                    1         247               53                  0.214575                           0.210319      1.020236                           False
+          8                    0       13848             1010                  0.072935                           0.070315      1.037258                           False
+          8                    1         272               47                  0.172794                           0.234742      0.736101                           False
+          9                    0       13857             1113                  0.080320                           0.080901      0.992823                           False
+          9                    1         263               52                  0.197719                           0.241347      0.819228                           False
+         10                    0       13844             1485                  0.107267                           0.108141      0.991917                           False
+         10                    1         277               69                  0.249097                           0.302732      0.822831                           False
+  主面板被披露规则抑制的格子数: 0
+  [table] /home/jupyter/workspace/analysis/results/table/19_fig2_prs_decile_x_carrier_cells.csv  rows=20
+
+  补充面板 (PRS quintile x 3 tiers) -> data/19_internal/（内部，不打印计数）
+  [table] /home/jupyter/workspace/analysis/data/19_internal/19_fig2_prs_quintile_x_tier_cells.csv  rows=15
+  [saved] /home/jupyter/workspace/analysis/results/figures/19_fig2_prs_decile_x_carrier_heatmap.svg  (100.9 KB)
+  [saved] /home/jupyter/workspace/analysis/data/19_internal/19_fig2_supp_prs_quintile_x_tier_heatmap.svg  (83.3 KB)
+
+  高 PRS x carrier 角落 (decile 9-10, carrier=1) 的 O/E:
+ prs_decile n_disclosed n_case_disclosed  observed_case_proportion  obs_over_exp
+          9         263               52                  0.197719      0.819228
+         10         277               69                  0.249097      0.822831
+
+========================================================================================
+Fig 3 | Quantile-OR 点线图（A: PRS ventiles；B: burden 有序类别）
+========================================================================================
+  分箱约定来自 Mazzarotto et al. 2025 (bioRxiv doi:10.1101/2025.09.15.676308)，
+     **本轮已拿到 PDF 全文并逐条核对**（plans/papers/The complementary roles of rare variant
+     burden scores.pdf），不再是转述。核对到的原文约定：
+       - 两个分数都切成 quantile bins，"default N=20; ventiles"；
+       - "logistic regressions of diagnosis on IOGC quantile (reference: lowest quantile)"
+         -> **参考组是最低那个 ventile**，不是中间带；
+       - 另外把 IOGC 二分为 low (ventiles 1-18) vs high (>18) 用于 PPV 分析。
+     其结果（作为形状先例引用，不作基准）：精神分裂症 PRS 顶端 ventile vs 最低 OR=13.6
+     (95%CI 8.1-23)，中间各分位单调递增；而 IOGC "did not vary linearly with ventiles,
+     showing a significant increase only for the top two"，顶端 ventile OR=2.3 (1.5-3.7)。
+     性状是精神分裂症/HCM 而非乳腺癌 -> 只作语境与"形状"先例。
+  Panel A 主参考 = ventile 1（最低分位，与 Mazzarotto 对齐）；次要参考 = ventile [9, 10]（40-60 百分位中间带，保留为 secondary）
+  Panel B 用有序类别而非 quantile：Burden_rare 全队列 ~98% 为 0，二十分位里会有十九个
+     分位取同一个值 0，quantile 分箱在数学上无法定义（Mazzarotto 的 IOGC 是 outlier-gene
+     计数、分布连续得多，才能切 ventile；这一点不可移植到本项目的 10 基因 PTV 加权分数）。
+     non-carrier 作参考组这一点与该文一致。
+  实测 Burden_rare == 0 的比例: 98.05%
+
+  Fig 3 OR 表:
+                    panel                                    reference        category  is_reference n_disclosed       n_case_disclosed        OR   ci_low   ci_high       p_value
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)       ventile 1          True        7061                    185  1.000000      NaN       NaN           NaN
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)       ventile 2         False        7060                    220  1.194093 0.976059  1.460831  8.463530e-02
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)       ventile 3         False        7060                    226  1.251405 1.024127  1.529122  2.830008e-02
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)       ventile 4         False        7060                    309  1.702381 1.409217  2.056533  3.440442e-08
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)       ventile 5         False        7060                    289  1.593241 1.315885  1.929057  1.814774e-06
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)       ventile 6         False        7060                    310  1.734029 1.435751  2.094275  1.093751e-08
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)       ventile 7         False        7061                    306  1.711029 1.416112  2.067366  2.629392e-08
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)       ventile 8         False        7060                    342  1.975888 1.640763  2.379462  6.883691e-13
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)       ventile 9         False        7060                    349  1.930146 1.604419  2.322002  3.100588e-12
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)      ventile 10         False        7060                    415  2.438426 2.036453  2.919744  3.076066e-22
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)      ventile 11         False        7060                    406  2.354322 1.964559  2.821412  1.814269e-20
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)      ventile 12         False        7060                    446  2.552904 2.135771  3.051506  7.305283e-25
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)      ventile 13         False        7060                    492  2.836057 2.378469  3.381680  3.611744e-31
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)      ventile 14         False        7061                    457  2.653826 2.221974  3.169609  4.737570e-27
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)      ventile 15         False        7060                    494  2.901104 2.432986  3.459289  1.844373e-32
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)      ventile 16         False        7060                    563  3.305797 2.778971  3.932496  1.572574e-41
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)      ventile 17         False        7060                    553  3.274304 2.751161  3.896924  1.119860e-40
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)      ventile 18         False        7060                    612  3.686902 3.105141  4.377659  3.724524e-50
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)      ventile 19         False        7061                    677  4.026334 3.396700  4.772681  5.392676e-58
+            A_PRS_ventile lowest_ventile (PRIMARY, Mazzarotto-aligned)      ventile 20         False        7060                    877  5.608157 4.749207  6.622458  7.273505e-92
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)       ventile 1         False        7061                    185  0.459322 0.388943  0.542436  4.805036e-20
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)       ventile 2         False        7060                    220  0.548472 0.469516  0.640706  3.631535e-14
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)       ventile 3         False        7060                    226  0.574794 0.492820  0.670403  1.743369e-12
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)       ventile 4         False        7060                    309  0.781934 0.680704  0.898218  5.062295e-04
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)       ventile 5         False        7060                    289  0.731809 0.635099  0.843245  1.577328e-05
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)       ventile 6         False        7060                    310  0.796461 0.693561  0.914627  1.262895e-03
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)       ventile 7         False        7061                    306  0.785900 0.683986  0.902998  6.742951e-04
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)       ventile 8         False        7060                    342  0.907557 0.793530  1.037968  1.567834e-01
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)       ventile 9          True        7060                    349  1.000000      NaN       NaN           NaN
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)      ventile 10          True        7060                    415  1.000000      NaN       NaN           NaN
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)      ventile 11         False        7060                    406  1.081372 0.951969  1.228366  2.289687e-01
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)      ventile 12         False        7060                    446  1.172589 1.036077  1.327088  1.169607e-02
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)      ventile 13         False        7060                    492  1.302636 1.155088  1.469030  1.627873e-05
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)      ventile 14         False        7061                    457  1.218924 1.078290  1.377900  1.550547e-03
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)      ventile 15         False        7060                    494  1.332508 1.181550  1.502753  2.876782e-06
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)      ventile 16         False        7060                    563  1.518400 1.351077  1.706445  2.362806e-12
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)      ventile 17         False        7060                    553  1.503925 1.337249  1.691375  9.823363e-12
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)      ventile 18         False        7060                    612  1.693440 1.511217  1.897634  1.204772e-19
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)      ventile 19         False        7061                    677  1.849328 1.654451  2.067159  2.716540e-27
+            A_PRS_ventile           mid_band_ventiles_9_10 (secondary)      ventile 20         False        7060                    877  2.575821 2.318072  2.862229  2.990239e-69
+B_burden_ordered_category             non_carrier (matches Mazzarotto)     non_carrier          True      138455                   8020  1.000000      NaN       NaN           NaN
+B_burden_ordered_category             non_carrier (matches Mazzarotto)        moderate         False        1540 suppressed (secondary)  2.351646 1.994514  2.772724  2.560595e-24
+B_burden_ordered_category             non_carrier (matches Mazzarotto) high_penetrance         False        1185                    315  7.760172 6.678550  9.016968 1.089064e-157
+B_burden_ordered_category             non_carrier (matches Mazzarotto)        compound         False          24                    <20 11.277958 4.311818 29.498542  7.856747e-07
+  [table] /home/jupyter/workspace/analysis/results/table/19_fig3_quantile_or_estimates.csv  rows=44
+  [saved] /home/jupyter/workspace/analysis/results/figures/19_fig3_quantile_or_dotwhisker.svg  (78.7 KB)
+
+========================================================================================
+Fig 3 附加 | 'PPV 类比'：PRS centile 阈值 x burden 高/低
+========================================================================================
+  ⚠️ 三点必须写清楚：
+   1) 本队列算出来的**不是 PPV**。PPV 取决于患病率，本队列 6.2% 的 case 比例是病例对照
+      设计+EHR 确诊决定的，不是人群患病率；因此这里报的是 **cohort-observed case
+      proportion（本队列观测病例比例）**，与该文的 PPV 数值**不可直接比较**，只能比较
+      "高 burden vs 低 burden 的相对提升倍数"这一形状。
+   2) 该文的 PPV 数值是**百分数**（精神分裂症 0.25% -> 0.41%；PRS>95th centile 0.89% ->
+      1.13%；同文 MDD 类比读作 6.03 -> 6.13、17.12 -> 14.31，可确认单位是 %），不是比例。
+   3) 该文把 IOGC 二分为 low(ventiles 1-18) vs high(>18)；本项目 burden 98% 为 0，
+      ventile 阈值无意义，故 burden 高/低 = carrier / non-carrier（10 基因 panel PTV）。
+
+  PPV 类比表（观测病例比例 %，非 PPV、非绝对风险）:
+     prs_band                      burden_stratum n_disclosed n_case_disclosed  observed_case_percent  ci_low_percent  ci_high_percent  cell_suppressed_for_disclosure  ratio_high_over_low
+<15th centile            low burden (non-carrier)       20729              577               2.783540        2.568200         3.016376                           False             4.221841
+<15th centile high burden (any panel PTV carrier)         451               53              11.751663        9.097602        15.051793                           False             4.221841
+<25th centile            low burden (non-carrier)       34564             1124               3.251938        3.070077         3.444190                           False             4.387016
+<25th centile high burden (any panel PTV carrier)         736              105              14.266304       11.924966        16.978721                           False             4.387016
+<50th centile            low burden (non-carrier)       69184             2723               3.935881        3.793527         4.083350                           False             4.070184
+<50th centile high burden (any panel PTV carrier)        1417              227              16.019760       14.202239        18.021023                           False             4.070184
+<75th centile            low burden (non-carrier)      103829             4881               4.700999        4.573922         4.831427                           False             3.745445
+<75th centile high burden (any panel PTV carrier)        2073              365              17.607332       16.028064        19.306432                           False             3.745445
+>95th centile            low burden (non-carrier)        6910              838              12.127352       11.378625        12.918164                           False             2.143914
+>95th centile high burden (any panel PTV carrier)         150               39              26.000000       19.642139        33.556433                           False             2.143914
+any PRS (all)            low burden (non-carrier)      138455             8020               5.792496        5.670671         5.916773                           False             3.190239
+any PRS (all) high burden (any panel PTV carrier)        2749              508              18.479447       17.072874        19.973991                           False             3.190239
+  [table] /home/jupyter/workspace/analysis/results/table/19_fig3_ppv_analogue_prs_band_x_burden.csv  rows=12
+  [saved] /home/jupyter/workspace/analysis/results/figures/19_fig3_supp_midband_and_ppv_analogue.svg  (89.1 KB)
+
+========================================================================================
+Fig 6.1 | 决定性检验：剔除 compound carrier 后重拟合主联合模型
+========================================================================================
+  复现 scripts/16 主模型 inter_z beta = -0.031238 (scripts/16 记录值 -0.031238)
+  ASSERT PASS: 与 scripts/16 主模型逐位复现
+  剔除 compound carrier 后 n=141180 (剔除 24 人)
+  ⚠️ z-score 标准化参数**沿用全队列**（不在缩减队列上重算），确保两次拟合的系数在同一尺度上可比。
+
+  剔除前/后系数对照:
+                                        model      n     term      beta       se       OR   ci_low  ci_high       p_value
+primary (full cohort, scripts/16 replication) 141204 PRS311_z  0.439336 0.011846 1.551676 1.516064 1.588124 4.563209e-301
+primary (full cohort, scripts/16 replication) 141204 burden_z  0.219869 0.007265 1.245913 1.228297 1.263782 3.611413e-201
+primary (full cohort, scripts/16 replication) 141204  inter_z -0.031238 0.007141 0.969244 0.955774 0.982905  1.216526e-05
+                   compound carriers excluded 141180 PRS311_z  0.439218 0.011847 1.551494 1.515883 1.587942 7.659843e-301
+                   compound carriers excluded 141180 burden_z  0.221135 0.007393 1.247492 1.229546 1.265700 1.418407e-196
+                   compound carriers excluded 141180  inter_z -0.030199 0.007211 0.970253 0.956637 0.984062  2.812663e-05
+
+  >>> 关键结论: inter_z beta -0.03124 (OR=0.9692, p=1.217e-05) -> -0.03020 (OR=0.9703, p=2.813e-05); 变化 +3.3%
+  >>> 判读: 交互项在剔除 compound carrier 后依然显著且方向不变 -> 负交互**不是**这 ~20-25 名高杠杆个体的产物
+  [table] /home/jupyter/workspace/analysis/results/table/19_fig6_compound_exclusion_interaction_comparison.csv  rows=6
+
+========================================================================================
+Fig 6.2 | Cook's distance（Aim 1 logistic 主模型）
+========================================================================================
+  设计矩阵 (141204, 18), k=18; leverage h 范围 [4.71e-06, 0.012]
+  Cook's D: max=0.00215, mean=7.134e-06, 4/n 阈值=2.833e-05, 超阈值人数=8947
+  compound carrier 的 Cook's D: max=0.00131, 中位数=0.00008; 全队列中位数=1.662e-07
+
+  按 tier 汇总的 Cook's D:
+          tier4      n     mean       median      p95      max n_disclosed
+       compound     24 0.000174 7.795266e-05 0.000625 0.001306          24
+high_penetrance   1185 0.000108 4.227260e-05 0.000418 0.001575        1185
+       moderate   1540 0.000021 1.752458e-06 0.000124 0.001591        1540
+    non_carrier 138455 0.000006 1.581566e-07 0.000047 0.002147      138455
+  [table] /home/jupyter/workspace/analysis/results/table/19_fig6_cooks_distance_by_tier.csv  rows=4
+  Fig6.2B 直方图: 9 个 bin 人数 <20，未画出
+  [saved] /home/jupyter/workspace/analysis/results/figures/19_fig6_cooks_distance.svg  (53.0 KB)
+
+========================================================================================
+Fig 6.3 | Aim 4 OLS 残差诊断（脚本内重拟合，未改动 scripts/17）
+========================================================================================
+  Aim 4 cases-only 队列 n=7996
+  ASSERT PASS: 与 scripts/17 主分析队列 n 一致
+  重拟合系数: burden_z beta=-1.7154 (scripts/17 记录 -1.7154), PRS311_z beta=-0.4219 (记录 -0.4219), R2=0.0237 (记录 0.0237)
+  Jarque-Bera: stat=80.12, p=3.997e-18, skew=-0.1931, excess-kurtosis=-0.3021
+  Shapiro-Wilk (n=5,000 随机子样本，scipy 对 n>5000 不可靠故取子样本): W=0.99542, p=1.959e-11
+  ⚠️ Burden_rare 即使在 case 内部也高度右偏/零膨胀 (case 内 0 的比例=94.15%)，故 OLS 的正态性假设必须实检。
+  [table] /home/jupyter/workspace/analysis/results/table/19_fig6_aim4_ols_residual_diagnostics.csv  rows=1
+  [saved] /home/jupyter/workspace/analysis/results/figures/19_fig6_aim4_ols_diagnostics.svg  (80.6 KB)
+
+========================================================================================
+Fig 7 | 校准图（Joint 模型 5 折 out-of-fold 预测，16 号第 1 次重复）
+========================================================================================
+  n=141204, 观测病例比例=0.0604; OOF AUC=0.7797, Brier=0.05305, calibration intercept=0.0001, slope=0.9973 (SE 0.0122)
+  [table] /home/jupyter/workspace/analysis/results/table/19_fig7_calibration_model_comparison.csv  rows=1
+
+  校准分箱表 (OOF, 10 bins):
+ bin n_disclosed n_case_disclosed  mean_predicted  observed_proportion  obs_ci_low  obs_ci_high
+   1       14121               21        0.005312             0.001487    0.000973     0.002273
+   2       14120               71        0.009951             0.005028    0.003989     0.006337
+   3       14120              176        0.015319             0.012465    0.010763     0.014432
+   4       14121              290        0.022661             0.020537    0.018325     0.023010
+   5       14120              505        0.032515             0.035765    0.032826     0.038956
+   6       14120              734        0.045344             0.051983    0.048442     0.055768
+   7       14121              959        0.061734             0.067913    0.063880     0.072181
+   8       14120             1219        0.083411             0.086331    0.081811     0.091077
+   9       14120             1754        0.116345             0.124221    0.118883     0.129764
+  10       14121             2799        0.211314             0.198215    0.191723     0.204872
+  [table] /home/jupyter/workspace/analysis/results/table/19_fig7_calibration_bins.csv  rows=10
+  [saved] /home/jupyter/workspace/analysis/results/figures/19_fig7_calibration.svg  (31.0 KB)
+
+========================================================================================
+收尾 | 披露规则日志 / 图文件大小 / 报告
+========================================================================================
+  被披露规则改动的格子数: 4
+                                         cell raw_n_bucket                                                           action              disclosed
+                          tier4=compound|case         5-19                shown as <20 (part of secondary-suppression pair)                    <20
+                          tier4=moderate|case         >=20      secondary suppression (sum of tiers = published case total) suppressed (secondary)
+fig3|B_burden_ordered_category|compound|cases         5-19                shown as <20 (part of secondary-suppression pair)                    <20
+fig3|B_burden_ordered_category|moderate|cases         >=20 secondary suppression (sum of categories = published case total) suppressed (secondary)
+  [table] /home/jupyter/workspace/analysis/results/table/19_disclosure_rule_applied_cells.csv  rows=4
+
+  图文件大小:
+                                      figure  size_kb format
+        19_fig1_prs_burden_orthogonality.svg     71.4    svg
+    19_fig2_prs_decile_x_carrier_heatmap.svg    100.9    svg
+19_fig2_supp_prs_quintile_x_tier_heatmap.svg     83.3    svg
+          19_fig3_quantile_or_dotwhisker.svg     78.7    svg
+   19_fig3_supp_midband_and_ppv_analogue.svg     89.1    svg
+                  19_fig6_cooks_distance.svg     53.0    svg
+            19_fig6_aim4_ols_diagnostics.svg     80.6    svg
+                     19_fig7_calibration.svg     31.0    svg
+  图文件合计: 588.0 KB
+  19_* 表格 13 个, 合计 119.2 KB
+  [report] /home/jupyter/workspace/analysis/results/report/19_aim1_figures_summary.md
+
+========================================================================================
+DONE | 关键数字速览
+========================================================================================
+  Fig1 controls-only point-biserial r(raw)   = -0.0040
+  Fig1 controls-only point-biserial r(PC-adj)= -0.0041
+  Fig2 decile10 x carrier O/E = 0.823; decile9 x carrier O/E = 0.819
+  Fig3 compound OR = 11.278 [4.312, 29.499], n=24
+  Fig6 interaction beta: -0.03124 -> -0.03020 (p 1.22e-05 -> 2.81e-05)
+  Fig7 calib intercept=0.0001, slope=0.9973, Brier=0.05305, AUC=0.7797

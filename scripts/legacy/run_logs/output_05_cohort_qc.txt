@@ -1,0 +1,238 @@
+
+==========================================================================================
+0. 候选人群：01 号 female+WGS（含祖先标注）× 04 号表型分组
+==========================================================================================
+female+WGS 候选人群: 324,751
+  case: 13,536
+  control: 282,170
+
+==========================================================================================
+2. 亲缘关系剔除 (kinship pruning, 最大独立集)
+==========================================================================================
+plan要求阈值: KING kinship > 0.0884 (二度亲以内)
+官方 samples_relatedness.tsv 总pair数: 55907, 实测最小kinship值: 0.1000
+⚠️ 数据可用性问题：AoU官方pairwise relatedness文件只导出了 kinship > 0.1 的pair（实测最小值=0.1000, 非0.0884），所以无法在0.0884-0.1这个窄区间内识别弱二度亲关系对。0.1恰好落在KING二度亲区间(0.0884-0.177)内部，是比plan要求(0.0884)更保守(更严)的一个可用近似 -- 用它会比理论阈值排除得略少（漏掉kin在0.0884-0.1之间的弱二度亲对），但不会引入假阳性排除。本次分析採用可获得的实际阈值 = 0.1，并在report中注明此caveat。
+
+候选人群内且kinship>0.1的pair数: 9,566
+关系图: 16,719 个体涉及至少一条边, 共 9,566 条边
+贪心最大独立集算法剔除人数: 8,557
+剔除后队列内部残留边数(应为0): 0
+
+[交叉验证，仅供参考] AoU官方relatedness_flagged_samples.tsv (全队列约245k-535k人图上算的MIS)中落在本cohort的人数: 11,341；与本脚本(仅在本cohort子图上重新算MIS)剔除名单的重叠人数: 4,673。两者不必完全一致，因为官方MIS是在全AoU WGS人群图上算的(可能因cohort外的亲属而剔除本可在子图内保留的人，反之亦然)，本项目按plan要求在自己的候选人群子图内独立重算，更贴合本分析实际用到的样本集合。
+
+==========================================================================================
+3/4 准备：缺失率+HWE共用的ACAF threshold代表性变异子抽样
+==========================================================================================
+目标染色体: chr21 (常染色体中体量最小，仍完整覆盖该染色体上的real genotype数据结构)
+$ gsutil -u wb-sunny-mango-6944 du gs://vwb-aou-datasets-controlled/v9/wgs/short_read/snpindel/acaf_threshold/plink_bed/acaf_threshold.chr21.bed
+265519940263  gs://vwb-aou-datasets-controlled/v9/wgs/short_read/snpindel/acaf_threshold/plink_bed/acaf_threshold.chr21.bed
+
+chr21.bed 总字节数: 265,519,940,263 (247.3 GiB)
+chr21 .fam 样本数(全AoU队列, 非本cohort子集): 535,662
+SNP-major .bed 每变异block字节数: 133,916
+由文件大小反推的chr21总变异数: 1,982,735
+
+⚠️ 规模评估：全量ACAF threshold callset(22条常染色体, plink_bed格式)总大小约16TiB，单chr21就有247GiB/535,662个体。本机(overlay根分区约49GB可用, 25GB内存, 4核, 无本地Hail/Spark集群、无GCS FUSE挂载)物理上无法整表下载或用plink2直接流式处理，更谈不上做22条染色体的全量sample-level缺失率或HWE扫描。若要做全量、genome-wide的sample_qc()，正确路径是在AoU Workbench里起一个Hail-enabled的Dataproc集群(Genomic Analysis环境)对hail.vds或ACAF Hail MatrixTable跑hl.sample_qc()/hl.variant_qc()，官方文档给出的同规模作业(全队列全基因组sample_qc)量级通常是几十分钟到数小时(取决于worker数)，这超出本次交互式session的合理开销，故未执行，仅记录此评估。
+
+替代方案(本次实际执行)：在chr21.bed内部按变异索引做3个窗口(文件起/中/末各500个变异,共1500个变异)的精确byte-range切片，恢复出一个小型但真实的.bed/.bim/.fam，在其上用plink2跑真实的--missing/--hardy。这不是全基因组结果，是有限代表性子抽样，已在下方report中明确标注这一限制。
+$ gsutil -u wb-sunny-mango-6944 cat -r 669580003-736538002 gs://vwb-aou-datasets-controlled/v9/wgs/short_read/snpindel/acaf_threshold/plink_bed/acaf_threshold.chr21.bed > /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/chr21_start.bedchunk
+  窗口[start] variant_idx=[5000,5500) byte_range=[669580003,736538002] 下载字节数=66,958,000 (期望=66,958,000, OK)
+$ sed -n '5001,5500p' /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/chr21.bim > /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/chr21_start.bim
+$ gsutil -u wb-sunny-mango-6944 cat -r 132759903175-132826861174 gs://vwb-aou-datasets-controlled/v9/wgs/short_read/snpindel/acaf_threshold/plink_bed/acaf_threshold.chr21.bed > /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/chr21_mid.bedchunk
+  窗口[mid] variant_idx=[991367,991867) byte_range=[132759903175,132826861174] 下载字节数=66,958,000 (期望=66,958,000, OK)
+$ sed -n '991368,991867p' /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/chr21.bim > /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/chr21_mid.bim
+$ gsutil -u wb-sunny-mango-6944 cat -r 264783402263-264850360262 gs://vwb-aou-datasets-controlled/v9/wgs/short_read/snpindel/acaf_threshold/plink_bed/acaf_threshold.chr21.bed > /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/chr21_end.bedchunk
+  窗口[end] variant_idx=[1977235,1977735) byte_range=[264783402263,264850360262] 下载字节数=66,958,000 (期望=66,958,000, OK)
+$ sed -n '1977236,1977735p' /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/chr21.bim > /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/chr21_end.bim
+
+合成的mini .bed/.bim/.fam: 1500 个变异 x 535,662 个体 (mini.bed大小=200,874,003 bytes)
+
+==========================================================================================
+3. 基因型缺失率过滤 (sample-level, 阈值决定见下)
+==========================================================================================
+阈值选定: sample-level missing rate > 3% 则剔除
+理由：plan要求2%-5%区间；本项目common variant用途是PRS313/311(313/311个位点)
++ HWE过滤（本身就是控制质量的第二道关卡），故不取区间最严的2%（会因子抽样估计噪声
+误伤边界样本），也不取最松的5%；3%是标准GWAS array QC惯用值(Anderson et al. 2010
+推荐--mind 0.02~0.05, 中间值0.03最常被引用)，作为本分析的落地选择。
+$ /opt/workbench-tools/binaries/bin/plink2 --bfile /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/mini --keep /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/cohort_keep.txt --missing variant-only --out /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/premiss_variant_check
+PLINK v2.0.0-a.6.9LM 64-bit Intel (29 Jan 2025)    cog-genomics.org/plink/2.0/
+(C) 2005-2025 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/premiss_variant_check.log.
+Options in effect:
+  --bfile /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/mini
+  --keep /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/cohort_keep.txt
+  --missing variant-only
+  --out /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/premiss_variant_check
+
+Start time: Thu Sep 24 16:51:35 2026
+52194 MiB RAM detected, ~48845 available; reserving 26097 MiB for main
+workspace.
+Using up to 8 compute threads.
+535662 samples (0 females, 0 males, 535662 ambiguous; 535662 founders) loaded
+from
+/tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/mini.fam.
+1500 variants loaded from
+/tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/mini.bim.
+Note: No phenotype data present.
+--keep: 170890 samples remaining.
+170890 samples (0 females, 0 males, 170890 ambiguous; 170890 founders)
+remaining after main filters.
+Calculating allele frequencies... 0%done.
+--missing variant report: 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99%
+--missing: Variant missing data report written to
+/tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/premiss_variant_check.vmiss
+.
+End time: Thu Sep 24 16:51:36 2026
+
+
+子抽样1500个变异中，variant-level缺失率>20%(判定为多等位基因拆分表示artifact,非真实基因型缺失)的变异数: 98
+被排除的变异示例(前10个)：
+                       ID    F_MISS
+1158   chr21:46629196:C:A  1.000000
+1164  chr21:46629199:T:TA  0.999994
+1165  chr21:46629199:T:TC  0.999994
+1163   chr21:46629199:T:C  0.999994
+1168  chr21:46629201:G:GA  0.999994
+1157   chr21:46629194:A:C  0.999994
+1169  chr21:46629201:G:GC  0.999994
+1161   chr21:46629197:C:T  0.999988
+1160   chr21:46629197:C:G  0.999988
+1159   chr21:46629197:C:A  0.999988
+$ /opt/workbench-tools/binaries/bin/plink2 --bfile /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/mini --keep /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/cohort_keep.txt --exclude /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/artifact_variants_exclude.txt --missing sample-only --out /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/missing_out
+PLINK v2.0.0-a.6.9LM 64-bit Intel (29 Jan 2025)    cog-genomics.org/plink/2.0/
+(C) 2005-2025 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/missing_out.log.
+Options in effect:
+  --bfile /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/mini
+  --exclude /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/artifact_variants_exclude.txt
+  --keep /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/cohort_keep.txt
+  --missing sample-only
+  --out /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/missing_out
+
+Start time: Thu Sep 24 16:51:36 2026
+52194 MiB RAM detected, ~48846 available; reserving 26097 MiB for main
+workspace.
+Using up to 8 compute threads.
+535662 samples (0 females, 0 males, 535662 ambiguous; 535662 founders) loaded
+from
+/tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/mini.fam.
+1500 variants loaded from
+/tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/mini.bim.
+Note: No phenotype data present.
+--exclude: 1402 variants remaining.
+--keep: 170890 samples remaining.
+Calculating sample missingness rates... 0%done.
+170890 samples (0 females, 0 males, 170890 ambiguous; 170890 founders)
+remaining after main filters.
+--missing: Sample missing data report written to
+/tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/missing_out.smiss
+.
+End time: Thu Sep 24 16:51:36 2026
+
+用于sample-level缺失率估计的最终marker数: 1402 (原1500个 - 98个artifact)
+
+plink2 --missing 输出样本数: 170890 (应等于队列人数 170890)
+f_miss 分布(基于1500个代表性变异子抽样，非全基因组):
+count    170890.000000
+mean          0.002433
+std           0.002732
+min           0.000000
+25%           0.000000
+50%           0.001427
+75%           0.003566
+max           0.073467
+未能匹配到plink2输出的人数: 0
+标记为高缺失率剔除的人数: 5-19
+
+==========================================================================================
+4. HWE过滤 (仅control组, P阈值决定见下)
+==========================================================================================
+P值阈值选定: 1e-06
+理由：plan给出1e-6或1e-8两档。本项目common variant下游用途是PRS313/311这313/311个
+既定位点(非genome-wide新发现扫描)，且是array/targeted-QC情境，采用两档中较宽松、
+更常规的单队列QC默认值1e-6(Anderson et al. 2010 GWAS QC教程惯用阈值)；
+更严格的1e-8留给Step 3 rare variant burden的genome-wide探索性扫描场景使用(该场景
+本身有更高的多重检验负担，需要更严阈值控制假阳性)。
+沿用第3步识别出的多等位基因拆分表示artifact排除清单，保持两步用同一套'干净'marker集合。
+control组人数(用于HWE检验): 141,983
+$ /opt/workbench-tools/binaries/bin/plink2 --bfile /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/mini --keep /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/control_keep.txt --exclude /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/artifact_variants_exclude.txt --hardy --out /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/hwe_out
+PLINK v2.0.0-a.6.9LM 64-bit Intel (29 Jan 2025)    cog-genomics.org/plink/2.0/
+(C) 2005-2025 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/hwe_out.log.
+Options in effect:
+  --bfile /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/mini
+  --exclude /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/artifact_variants_exclude.txt
+  --hardy
+  --keep /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/control_keep.txt
+  --out /tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/hwe_out
+
+Start time: Thu Sep 24 16:51:36 2026
+52194 MiB RAM detected, ~48850 available; reserving 26097 MiB for main
+workspace.
+Using up to 8 compute threads.
+535662 samples (0 females, 0 males, 535662 ambiguous; 535662 founders) loaded
+from
+/tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/mini.fam.
+1500 variants loaded from
+/tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/mini.bim.
+Note: No phenotype data present.
+--exclude: 1402 variants remaining.
+--keep: 141983 samples remaining.
+141983 samples (0 females, 0 males, 141983 ambiguous; 141983 founders)
+remaining after main filters.
+Calculating allele frequencies... 0%done.
+--hardy: 0%0%1%1%2%2%3%3%4%4%5%5%6%6%7%7%8%8%9%9%10%10%11%11%12%12%13%13%14%14%15%15%16%16%17%17%18%18%19%19%20%20%21%21%22%22%23%23%24%24%25%25%26%26%27%27%28%28%29%29%30%30%31%31%32%32%33%33%34%34%35%35%36%36%37%37%38%38%39%39%40%40%41%41%42%42%43%43%44%44%45%45%46%46%47%47%48%48%49%50%50%51%51%52%52%53%53%54%54%55%55%56%56%57%57%58%58%59%59%60%60%61%61%62%62%63%63%64%64%65%65%66%66%67%67%68%68%69%69%70%70%71%71%72%72%73%73%74%74%75%75%76%76%77%77%78%78%79%79%80%80%81%81%82%82%83%83%84%84%85%85%86%86%87%87%88%88%89%89%90%90%91%91%92%92%93%93%94%94%95%95%96%96%97%97%98%98%99%
+--hardy: Autosomal Hardy-Weinberg report (founders only) written to
+/tmp/claude-1001/-home-jupyter-workspace-analysis/4bfcbf4d-1cb3-4b4d-b35e-84140637b300/scratchpad/qc_slice/hwe_out.hardy
+.
+End time: Thu Sep 24 16:51:37 2026
+
+
+plink2 --hardy 输出变异数: 1402 (取自子抽样, 已排除表示artifact变异)
+         O(HET_A1)    E(HET_A1)              P
+count  1402.000000  1402.000000   1.402000e+03
+mean      0.018173     0.018140   9.387475e-01
+std       0.076737     0.076533   2.016925e-01
+min       0.000000     0.000000  1.757680e-161
+25%       0.000000     0.000000   1.000000e+00
+50%       0.000014     0.000014   1.000000e+00
+75%       0.000423     0.000423   1.000000e+00
+max       0.500138     0.499509   1.000000e+00/home/jupyter/workspace/analysis/scripts/05_cohort_qc.py:491: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  final["flag_high_missing"] = final["flag_high_missing"].fillna(False).astype(bool)
+
+
+在control组、子抽样1402个变异中，HWE P<1e-06 的变异数: 2 / 1402 (0.1427%)
+⚠️ 该数字仅基于1402个变异的子抽样，不是全基因组ACAF threshold callset的真实计数；
+原因同第3步：全量22条染色体的callset(16TiB)在本机无法处理，需要Hail集群完成genome-wide
+HWE扫描。若要把这个比例外推成'全基因组预期剔除变异数量级'，需要知道ACAF threshold
+callset变异总数，这里不做外推、只报告子抽样内的实测计数，避免给出未经验证的大数字。
+
+==========================================================================================
+汇总：合并各QC flag
+==========================================================================================
+
+==========================================================================================
+Supplementary Table 2：逐步 sample QC 计数
+==========================================================================================
+  原始逐步计数写入（不 push）: /home/jupyter/workspace/analysis/data/05_internal/05_table_s2_raw_counts.csv
+  按规则合并的步骤数: 1
+  decide() 兜底后被遮蔽的格数: 0
+                                                                                                    step case_age_at_diagnosis_median_iqr case_age_at_diagnosis_mean_sd  case control  total excluded_case excluded_control excluded_total
+                                            Female (sex at birth) participants with WGS, case or control                 59.2 [50.0-67.4]                   58.7 (12.0) 13536  282170 295706           NaN              NaN            NaN
+                                      Genetically inferred European ancestry (ancestry_pred_other = eur)                 60.7 [51.5-68.4]                   59.9 (11.8)  8917  141983 150900          4619           140187         144806
+Unrelated (KING kinship <= 0.1, maximal unrelated set); Sample missingness <= 3% (Aim 1 analysis cohort)                 60.7 [51.5-68.4]                   59.9 (11.8)  8528  134727 143255           389             7256           7645
+                                    Diagnosis date not equal to first EHR record (Aim 4 analysis cohort)                 61.1 [51.9-68.7]                   60.2 (11.8)  7996     n/a    n/a           532              n/a            n/a
+  写出: /home/jupyter/workspace/analysis/results/table/05_supp_table2_sample_qc.csv
+
+Aim 1 分析队列: 143,255 (case 8,528, control 134,727)
+已保存（person-level，不 push）: /home/jupyter/workspace/analysis/data/05_cohort_qc_flags.csv (7.93 MB)
+
+==========================================================================================
+最终统计摘要:
+  n_kin_edges: 9,566
+  n_kin_excluded: 8,557
+  n_artifact_variants_excluded: 98
+  n_hwe_tested: 1402
+  n_hwe_fail: 2
+  frac_hwe_fail: 0.0014265335235378032
