@@ -1,5 +1,79 @@
 # RESULT_REGISTRY — 当前数值与来源
 
+## AGE-FOUR-20261016-01：四组病例年龄描述（不替代模型结果）
+
+2026-10-16真实7,996病例完成；定义在汇总前锁定：13基因carrier，PRS按全部病例共享median(<low/>=high)，早发<45。未调整，无P值，无新回归；supersedes=None。拟用于描述性表图，当前稿件未写入。命令/版本/输入源哈希/状态见docs/age_interaction_runs/AGE-FOUR-20261016-01/provenance.json。
+
+| Result ID / group selector | n | age median [Q1,Q3], years | early n / % [Wilson95% CI] |
+|---|---|---|---|
+| AGE-FOUR/non-carrier-PRS-low | 3675 | 62.08350444900753 [52.766598220396986,69.55099247091033] | 349 / 9.496598639455783% [8.590601887891422,10.487182971195153] |
+| AGE-FOUR/non-carrier-PRS-high | 3778 | 60.90212183436003 [52.15879534565366,68.49486652977413] | 398 / 10.534674430915828% [9.595500656720825,11.554023127655684] |
+| AGE-FOUR/carrier-PRS-low | 323 | 53.98494182067078 [43.460643394934976,64.14784394250513] | 90 / 27.86377708978328% [23.256544888895966,32.99135569386024] |
+| AGE-FOUR/carrier-PRS-high | 220 | 55.393566050650236 [45.12046543463382,65.46885694729637] | 55 / 25.0% [19.740284404356355,31.117791405400432] |
+
+Source=docs/age_interaction_runs/AGE-FOUR-20261016-01/four_groups.csv；SHA256=519803771f91988761697790b52e5da1c11823aafe0da1e8017396026c92475a。Selector=group字符串与表一致。年龄P10/P90/mean/SD及完整年龄分箱见同目录CSV；age_distribution.csv SHA256=6da4c2fe96c61203f1f05788b195a182cb98e95d7adae89322f4ac9e66a48a5d。
+
+指定描述比较：carrier低−carrier高，中位数差−1.4086242299794591年、早发比例差+2.86377708978328个百分点；carrier低−noncarrier高，中位数差−6.917180013689254年、早发比例差+17.329102658867452个百分点。仅描述差值，无差值CI/P，不能当因果或交互结论。来源comparisons.json，SHA256=b4e0d15da5d23e172827c75d383f2affbd677bbd58d1347347913e884c0088eb。核验：父冻结输入hash前后相符、carrier与正burden一致、分组互斥且和为7996、公开计数全部>20；个人记录/个人分数未写出。
+
+## AGE-INT-20261016-01：新增连续burden×PRS年龄交互（不取代加性Table3）
+
+2026-10-16真实后台运行完成，非仅合成测试。作者决定使用现有7,996病例、13-gene C B_raw_C/PRS311、病例内sample SD(ddof1)、PC1–10；HC3为新增模型主要推断，HC1为对照。作者陈述此交互属于原研究问题中遗漏的步骤；本轮实现先锁定再拟合，不宣称预注册/数据盲。目标主文，稿件尚未写入。原C资格provisional，未经本次重注释或人工裁定。**Supersedes=None：原AGE-JOINT、binary carrier年龄交互、CC及CV数值保留。**
+
+Run/工作ID=AGE-INT-20261016-01；cohort=冻结diagnosis-age病例7996；M1=`age_at_diagnosis ~ 1 + PRS311_z + burden_z + PRS311_z:burden_z + PC1..PC10`。M1主效应以另一分数Z=0为条件，与Table3加性效应不可混写。所有CI均为95%，P双侧、normal-reference robust Wald；无乘积项再标准化。新增交互不能解释为发病hazard或病因学时间交互。
+
+| Result ID / exact term selector | Estimate / unit | SE | 95% CI | P | Source selector |
+|---|---|---|---|---|---|
+| AGE-INT/M1/HC3/PRS311_z | −0.4314947895709711 年/SD_P | 0.12865431759876142 | −0.683652618520121 to −0.17933696062182108 | 0.0007967875036327197 | model_coefficients.csv; model=M1_interaction,covariance=HC3,term=PRS311_z |
+| AGE-INT/M1/HC3/burden_z | −1.7778976526254473 年/SD_B | 0.15353258227637487 | −2.078815984340575 to −1.47697932091032 | 5.208422897166964e-31 | same; covariance=HC3,term=burden_z |
+| AGE-INT/M1/HC3/PRS311_z_x_burden_z | +0.13756989831270217 年/(SD_P×SD_B) | 0.14561084461409704 | −0.14782211288938613 to +0.42296190951479046 | 0.3447723108105911 | same; covariance=HC3,term=PRS311_z_x_burden_z |
+| AGE-INT/M1/HC1/PRS311_z_x_burden_z | +0.13756989831270217 年/(SD_P×SD_B) | 0.1441276445421457 | −0.14491509416649428 to +0.4200548907918986 | 0.33983039307422513 | same; covariance=HC1,term=PRS311_z_x_burden_z |
+
+| Result ID | Value / unit | Source selector |
+|---|---|---|
+| AGE-INT/M1/R2 | 0.026405514033252753 | model_R2.csv; model=M1_interaction,R_squared |
+| AGE-INT/M1/adjusted_R2 | 0.024819855261319912 | same; adjusted_R_squared |
+| AGE-INT/M0/R2-reproduced | 0.02627707200834939 | same; model=M0_additive,R_squared; retained Table3 baseline |
+| AGE-INT/M1-minus-M0/delta_R2 | 0.00012844202490336354 = 0.012844202490336354个百分点 | interaction_comparison.json; delta_R_squared/delta_percentage_points |
+| AGE-INT/M1/partial_R2 | 0.00013190818580012412 | same; partial_R_squared=delta_R2/(1−R2_M0) |
+| AGE-INT/M1/HC3/Wald_chi2 | 0.892605154726034; df1 | same; Wald_chi2; P同主要交互 |
+
+来源目录：[docs/age_interaction_runs/AGE-INT-20261016-01/](docs/age_interaction_runs/AGE-INT-20261016-01/REPORT.md)。`model_coefficients.csv` SHA256=dc61301a248408faa5178ce495d32607f341c43482abe5b5d0b9ce6b482ef49f；`model_R2.csv`=08d3c552c96b7179c7ce73135ce0edde51cb7397bac7c4d1332d51cdbc1521d7；`interaction_comparison.json`=c98a4caab9087306b7ee0a7ee5ce8d6a8cf49a8490347cf14fad8656824cf1e6；`provenance.json`=bc9cae49694fbc03ff300318e02ad0e143271ee0d7a2a1581d2cd51c292788b2。命令、源/配置/输入别名hash、软件版本见provenance/software/stage_status；真实Table3数值复核与独立least-squares/sandwich公式均通过，输入源hash前后不变；不能扩大为从原始WGS完整独立复现。受控输入/个人分数不在此登记。
+
+M1技术诊断（同run，详见报告及diagnostics_summary.json）：rank14/14；标准化condition number33.0696；max leverage0.0387344；max Cook0.00826854；max abs interaction DFBETAS0.228877；Koenker BP LM35.9434893/P0.000605448；HC3 RESET Wald0.963235/P0.617783；residual SD11.6272363年。诊断属于技术核查，不自动作为稿件结论；未显著RESET不证明线性，未做影响点删除/非线性替代模型/leave-gene分析。条件斜率和全部PC参数保留在相应完整aggregate CSV，未按显著性筛选。
+
+解释：连续交互证据不足，CI跨零不等于证明无交互；新分析按作者要求用于主文，不因P值改变位置。稿件/图表写入及既有Cox/frailty冲突另待处理。
+
+2026-10-16 / DOC-20261016-02：作者确认当前稿件为main_1012 + supplement_1012，取代1008的稿件身份。下方数值及稿件位置来自此前汇总/1008核对，尚未逐项验证1012；本轮不改数值、不提升核验等级，也不推断新模型已运行。
+
+## 核验口径与尚无结果的扩展
+
+### AGE-AUDIT-20261016-01：2026-10-16冻结病例年龄输入复核（不取代C）
+
+工作/运行ID均为AGE-AUDIT-20261016-01。用途=技术诊断，post hoc/provisional；不是新增连续burden×PRS年龄交互结果。实际在内存以相同公式复核OLS；n=7,996、两主要beta/HC1 CI/P和保存R²在浮点精度内相符（beta差约10⁻¹⁴，R²差约2×10⁻¹⁶），未认证从原始表型和基因型重建的全链条复现。现有AGE-JOINT采用基线不变；稿件定位为1012 Table3/Methods age analysis。新诊断不自动成为论文结果。
+
+来源为[本轮完整报告](docs/age_burden_prs_review_20261016.md)一/2、一/3，SHA256=`998ebd1c85b3f14fb1ab865c02c6c5d8e5bbadab215d7cf04ab24a6fce4ee1bf`；内存执行命令见该工作会话，环境numpy2.4.3/pandas2.3.3/statsmodels0.14.6。报告列两冻结输入与原section9锁相符的SHA256，以及另行记录的age ID哈希。下表为本轮新增核查数值；未提供CI/P处为未计算或不适用，不以零填补。
+
+| Result ID / selector | Cohort/model | 核查值 / 单位 | CI/P及限制 |
+| --- | --- | --- | --- |
+| AGE-AUDIT/PC_R2 | 固定7,996病例；PC1–10+intercept | R²=0.0019538053109502407 | 支持Table3的0.20%；无新增CI/P |
+| AGE-AUDIT/burden_PC_R2 | 同病例；burden_z+PC | R²=0.02493862978745931 | 无新增CI/P |
+| AGE-AUDIT/delta_PRS_R2 | AGE-JOINT减burden+PC | 0.0013384422208898572；0.133844个百分点 | 样本内增量；非交互ΔR² |
+| AGE-AUDIT/HC3_SE | AGE-JOINT；PRS/burden | 0.12856197737065184 / 0.1467698568815113 年/SD | SE敏感性；未更换采用推断 |
+| AGE-AUDIT/BP | AGE-JOINT残差，完整X，studentized/Koenker BP | LM=36.11381826794074 | P=0.00031062242927482313；诊断探索性 |
+| AGE-AUDIT/RESET | AGE-JOINT；fitted powers2/3、HC3 | Wald=0.6787497939301135 | P=0.7122153916440128；未显著不证明线性 |
+| AGE-AUDIT/support | 固定年龄病例；B_raw_C | carriers543；zero_fraction0.9320910455227613；19个不同值 | 联合尾部支持仍待审 |
+| AGE-AUDIT/scaling | 同病例；raw PRS / raw burden | mean/SD=0.35447389832717613/0.6079261888021756；0.10002667950856513/0.40125455656464104 | ddof=1；不能混用全队列SD |
+| AGE-AUDIT/correlation | PRS311与B_raw_C；full/controls/allcases/agecases | Pearson=−0.00350300699578601/−0.004934389071332944/−0.07087945100703164/−0.06885361372378013 | 无新增CI/P；不证明collider为唯一解释 |
+| AGE-AUDIT/age_distribution | 固定7,996病例 | mean60.20049073133418、SD11.783856553501243年 | 主文全部病例59.9年不能直接与本子集混比 |
+| AGE-AUDIT/influence | AGE-JOINT | max leverage0.03872950293716335；max Cook0.0060767334851362645；max abs internal studentized residual3.527886342829212 | 非新增交互诊断；无CI/P |
+
+正式参考文献脚本JSON归档于`docs/age_burden_prs_review_20261016_refs/qc/reference_audit.json`，SHA256=`0cebbd1e3d4dcb6f2bfcb5a0a423953c27d4e05278b9b81d822baaaa6e5e3671`。18OK/1UNVERIFIED是脚本存在性/有限作者审计，不能代替报告列出的原文身份、卷页与主张核查限制。
+
+以下段落保留此前汇总核对的证据口径；AGE-AUDIT-20261016-01新增的冻结输入内存复核范围以上方记录为准。执行记录见 ANALYSIS_CHANGELOG 的工作索引。M/D/L只描述证据来源，**都不自动表示独立核验**。此前所列C主要数值已由汇总副本逐行核对；该轮21份manifest哈希相符，当时未独立重算模型。D条目仍仅有稿件/配置支持。独立核验须另记日期、核验人/方法、独立输入或实现、比较容差和证据；没有记录即“未证明独立核验”。
+
+GWPRS-PLAN-v2：仅方案（plans/genomewide_prs_analysis_v2.md），探索性扩展；PGS005346/PGS005347尚无本轮AoU评分、系数、交互或AUC产物，不建立数值结果行，不supersede C。v1.1保留作为历史计划。
+
+
 核对日期：2026-10-15。下列数值逐行取自现存 aggregate CSV；保留原始数值字符串。Primary=当前主稿主分析位置；C 仍是 post-hoc extension、provisional definition，并非前瞻 confirmatory。模型与 cohort 定义见 [PROJECT_STATUS](PROJECT_STATUS.md)。历史结果不因日期较新而自动替换主结果。
 
 **证据等级**：M=与既存 manifest SHA-256 相符的汇总副本；D=稿件/配置一致但原输出未恢复；L=本地汇总副本，另列 SHA-256。没有真实数据重跑。`results/` 在本 checkout 缺失；下方历史路径是 provenance，不表示文件现存。
@@ -211,3 +285,19 @@ Each entry lists the existing copy, original recorded source, and SHA-256 checke
 ## Maintenance contract
 
 Use stable result IDs plus exact `version/cohort/term/model/comparison` selectors. For every replacement record value, unit, CI/test, cohort N, model specification, generating script/task, output, checksum, manuscript destination, role, and reason/date in CHANGELOG. Preserve superseded numbers with their historical identity. Never infer primary status from filenames. Never copy participant-level rows or unsuppress source cells into this registry.
+
+
+## AGE-QUART-20261016-01 / 2026-10-16
+
+Real frozen-input Q1/Q4 descriptives completed (not synthetic-only), shared quartiles in original7,996 cases; selected3,998; early<45 fixed; existing13-gene carrier. Source/command/software/input and output hashes/status: docs/age_interaction_runs/AGE-QUART-20261016-01/provenance.json; [report](docs/age_interaction_runs/AGE-QUART-20261016-01/REPORT.md). No participant records/scores written; controlled logs and snapshot ignored. No regression or significance test; no failure/blocked stage. Supersedes=None; prior median split, additive and continuous-interaction results retained; manuscript unchanged.
+
+Result selector: four_groups.csv/group; unit years and percent; early Wilson95%CI. SHA256=937fe98e82c84e28f710e456d00d1da6905a5545d2975f1402f4bc99cf8c57af. Exact aggregate results:
+
+| Group | n | median [Q1,Q3] years | early n / percent [95%CI] |
+|---|---|---|---|
+| non-carrier / PRS Q1 | 1821 | 62.24229979466119 [52.63244353182751,69.89185489390829] | 187 / 10.26908292147172 [8.95746356396704,11.74797673575492] |
+| non-carrier / PRS Q4 | 1897 | 60.865160848733744 [52.42436687200548,68.26009582477755] | 193 / 10.173958882445968 [8.893057451612135,11.615831230906217] |
+| carrier / PRS Q1 | 178 | 53.98083504449008 [43.12388774811773,65.07597535934292] | 51 / 28.651685393258425 [22.5156567575984,35.68969394026403] |
+| carrier / PRS Q4 | 102 | 55.39356605065024 [46.969199178644764,63.67556468172485] | 21 / 20.58823529411765 [13.87888951082538,29.432549438966564] |
+
+Contrasts: [{"comparison": "carrier / PRS Q1 minus carrier / PRS Q4", "median_difference_years": -1.4127310061601577, "early_percentage_point_difference": 8.063450099140777, "interpretation": "unadjusted descriptive difference; not an interaction or incidence-risk test"}, {"comparison": "carrier / PRS Q1 minus non-carrier / PRS Q4", "median_difference_years": -6.884325804243666, "early_percentage_point_difference": 18.47772651081246, "interpretation": "unadjusted descriptive difference; not an interaction or incidence-risk test"}]; comparisons.json SHA256=0ea10c7b71d4167f925d68f12c4d7f59080fee942e6596193ff277215138fa77. No contrast CI/P computed.

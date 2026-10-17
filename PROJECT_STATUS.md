@@ -1,5 +1,26 @@
 # PROJECT_STATUS — 当前分析基线
 
+2026-10-16 / AGE-FOUR-20261016-01：新增真实7,996病例四组描述，PRS按全部病例共享中位数分高/低，早发<45。carrier/PRS低n323、中位53.98岁、早发90/323=27.86%；carrier/PRS高n220、中位55.39岁、早发25.00%；non-carrier/PRS高n3778、中位60.90岁、早发10.53%。[报告](docs/age_interaction_runs/AGE-FOUR-20261016-01/REPORT.md)。未调整描述不提供交互检验或发病风险；当前模型基线不变，不supersede既有结果，稿件未修改。
+
+## 2026-10-16增补：AGE-INT-20261016-01已完成
+
+- 作者已授权并实际完成连续13-gene C burden×PRS311病例年龄交互；沿用相同7,996病例和原分数、病例内ddof1、PC1–10，不增加incident限制。HC3主要，HC1对照。作者陈述原研究问题中遗漏的步骤；不据此宣称预注册或数据盲。
+- 新增主文分析结果：交互beta=+0.1375698983年/(SD_P×SD_B)，HC3 95%CI[−0.1478221129,+0.4229619095]，P=0.3447723108；ΔR²=0.0128442个百分点。无充分交互证据，不等于证明为零。数值/哈希/selector见RESULT_REGISTRY的AGE-INT条目。
+- AoU live常数只读访问、真实冻结输入复核及独立矩阵公式核验通过；合成测试与真实拟合分别登记。参与者行/个人分数未写出，新内部日志/快照仅保存在ignored data run；未stage/commit/push。
+- **替代关系：无。** 既有加性AGE-JOINT/Table3、binary carrier年龄交互和病例状态/CV基线均保留。新增M1为额外主文分析，稿件文字/表图尚未写入；不从新条件主效应替换旧加性系数。
+- [完整运行报告](docs/age_interaction_runs/AGE-INT-20261016-01/REPORT.md)、[运行索引](ANALYSIS_RUN_INDEX.md)。最终变异人工裁定、从原始基因型重建评分、全部13个外部OR原表逐值认证未完成。没有新增Cox/frailty结果；既有版本冲突保留。
+
+以下保留此前基线登记及其当时证据边界；涉及“未真实重跑”或“尚未年龄复核”的旧状态，以本增补及AGE-AUDIT/AGE-INT记录覆盖的明确范围为准，不能据此扩大为全稿认证。
+
+## 一分钟交接（2026-10-16；工作 DOC-20261016-02）
+
+- **已登记分析基线（待与1012逐项对齐）**：PRS311（历史记录实际302 scored loci）+13-gene C；CC-JOINT、AGE-JOINT、CV-4，定义见下文，数值以 RESULT_REGISTRY 为准。C为此前登记的主稿分析，仍属post hoc、provisional；此次版本确认不证明1012全部数值相同。
+- **主要结论**：现存C汇总中CC的PRS/burden OR约1.554/1.269，乘积OR约0.972；joint AUC约0.7815、相对PRS增量约0.01328；病例诊断年龄斜率约−0.433/−1.820年每SD。这些是汇总副本支持的关联，非独立重算或绝对风险结论。
+- **当前稿件**：作者于2026-10-16明确确认1012为最新版本：main_1012 + supplement_1012；1008转为历史稿件。1012与registry的数值/模型/表图对应仍待审计。
+- **最新变化**：本轮根据作者确认更新稿件采用版本；未运行分析，registry数值未改变。全基因组PRS v2是审查草案，PGS005346/PGS005347在本轮未评分、未拟合、未生成新AUC；v2修订v1.1计划，不取代PRS311结果。
+- **未决/下一入口**：先处理NEXT_STEPS的VERSION/MARKUP/COVERAGE/FIGURES及原证据恢复，再按全基因组v2的未决项锁定新run。新agent从上述C基线继续；不得从最新文件名选结果。
+
+
 核对日期：2026-10-15。依据现存配置、汇总输出及稿件修订记录；本次没有重跑分析，也没有修改科学定义。
 
 ## 使用规则
@@ -12,7 +33,7 @@
 
 研究 AoU 遗传推断欧洲祖源女性中，PRS311 与罕见变异负荷对乳腺癌病例状态及病例中记录诊断年龄的独立、联合贡献。病例对照预测、病例中诊断年龄关联及绝对风险是不同 estimand；当前结果不提供个体绝对风险校准。
 
-当前可验证稿件对为 [main revised 1008](manuscript/medrxiv_v1_main_revised_1008.docx) 与 [supplement 1008](manuscript/medrxiv_v1_supplement_1008.docx)，依据 [MANUSCRIPT_VERSIONS](manuscript/MANUSCRIPT_VERSIONS.md) 和 [修订验证](manuscript/revision_1006_minimal_1008/validation.json)。`manuscript/README.md` 顶部另称 `_13gene_revised_1008` 为最新；该主稿文件本 checkout 不存在，版本指向冲突尚待统一。
+当前稿件对为 [main 1012](manuscript/medrxiv_v1_main_1012.docx) 与 [supplement 1012](manuscript/medrxiv_v1_supplement_1012.docx)，依据作者2026-10-16本轮确认；文件哈希与取代关系见 [MANUSCRIPT_VERSIONS](manuscript/MANUSCRIPT_VERSIONS.md)。1008及其[修订验证](manuscript/revision_1006_minimal_1008/validation.json)保留为历史证据，不认证1012。下文稿件数值、图表和保留内容的既有核对范围为1008；1012尚待逐项对齐。
 
 ## 当前 cohort
 
@@ -24,7 +45,7 @@
 
 ## PRS
 
-PGS000004 / BCAC 313-variant 名义定义，GRCh38、染色体/位置/等位基因匹配及频率消歧。当前稿件记载 304/313 matched：281 direct、23 AF resolved、1 ambiguous、8 absent。去除两个 CHEK2 c.1100delC tagging loci 后，名为 PRS311 的分数实际包含 **302 retained scored loci**。使用已发表效应权重、现有缺失基因型填补程序；直接匹配限定和无均值填补为敏感性分析。匹配数量已核对当前稿件，原始 matching audit 本 checkout 未恢复，不能称为本次重算验证。实现见 [03](scripts/03_common_variants_prs.py)。
+PGS000004 / BCAC 313-variant 名义定义，GRCh38、染色体/位置/等位基因匹配及频率消歧。当前稿件记载 304/313 matched：281 direct、23 AF resolved、1 ambiguous、8 absent。去除两个 CHEK2 c.1100delC tagging loci 后，名为 PRS311 的分数实际包含 **302 retained scored loci**。使用已发表效应权重、现有缺失基因型填补程序；直接匹配限定和无均值填补为敏感性分析。匹配数量此前已核对1008稿件，原始 matching audit 本 checkout 未恢复，不能称为本次重算验证。实现见 [03](scripts/03_common_variants_prs.py)。
 
 ## Burden：当前主稿 C
 
@@ -68,3 +89,8 @@ Sensitivity score 计划 [10](scripts/10_sensitivity_analysis.py)需在 08 前�
 本 checkout 没有 `results/` 原输出目录。21 份 manuscript aggregate 文件与 [manifest](manuscript/datas/manifest.json) 的 SHA-256 完全相符；这是副本完整性核对，不是原始数据/模型重跑认证。交互副本另外与本地 S7/S8 比较，行记录并非完全一致，尚需区分格式差异与数值差异；未读取或复制 participant-level 表。
 
 2026-10-15 可读性重构：37 synthetic checks；13 model CSV byte-identical、10 CV arrays identical；真实数据及稿件未重跑。见 [validation](docs/readability_validation.md)。`07_burden_score.py` 原有 undefined `report` 的摘要写出错误仍待单独处理；未静默修复。科学定义仍 provisional；未来重跑需新 source/input lock。
+
+
+## AGE-QUART-20261016-01 / 2026-10-16
+
+Real frozen-input Q1/Q4 descriptives completed (not synthetic-only), shared quartiles in original7,996 cases; selected3,998; early<45 fixed; existing13-gene carrier. Source/command/software/input and output hashes/status: docs/age_interaction_runs/AGE-QUART-20261016-01/provenance.json; [report](docs/age_interaction_runs/AGE-QUART-20261016-01/REPORT.md). No participant records/scores written; controlled logs and snapshot ignored. No regression or significance test; no failure/blocked stage. Supersedes=None; prior median split, additive and continuous-interaction results retained; manuscript unchanged.
