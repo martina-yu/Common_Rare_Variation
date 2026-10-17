@@ -1,0 +1,79 @@
+{
+  "run_id": "AGE-HR-SEVEN-SUPP-20261017-01",
+  "status": "completed",
+  "started_utc": "2026-10-17T17:36:33.748400+00:00",
+  "command": "python scripts/plot_supp_figure07b_age_HR.py",
+  "code_sha256": "7da72f5e2f05b7e9afdc1b749c7a8ef5980127e7afaae3b3da126e90ac753355",
+  "optimizer": "trust-exact using score and Hessian of same Breslow Cox likelihood; no penalty",
+  "input_sha256": {
+    "frozen": "e657b477dc57ae66693590e6e7dedfc481f8dee19d978a8cd2451e4ffc696fb1",
+    "scores": "6f08239ad2f2162ec8fe816f766529b6346e070f43ac5d56514669c4eb78ef45",
+    "genes": "66c09c6a3ab604f5b83f28eb35a880f16ec3d7d24b2a9a8cbc5bdbdde83def19",
+    "dates": "08fd94f79e06bdc17b6bb17dd713f9d8addb6c5ec3801b04263f7fdbbad1f3f8",
+    "curve": "f42c4fd5c507df5e413354f68612951f7f5323bff07a930363444ba4a64ad0ef",
+    "source_model": "76580e7342ffcd36abcd21a709ddb7a5acd08783a5744b21a50eba87fc193a24"
+  },
+  "age_bands": [
+    "<40",
+    "40\u2013<45",
+    "45\u2013<50",
+    "50\u2013<55",
+    "55\u2013<60",
+    "60\u2013<65",
+    "\u226565"
+  ],
+  "definitions": "Original first_ehr_plus1 design; attained age interval-split Cox; PRS SD across full frozen cohort; PC1\u201310 and technical effects shared; age-varying PRS/carrier effects; Breslow ties/model-based CIs retained",
+  "software": {
+    "python": "3.12.13",
+    "numpy": "2.4.3",
+    "pandas": "2.3.3",
+    "scipy": "1.17.1",
+    "statsmodels": "0.14.6",
+    "matplotlib": "3.10.8"
+  },
+  "output_rule": "Withhold HR/CI for class-specific event support below20; no sparse-event counts released",
+  "supersedes": null,
+  "failure_reason": null,
+  "models": [
+    {
+      "model": "any_carrier",
+      "completed_utc": "2026-10-17T17:36:50.338912+00:00",
+      "score_max": 7.62179381830208e-08,
+      "n_parameters": 27,
+      "warnings": []
+    },
+    {
+      "model": "gene_classes",
+      "completed_utc": "2026-10-17T17:37:10.017496+00:00",
+      "score_max": 6.3831888927889935e-06,
+      "n_parameters": 34,
+      "warnings": []
+    }
+  ],
+  "ended_utc": "2026-10-17T17:37:10.837648+00:00",
+  "verification": "Events and person-time conserved by splitting; score convergence <1e-3; covariance/SE identity; finite ordered CIs; source hashes unchanged",
+  "output_sha256": {
+    "manuscript/figures/supp_Figure_07b_seven_age_HR.svg": "da5d3efc9b9c1bde324e24041eeb686c0b477e0da5f680f1d7c904373a30d87b",
+    "manuscript/tables/supp_Figure_07b_seven_age_HR.csv": "f8f8457244f6a7344a00693c65b5b9434951c514a045297abad7e5db665feaca",
+    "manuscript/tables/supp_Figure_07b_frailty_display.csv": "bf3141d9bfc34664d0a2bd63a7e0d1216783c6be17dbf659c36d499bc5e73075"
+  },
+  "limitations": [
+    "Post hoc seven-band extension of existing review model",
+    "Breslow ties and model-based SE retained; no new robust-SE/PH diagnostic claim",
+    "Gray .73 curve reused from existing independently refitted illustrative scenario; theta not newly estimated",
+    "Sparse-event HR/CI withheld; dashed connections stop at missing estimates",
+    "No raw score reconstruction, external weight adjudication, or full manuscript consistency audit"
+  ],
+  "original_fit_output_sha256": {
+    "manuscript/figures/supp_Figure_07b_seven_age_HR.svg": "e1ec918799b728e60f4546f8deb768e4a6be51d14016e7179a3d571461e63d09",
+    "manuscript/tables/supp_Figure_07b_seven_age_HR.csv": "e80e41112774e6231ff82f36146237849a736c1ebde357e86d3b90606e610a64",
+    "manuscript/tables/supp_Figure_07b_frailty_display.csv": "bf3141d9bfc34664d0a2bd63a7e0d1216783c6be17dbf659c36d499bc5e73075"
+  },
+  "style_stage": {
+    "command": "python scripts/plot_supp_figure07b_age_HR.py --plot-only",
+    "code_sha256": "fc58d582d0af58e644e395d4982711875afaf0cba431a71e6173b6619e74216e",
+    "models_refitted": false,
+    "verification": "35 HR and CI rows independently reconstructed from stored coefficient/covariance outputs within1e-12; plot visually checked; log-axis ticks improved",
+    "all_cells_released": true
+  }
+}

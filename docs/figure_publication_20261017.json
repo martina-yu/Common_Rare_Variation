@@ -1,0 +1,237 @@
+{
+  "date": "2026-10-17",
+  "description": "Latest manuscript figures and aggregate reproduction assets; controlled participant inputs are not included",
+  "files": [
+    {
+      "path": "figures/62_review_1008_figure1.svg",
+      "bytes": 21163,
+      "sha256": "d13545054534b8aadf9a7ef80c71f2ef0f46beacceff7ac04d256185f48e756b"
+    },
+    {
+      "path": "figures/62_review_1008_figure5.svg",
+      "bytes": 12844,
+      "sha256": "6e350834e7a8c7d0df02618a714723d68198a3e260d25474725e0de098e02465"
+    },
+    {
+      "path": "figures/62_review_1008_figure6.svg",
+      "bytes": 12982,
+      "sha256": "600d5803a550db37a67deebef8c44b14c5a14710be846efdede248018f6ea1f8"
+    },
+    {
+      "path": "figures/Figure_02a_burden_raw_score_violin.svg",
+      "bytes": 370653,
+      "sha256": "bd82e36d856a3d908eafc50b4457b555be522caa71d0a415f2de5dd615dd0618"
+    },
+    {
+      "path": "figures/Figure_02b_PRS311_raw_score_KDE.svg",
+      "bytes": 97722,
+      "sha256": "069e4b0be4a9c3716763da6bb6ffa41423fad0f6149b45f9cd4d45045e014406"
+    },
+    {
+      "path": "figures/Figure_02c_13gene_burden_histogram_percentages.svg",
+      "bytes": 74231,
+      "sha256": "54a26a8caf6942e459430a801003fb9cd7c4e33d16eacf6ec7a4af467a8179c7"
+    },
+    {
+      "path": "figures/Figure_02d_PRS311_decile_PRS_burden_boxplots.svg",
+      "bytes": 122956,
+      "sha256": "1708ad6b617abed60596a11a16a15be3797defa0b8d4181b3c67991f115700d0"
+    },
+    {
+      "path": "figures/Figure_03_case_status_ROC_AUC.svg",
+      "bytes": 47923,
+      "sha256": "988f0cf79430275099d47a6801ff0c97291ddbaaa1d80c13b9735e6925ab8198"
+    },
+    {
+      "path": "figures/Figure_04a_PRS_quartile_counts_by_age.svg",
+      "bytes": 37046,
+      "sha256": "4f6cebe3a769dbcbff04c231ec7cfd698cd0ea6057f17f754f3331d91f8709a1"
+    },
+    {
+      "path": "figures/Figure_04b_carrier_rate_by_diagnosis_age.svg",
+      "bytes": 25584,
+      "sha256": "c1dc4e1ce4a7bd34a3fec94c472a4a508f4acb48cf2c7b2e18c0cd714db1c429"
+    },
+    {
+      "path": "figures/Figure_04c_age_median_and_extreme_PRS.svg",
+      "bytes": 27993,
+      "sha256": "fa766e2444d2f5f0cd4397aa6ef4c5c4d4ad7d9e0212b913b155d73510058105"
+    },
+    {
+      "path": "figures/Figure_05a_age_by_13gene_burden_group.svg",
+      "bytes": 51231,
+      "sha256": "c5bd2a5f74e6dda6dbae51a5e57ed8b27b5a574f2016fe9a9afb28eb57e89b62"
+    },
+    {
+      "path": "figures/Figure_05c_carrier_frequency_by_diagnosis_age.svg",
+      "bytes": 56413,
+      "sha256": "767bf60a7ec45217eb3e1b5b94b670d5054f7c58ec2dbd6f6c433152d6096259"
+    },
+    {
+      "path": "figures/Figure_06a_primary_and_sensitivity_estimates.svg",
+      "bytes": 37173,
+      "sha256": "75bd27ac0eedddce1e0ceeb3fd5c2e04757ea490d3e014d90ff75f02d0e1e8ac"
+    },
+    {
+      "path": "figures/Figure_06b_forest.svg",
+      "bytes": 101803,
+      "sha256": "3717fa88d5b2981d3519a47fd08ed69dbde86db8c7513f7f6c8828f1bc709f96"
+    },
+    {
+      "path": "figures/Figure_07a_obs_exp.svg",
+      "bytes": 13341,
+      "sha256": "78589762d57d4b1e714d41bca2434da2ec39932e9c09962e987429326dc93d18"
+    },
+    {
+      "path": "figures/Figure_07b_age_HR.svg",
+      "bytes": 25409,
+      "sha256": "aa22616d6f391fe82161364c565cd5aa18a0c46aa7383c6b058ab5ff5b621fd1"
+    },
+    {
+      "path": "figures/supp_Figure_03a_case_status_ROC_sensitivities.svg",
+      "bytes": 139243,
+      "sha256": "3847c818e0aee8727c6c9d3b263f20397e62c032b0bb0ac6874b17c433d9b32a"
+    },
+    {
+      "path": "figures/supp_Figure_03b_case_status_AUC_sensitivities.svg",
+      "bytes": 69697,
+      "sha256": "9d7ff4e1c682a143cbf0ef2b03fbb1aed4360d1d79c5369cd8f2a0a8cd8a57d7"
+    },
+    {
+      "path": "figures/supp_Figure_07b_seven_age_HR.svg",
+      "bytes": 34263,
+      "sha256": "da5d3efc9b9c1bde324e24041eeb686c0b477e0da5f680f1d7c904373a30d87b"
+    },
+    {
+      "path": "figures/supp_PRS311_carrier_joint_distribution.svg",
+      "bytes": 131525,
+      "sha256": "34c85736d01371382ee267187fde6c7138a8fe4bb735a794bae89ad4c8d6e9cb"
+    },
+    {
+      "path": "figures/supp_PRS311_vs_diagnosis_age.svg",
+      "bytes": 67649,
+      "sha256": "d73f477188b95f7c856b3c1b80a6ac68aed03935d800768b1663d3453c19a51c"
+    },
+    {
+      "path": "figures/supp_gene_PRS311_boxplots.svg",
+      "bytes": 55272,
+      "sha256": "d7899a4b1ee5b9aba076f7aef11684de839ab967ba1f08c3996e769509b3b5f5"
+    },
+    {
+      "path": "figures/supp_gene_PRS_interaction_forest.svg",
+      "bytes": 37448,
+      "sha256": "d964c2218a4319191efaeb2007c356b02b16e0383443ca4d9eafdb053ed437bd"
+    },
+    {
+      "path": "tables/Figure_04_PRS_quartile_thresholds.csv",
+      "bytes": 117,
+      "sha256": "ace1dfcdc7cf37cd1dcac64682dd81f353e705d5c9e621c6b9f3072f52de1ef7"
+    },
+    {
+      "path": "tables/Figure_04a_plot_data.csv",
+      "bytes": 342,
+      "sha256": "1f715054ef1d9b8db4ace29835a5368790c6974449e1bb745bdccf0b3c2deafe"
+    },
+    {
+      "path": "tables/Figure_04b_plot_data.csv",
+      "bytes": 200,
+      "sha256": "745994278cdc0e06e7c208536b159a11879c48830237451e714e504471d22c39"
+    },
+    {
+      "path": "tables/Figure_04c_PRS_group_thresholds.csv",
+      "bytes": 126,
+      "sha256": "ad163980bc5fc743eef47986a400128c73dc19c342f762bd39747498ab29f177"
+    },
+    {
+      "path": "tables/Figure_04c_four_group_age_summary.csv",
+      "bytes": 984,
+      "sha256": "8e6078a5577ab445a24eaf18f727851e57d9f65b64296c83dd786909a0761dc8"
+    },
+    {
+      "path": "tables/Figure_07b_frailty_display.csv",
+      "bytes": 172,
+      "sha256": "7a53a9c333c4a70bae3094bea694cba041ec27fb86ec591cdacce138172b08c8"
+    },
+    {
+      "path": "tables/Figure_07b_plot_data.csv",
+      "bytes": 2414,
+      "sha256": "94a47f24c9fe6c6d140396df69235112afde9cb90068382bdc2e3b835ba1af98"
+    },
+    {
+      "path": "tables/supp_Figure_07b_frailty_display.csv",
+      "bytes": 302,
+      "sha256": "bf3141d9bfc34664d0a2bd63a7e0d1216783c6be17dbf659c36d499bc5e73075"
+    },
+    {
+      "path": "tables/supp_Figure_07b_seven_age_HR.csv",
+      "bytes": 3465,
+      "sha256": "f8f8457244f6a7344a00693c65b5b9434951c514a045297abad7e5db665feaca"
+    },
+    {
+      "path": "scripts/Figure_04a_plot.py",
+      "bytes": 11417,
+      "sha256": "65866f454987794eef7095b33a6ba24a0d8e50b19614b81a81a284d53f646837"
+    },
+    {
+      "path": "scripts/Figure_04b_plot.py",
+      "bytes": 3152,
+      "sha256": "c995b938c189fab39c2d7f00b032b0a70942b88d1fe0b2a52205fa0319df70fb"
+    },
+    {
+      "path": "scripts/plot_figure07b_age_HR.py",
+      "bytes": 5660,
+      "sha256": "91c41db6aad0a76ac2009f197cd13c179fad4a1aa1bac9bb218ed2879e5dfab8"
+    },
+    {
+      "path": "scripts/plot_supp_figure07b_age_HR.py",
+      "bytes": 11967,
+      "sha256": "182d58b0bf2d0589047c5f16fa06ed796b33f3b632f198946fd479d6f97d6dfb"
+    },
+    {
+      "path": "scripts/functions/plotting.py",
+      "bytes": 11705,
+      "sha256": "1cf711dd971ae4fbb218180f6a9bcb4bf5f8529d2325fd3a1659eb9b35e7d30d"
+    },
+    {
+      "path": "scripts/functions/paths.py",
+      "bytes": 389,
+      "sha256": "b53804c56464792c42e68c315b481c9e7218362c8bb0600fc4a0f0f8ce87919b"
+    },
+    {
+      "path": "scripts/review/review_1008.py",
+      "bytes": 72788,
+      "sha256": "76580e7342ffcd36abcd21a709ddb7a5acd08783a5744b21a50eba87fc193a24"
+    },
+    {
+      "path": "tables/55_13gene_carrier_frequency_by_diagnosis_age.csv",
+      "bytes": 646,
+      "sha256": "fdffb1bf070ae3339f62be856b5ffb166207d230a4648731b8f557a4deb16f43"
+    },
+    {
+      "path": "tables/62_review_1008_age_specific_HR.csv",
+      "bytes": 2776,
+      "sha256": "4eec567eb863a6210de94650e0d72bab4b84812873982bce28744c604475d6bc"
+    },
+    {
+      "path": "tables/62_review_1008_frailty_refitted_curve.csv",
+      "bytes": 543206,
+      "sha256": "f42c4fd5c507df5e413354f68612951f7f5323bff07a930363444ba4a64ad0ef"
+    }
+  ],
+  "removed_superseded_figures": [
+    "figures/62_review_1008_figure2.svg",
+    "figures/62_review_1008_figure3.svg",
+    "figures/62_review_1008_figure4.svg",
+    "figures/Figure_03b_case_status_AUC.svg",
+    "figures/Figure_03a_case_status_ROC.svg",
+    "figures/Figure_05b_PRS311_vs_diagnosis_age.svg",
+    "figures/supp_gene_PRS_interaction_forest.png",
+    "figures/supp_gene_PRS311_boxplots.png",
+    "figures/Figure_04a_PRS311_carrier_joint_distribution.svg",
+    "figures/Figure_06_primary_and_sensitivity_estimates.svg",
+    "figures/.ipynb_checkpoints/Figure_06_primary_and_sensitivity_estimates-checkpoint.svg",
+    "figures/.ipynb_checkpoints/Figure_05c_carrier_frequency_by_diagnosis_age-checkpoint.svg",
+    "figures/.ipynb_checkpoints/Figure_02a_burden_raw_score_violin-checkpoint.svg"
+  ],
+  "layout": "Repository root figures/, tables/ and scripts/; controlled inputs required for model refits remain unavailable publicly"
+}

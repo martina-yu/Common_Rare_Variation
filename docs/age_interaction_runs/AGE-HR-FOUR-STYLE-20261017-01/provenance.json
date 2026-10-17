@@ -1,0 +1,45 @@
+{
+  "run_id": "AGE-HR-FOUR-STYLE-20261017-01",
+  "status": "completed",
+  "started_utc": "2026-10-17T17:36:10.099486+00:00",
+  "command": "python scripts/plot_figure07b_age_HR.py",
+  "code_sha256": "79b2c08dec1da9d65848899e2affbfe4e5396723bc2e1ab0b3362261157ef193",
+  "input_sha256": {
+    "9_gene_results/table/62_review_1008_age_specific_HR.csv": "4eec567eb863a6210de94650e0d72bab4b84812873982bce28744c604475d6bc",
+    "9_gene_results/table/62_review_1008_frailty_refitted_curve.csv": "f42c4fd5c507df5e413354f68612951f7f5323bff07a930363444ba4a64ad0ef"
+  },
+  "models_refitted": false,
+  "participant_data_accessed": false,
+  "software": {
+    "python": "3.12.13",
+    "numpy": "2.4.3",
+    "pandas": "2.3.3",
+    "matplotlib": "3.10.8"
+  },
+  "ended_utc": "2026-10-17T17:36:10.426065+00:00",
+  "age_bands": [
+    "<45",
+    "45\u2013<55",
+    "55\u2013<65",
+    "\u226565"
+  ],
+  "colors": {
+    "BRCA1 or BRCA2 carriers": "#D54848",
+    "Any panel-gene carrier": "#2463B4",
+    "Other panel-gene carriers": "#86B6D8",
+    "PRS311, per SD": "#F6BD87"
+  },
+  "gray_curve": "Existing baseline-refitted theta=.73 illustrative scenario; original representative ages35/50/60/72 retained",
+  "verification": "16 HR/95%CI points checked against exp(beta\u00b11.95996398454SE); exact source age bands and hashes preserved",
+  "output_sha256": {
+    "manuscript/figures/Figure_07b_age_HR.svg": "aa22616d6f391fe82161364c565cd5aa18a0c46aa7383c6b058ab5ff5b621fd1",
+    "manuscript/tables/Figure_07b_plot_data.csv": "94a47f24c9fe6c6d140396df69235112afde9cb90068382bdc2e3b835ba1af98",
+    "manuscript/tables/Figure_07b_frailty_display.csv": "7a53a9c333c4a70bae3094bea694cba041ec27fb86ec591cdacce138172b08c8"
+  },
+  "scientific_baseline_changed": false,
+  "limitations": [
+    "No boxplot distribution available: square point estimates and95%CIs",
+    "Original model-based Breslow Cox uncertainty retained",
+    "Frailty curve is an existing independently refitted scenario, not a newly identified theta estimate"
+  ]
+}
