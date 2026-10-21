@@ -21,4 +21,5 @@ config.private.*
 *.ipynb
 
 # Public study workflow illustration
-!Figure_01.png
+!Figure_01.svg
+!fig1_editable.pdf

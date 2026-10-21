@@ -2,9 +2,9 @@
 
 **Preprint:** [Read on medRxiv](https://www.medrxiv.org/content/10.64898/2026.10.17.26365799v1) · Version 1
 
-![Figure 1. Cohort and genetic analysis workflow](Figure_01.png)
+[![Figure 1. Cohort and genetic analysis workflow](Figure_01.svg)](fig1_editable.pdf)
 
-*Figure 1. Study cohort, polygenic risk scoring, rare-variant burden construction, and downstream analyses.*
+*Figure 1. Study cohort, polygenic risk scoring, rare-variant burden construction, and downstream analyses.* [Download editable PDF](fig1_editable.pdf).
 
 This repository provides public analysis code accompanying the preprint. See [TUTORIAL.md](TUTORIAL.md) for the workflow and usage instructions.
 
