@@ -1,0 +1,19 @@
+name: public-methods
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - numpy
+  - pandas
+  - scipy
+  - statsmodels
+  - scikit-learn
+  - networkx
+  - patsy
+  - requests
+  - pyyaml
+  - bcftools
+  - htslib
+  - plink2
+# GCS/BigQuery access uses the authorized environment's gsutil and Google SDK.
+# This dependency specification is not a recreation of the historical environment.

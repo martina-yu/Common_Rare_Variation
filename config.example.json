@@ -1,0 +1,32 @@
+{
+  "storage": {
+    "wgs_manifest": "path/to/folder",
+    "ancestry_table": "path/to/folder",
+    "relatedness_table": "path/to/folder",
+    "bed_source": "path/to/folder",
+    "bim_source": "path/to/folder",
+    "fam_source": "path/to/folder",
+    "reference_fasta": "path/to/folder",
+    "ensembl_gtf": "path/to/folder",
+    "clinvar_vcf": "path/to/folder",
+    "frozen_membership": "path/to/folder",
+    "private_output": "path/to/folder"
+  },
+  "sql": {
+    "source_dataset": "path/to/folder",
+    "cohort_table": "path/to/folder",
+    "billing_project": "path/to/folder"
+  },
+  "reference_versions": {
+    "assembly": "GRCh38",
+    "ensembl": 110,
+    "clinvar": "2026-09-13",
+    "pgs": "PGS000004"
+  },
+  "execution": {
+    "n_splits": 5,
+    "n_repeats": 10,
+    "seed": 20260818,
+    "write_results": false
+  }
+}
