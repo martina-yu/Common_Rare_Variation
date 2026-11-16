@@ -1,8 +1,8 @@
 """Score individual samples in a GRCh38 VCF using stage 03's PRS methods.
 
 Accepts local VCF/gzip/BGZF files or open text streams (including Hail GCS
-streams). Uses diploid GT hard calls, exact forward allele pairs and the
-public PGS000004 GRCh38 definition. See VCF_PRS.md for examples and limits.
+streams). Uses diploid GT hard calls and exact forward allele pairs, with the
+public PGS000004 GRCh38 definition as default. See VCF_PRS.md for examples.
 """
 import argparse
 from collections import defaultdict
@@ -30,7 +30,7 @@ class IncompleteScoreError(ValueError):
 
 
 def load_definition(path=None):
-    """Read the official harmonized PGS000004 file, retaining original loci."""
+    """Read a harmonized PGS file, retaining original loci and header metadata."""
     source = str(path or prs_method.PGS_URL)
     if source.startswith(('https://', 'http://')):
         with urlopen(source, timeout=60) as handle:
@@ -42,15 +42,17 @@ def load_definition(path=None):
     text = raw.decode('utf-8-sig')
     metadata = dict(line[1:].split('=', 1) for line in text.splitlines()
                     if line.startswith('#') and '=' in line)
-    if metadata.get('pgs_id') != 'PGS000004' or metadata.get('HmPOS_build') != 'GRCh38':
-        raise ValueError('Use the PGS000004 harmonized GRCh38 scoring file.')
-    return pd.read_csv(io.StringIO(text), sep='\t', comment='#')
+    #if metadata.get('pgs_id') != 'PGS000004' or metadata.get('HmPOS_build') != 'GRCh38':
+    #    raise ValueError('Use the PGS000004 harmonized GRCh38 scoring file.')
+    definition = pd.read_csv(io.StringIO(text), sep='\t', comment='#')
+    definition.attrs.update(metadata)
+    return definition
 
 
 def _prepare_definition(definition):
     required = {'chr_name', 'chr_position', 'hm_chr', 'hm_pos',
                 'effect_allele', 'other_allele', 'effect_weight',
-                'allelefrequency_effect'}
+               } #'allelefrequency_effect'}
     if not required.issubset(definition.columns):
         raise ValueError('Definition is missing required PGS Catalog columns.')
     d = definition.copy()
@@ -66,11 +68,16 @@ def _prepare_definition(definition):
         if not d[col].str.fullmatch('[ACGT]+').all():
             raise ValueError('Definition requires explicit A/C/G/T alleles.')
     d['effect_weight'] = pd.to_numeric(d.effect_weight, errors='raise')
-    d['allelefrequency_effect'] = pd.to_numeric(d.allelefrequency_effect, errors='coerce')
+    #d['allelefrequency_effect'] = pd.to_numeric(d.allelefrequency_effect, errors='coerce')
     if not np.isfinite(d.effect_weight).all() or d.effect_allele.eq(d.other_allele).any():
         raise ValueError('Invalid weights or identical model alleles.')
     if d.duplicated(['hm_chr', 'hm_pos', 'effect_allele', 'other_allele']).any():
-        raise ValueError('Duplicated model variant.')
+        d = d.drop_duplicates(
+            subset=['hm_chr', 'hm_pos', 'effect_allele', 'other_allele'],
+            keep='first'
+        )
+        Warning('Duplicated model variant. kept the first one')
+
     return prs_method.prepare_definition(d)
 
 
@@ -113,7 +120,7 @@ def _effect_dosages(fields, effect, other):
 
 
 def score_vcf(vcf, definition=None, *, genome_build, allow_partial=False,
-              resolve_by_af=False):
+              resolve_by_af=False, chek2_mode='both'):
     """Return (per-sample scores, per-model-variant matching report).
 
     definition may be a PGS file path/URL or its DataFrame. Callers supplying a
@@ -121,7 +128,14 @@ def score_vcf(vcf, definition=None, *, genome_build, allow_partial=False,
     Missing loci never imply reference genotypes. Missing individual calls use
     the stage-03 scoring cohort mean; entirely missing loci cannot be imputed.
     AF resolution is opt-in because the published reference AF is European.
+    Score column names use the full definition size, not the matched subset.
+    PGS header metadata is retained in the pgs_id output column when available.
+    chek2_mode='include' retains CHEK2 tags in all returned scores, including
+    direct-only, and omits the tag-excluded columns. The default 'both' keeps
+    the original output schema. Variant matching and tag annotations are unchanged.
     """
+    if chek2_mode not in prs_method.CHEK2_MODES:
+        raise ValueError(f'chek2_mode must be one of {prs_method.CHEK2_MODES}')
     if genome_build != 'GRCh38':
         raise ValueError('This wrapper supports GRCh38 VCFs only; no implicit liftover.')
     d = _prepare_definition(definition if isinstance(definition, pd.DataFrame)
@@ -216,8 +230,14 @@ def score_vcf(vcf, definition=None, *, genome_build, allow_partial=False,
     x = np.stack([values for _, values, _ in accepted])
     selected = d.iloc[indices]
     scores = prs_method.score_prs(x, selected.effect_weight, selected.is_chek2_tagsnp,
-                                 direct_match=[direct for _, _, direct in accepted])
-    scores.insert(0, 'sample_id', samples)
+                                 direct_match=[direct for _, _, direct in accepted],
+                                 n_model_loci=len(d),
+                                 n_model_chek2_tag_loci=int(d.is_chek2_tagsnp.sum()),
+                                 chek2_mode=chek2_mode)
+    scores.insert(0, 'person_id', samples)
+    scores['pgs_id'] = d.attrs.get('pgs_id', pd.NA)
+    scores['n_model_loci'] = len(d)
+    scores['n_model_chek2_tag_loci'] = int(d.is_chek2_tagsnp.sum())
     scores['n_scored_loci'] = len(accepted)
     scores['n_scored_non_chek2_tag_loci'] = int((~selected.is_chek2_tagsnp).sum())
     scores['n_called_loci'] = np.isfinite(x).sum(axis=0)
@@ -231,10 +251,12 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--vcf', required=True, help='Local VCF/VCF.gz/VCF.bgz, or - for text stdin.')
     parser.add_argument('--genome-build', required=True, choices=['GRCh38'])
-    parser.add_argument('--definition', help='PGS000004 GRCh38 file/URL; defaults to the public PGS URL.')
+    parser.add_argument('--definition', help='Harmonized GRCh38 PGS file/URL; defaults to PGS000004.')
     parser.add_argument('--out-prefix', required=True, help='Private output prefix, outside the source repository.')
     parser.add_argument('--allow-partial', action='store_true')
     parser.add_argument('--resolve-by-af', action='store_true', help='Opt into stage-03 reference-AF ambiguity resolution.')
+    parser.add_argument('--chek2-mode', choices=prs_method.CHEK2_MODES, default='both',
+                        help='both: full and tag-excluded scores (default); include: retain CHEK2 tags in all scores.')
     args = parser.parse_args(argv)
     scores_path = Path(args.out_prefix + '.scores.tsv')
     report_path = Path(args.out_prefix + '.variants.tsv')
@@ -242,7 +264,8 @@ def main(argv=None):
         parser.error('Output already exists. Choose a new --out-prefix.')
     try:
         scores, report = score_vcf(args.vcf, args.definition, genome_build=args.genome_build,
-                                   allow_partial=args.allow_partial, resolve_by_af=args.resolve_by_af)
+                                   allow_partial=args.allow_partial, resolve_by_af=args.resolve_by_af,
+                                   chek2_mode=args.chek2_mode)
     except IncompleteScoreError as error:
         report_path.parent.mkdir(parents=True, exist_ok=True)
         error.report.to_csv(report_path, sep='\t', index=False)

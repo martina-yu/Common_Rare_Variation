@@ -1,7 +1,8 @@
-"""PGS000004 GRCh38 matching, AF disambiguation and effect-allele dosage scoring.
+"""GRCh38 matching, AF disambiguation and effect-allele dosage scoring.
 
 Public PGS definition coordinates are retained; no observed match list is shipped.
 Only exact forward allele pairs are considered. No implicit strand rescue.
+PGS000004 remains the default model; score names use the full model size.
 """
 import numpy as np
 import pandas as pd
@@ -12,17 +13,18 @@ AF_GATES = {'d_min_max': 0.1, 'd_gap_min': 0.1, 'd_ratio_min': 3.0,
             'degenerate_af_ref_low': 0.4, 'degenerate_af_ref_high': 0.6,
             'max_missing_rate_flag': 0.1}
 PGS_URL = 'https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000004/ScoringFiles/Harmonized/PGS000004_hmPOS_GRCh38.txt.gz'
+CHEK2_MODES = ('both', 'include')
 
 
 def prepare_definition(definition):
     d = definition.copy().reset_index(drop=True)
-    if len(d) != 313:
-        raise ValueError('Unexpected public PGS definition size')
+    #if len(d) != 313:
+    #    raise ValueError('Unexpected public PGS definition size')
     d['variant_uid'] = np.arange(len(d))
     d['is_chek2_tagsnp'] = [(str(c), int(p)) in {('22', 29203724), ('22', 29551872)}
                            for c, p in zip(d.chr_name, d.chr_position)]
-    if d.is_chek2_tagsnp.sum() != 2:
-        raise ValueError('Public CHEK2 tag definition mismatch')
+    #if d.is_chek2_tagsnp.sum() != 2:
+    #    raise ValueError('Public CHEK2 tag definition mismatch')
     return d
 
 
@@ -77,29 +79,58 @@ def decode_effect_dosage(raw_bytes, sample_count, effect_is):
     return a1 if effect_is == 'A1' else 2 - a1
 
 
-def score_prs(effect_dosage, weights, is_chek2_tag, direct_match=None):
+def score_prs(effect_dosage, weights, is_chek2_tag, direct_match=None, *,
+              n_model_loci=313, n_model_chek2_tag_loci=2, chek2_mode='both'):
     """Variants x samples; main mean imputation uses the scoring cohort.
 
     noimp means a zero contribution from missing calls, matching SCORE_SUM with
     no-mean-imputation. It does not imply complete-case sample removal.
+
+    Model counts describe the full definition, before filtering to scorable
+    loci. Defaults retain the original PRS313/PRS311 API. Other model sizes
+    use PRS<N> and PRS<N>_no_CHEK2_tags, with the same score calculations.
+
+    chek2_mode='both' returns full and CHEK2-tag-excluded scores (the default).
+    chek2_mode='include' retains the original weights for all reported scores,
+    including PRS<N>_direct_only, and omits the tag-excluded score columns.
+    Direct-only scores still omit AF-resolved matches in either mode.
     """
+    if chek2_mode not in CHEK2_MODES:
+        raise ValueError(f'chek2_mode must be one of {CHEK2_MODES}')
     x = np.asarray(effect_dosage, dtype=float)
     w = np.asarray(weights, dtype=float)
     tags = np.asarray(is_chek2_tag, dtype=bool)
     if x.ndim != 2 or x.shape[0] != len(w) or len(tags) != len(w):
         raise ValueError('PRS dimensions differ')
+    for name, value in [('n_model_loci', n_model_loci),
+                        ('n_model_chek2_tag_loci', n_model_chek2_tag_loci)]:
+        if isinstance(value, (bool, np.bool_)) or not isinstance(value, (int, np.integer)):
+            raise ValueError(f'{name} must be an integer from the full model definition')
+    if n_model_loci <= 0 or not 0 <= n_model_chek2_tag_loci <= n_model_loci:
+        raise ValueError('Invalid full-model locus counts')
+    if len(w) > n_model_loci or tags.sum() > n_model_chek2_tag_loci:
+        raise ValueError('Scored loci exceed model counts; supply the full definition counts')
     if not np.isfinite(w).all() or not np.isin(x[~np.isnan(x)], [0, 1, 2]).all():
         raise ValueError('Invalid weights or diploid calls')
     if np.isnan(x).all(axis=1).any():
         raise ValueError('A scoring locus is entirely missing')
     imputed = np.where(np.isnan(x), np.nanmean(x, axis=1)[:, None], x)
     zero = np.nan_to_num(x, nan=0.0)
-    reduced = np.where(tags, 0, w)
-    result = {'PRS313': w @ imputed, 'PRS311': reduced @ imputed,
-              'PRS313_noimp': w @ zero, 'PRS311_noimp': reduced @ zero}
+    full_name = f'PRS{n_model_loci}'
+    result = {full_name: w @ imputed}
+    direct_name, direct_weights = full_name, w
+    if chek2_mode == 'both':
+        reduced = np.where(tags, 0, w)
+        reduced_name = ('PRS311' if (n_model_loci, n_model_chek2_tag_loci) == (313, 2)
+                        else f'{full_name}_no_CHEK2_tags')
+        result[reduced_name] = reduced @ imputed
+        direct_name, direct_weights = reduced_name, reduced
+    result[f'{full_name}_noimp'] = w @ zero
+    if chek2_mode == 'both':
+        result[f'{reduced_name}_noimp'] = reduced @ zero
     if direct_match is not None:
         mask = np.asarray(direct_match, dtype=bool)
-        result['PRS311_direct_only'] = reduced[mask] @ imputed[mask]
+        result[f'{direct_name}_direct_only'] = direct_weights[mask] @ imputed[mask]
     return pd.DataFrame(result)
 
 
